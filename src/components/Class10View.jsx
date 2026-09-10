@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { AdBanner } from './AdBanner';
+import { ChapterSectionCard } from './ChapterSectionCard';
 import { 
   FlaskConical, 
   BookOpen, 
@@ -8,16 +9,41 @@ import {
   Globe2, 
   Monitor, 
   Cpu, 
-  Activity 
+  Activity,
+  PlusCircle,
+  BookOpenCheck,
+  FolderOpen
 } from 'lucide-react';
 
 export const Class10View = () => {
-  const { setActiveTab, setSelectedClass, setSelectedSubject, pdfs, setPdfViewerOpen, setSelectedPdf } = useApp();
+  const { 
+    setActiveTab, 
+    setSelectedClass, 
+    setSelectedSubject, 
+    pdfs = [], 
+    setViewingPdf, 
+    setActiveSummary,
+    chapters = [],
+    setUploadModalOpen 
+  } = useApp();
+
+  const [activeSubjectFilter, setActiveSubjectFilter] = useState('All');
 
   const c10Pyqs = (pdfs || []).filter(pdf => pdf.class === 'class-10' && (pdf.category?.includes('PYQ') || pdf.title?.toLowerCase().includes('pyq')));
 
+  // Filter Class 10 chapters
+  const class10Chapters = (chapters || []).filter(ch => ch.class === 'class-10' || ch.className === 'Class 10');
+
+  const filteredChapters = activeSubjectFilter === 'All'
+    ? class10Chapters
+    : class10Chapters.filter(ch => ch.subject?.toLowerCase() === activeSubjectFilter.toLowerCase());
+
   const handleSubjectClick = (subjName) => {
-    setActiveTab('notes', 'class-10', subjName);
+    setActiveSubjectFilter(subjName);
+    const chapterSecElem = document.getElementById('class10-chapter-sections');
+    if (chapterSecElem) {
+      chapterSecElem.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const c10Subjects = [
@@ -222,8 +248,128 @@ export const Class10View = () => {
             })}
           </div>
 
+          {/* DYNAMIC CLASS 10 CHAPTER SECTIONS */}
+          <section id="class10-chapter-sections" style={{ marginTop: '2.5rem', marginBottom: '3rem' }}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              marginBottom: '1.25rem',
+              flexWrap: 'wrap',
+              gap: '1rem'
+            }}>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.2rem' }}>
+                  <span className="badge badge-primary">Chapter Sections</span>
+                  <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>PDF & HTML Summary</span>
+                </div>
+                <h2 style={{
+                  fontSize: '1.65rem',
+                  fontWeight: 800,
+                  color: 'var(--text-main)',
+                  letterSpacing: '-0.02em',
+                  fontFamily: "'Outfit', sans-serif"
+                }}>
+                  Class 10 Subject Chapter Sections
+                </h2>
+                <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
+                  Every chapter contains 2 sections: <strong>Chapter PDF</strong> and <strong>Chapter Summary (HTML File)</strong>.
+                </p>
+              </div>
+
+              <button
+                onClick={() => setUploadModalOpen(true)}
+                className="btn btn-emerald hover-lift"
+                style={{
+                  padding: '0.55rem 1.1rem',
+                  fontSize: '0.85rem',
+                  borderRadius: '8px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.45rem',
+                  background: '#10b981',
+                  color: '#fff',
+                  border: 'none',
+                  fontWeight: 700,
+                  cursor: 'pointer'
+                }}
+              >
+                <PlusCircle size={16} />
+                <span>Add More Chapter Sections</span>
+              </button>
+            </div>
+
+            {/* Subject Filter Tabs */}
+            <div style={{
+              display: 'flex',
+              gap: '0.5rem',
+              overflowX: 'auto',
+              paddingBottom: '0.5rem',
+              marginBottom: '1.5rem'
+            }}>
+              {['All', 'Science', 'English', 'Hindi', 'Social Science', 'Computer Science', 'Information Technology (IT)', 'Physical Education'].map(tab => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveSubjectFilter(tab)}
+                  style={{
+                    padding: '0.4rem 0.9rem',
+                    borderRadius: '999px',
+                    fontSize: '0.8rem',
+                    fontWeight: activeSubjectFilter.toLowerCase() === tab.toLowerCase() ? 700 : 500,
+                    background: activeSubjectFilter.toLowerCase() === tab.toLowerCase() ? '#2563eb' : 'var(--bg-card)',
+                    color: activeSubjectFilter.toLowerCase() === tab.toLowerCase() ? '#ffffff' : 'var(--text-muted)',
+                    border: '1px solid var(--border-color)',
+                    cursor: 'pointer',
+                    whiteSpace: 'nowrap',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+
+            {/* Render Chapter Sections */}
+            {filteredChapters.length > 0 ? (
+              filteredChapters.map(ch => (
+                <ChapterSectionCard
+                  key={ch.id}
+                  chapter={ch}
+                  onPreviewPdf={(pdfObj) => setViewingPdf(pdfObj)}
+                  onOpenSummary={(summaryObj) => setActiveSummary(summaryObj)}
+                />
+              ))
+            ) : (
+              <div 
+                className="glass-card" 
+                style={{
+                  padding: '2.5rem',
+                  textAlign: 'center',
+                  borderRadius: '16px',
+                  background: 'var(--bg-card)',
+                  border: '1px solid var(--border-color)'
+                }}
+              >
+                <FolderOpen size={40} style={{ color: 'var(--text-muted)', marginBottom: '0.75rem' }} />
+                <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.4rem' }}>
+                  No Chapter Sections Uploaded for {activeSubjectFilter} Yet
+                </h4>
+                <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', maxWidth: '480px', margin: '0 auto 1.25rem' }}>
+                  Click below to add a new chapter section with both Chapter PDF and Chapter Summary HTML file!
+                </p>
+                <button
+                  onClick={() => setUploadModalOpen(true)}
+                  className="btn btn-primary"
+                  style={{ fontSize: '0.85rem', padding: '0.5rem 1.25rem' }}
+                >
+                  Create Chapter Section Now
+                </button>
+              </div>
+            )}
+          </section>
+
           {/* Class 10 PYQ (Previous Year Question Papers) Section */}
-          <section style={{ marginTop: '2.5rem', marginBottom: '2rem' }}>
+          <section style={{ marginTop: '1rem', marginBottom: '2rem' }}>
             <div style={{
               display: 'flex',
               alignItems: 'center',

@@ -135,29 +135,42 @@ export const PrivacyPolicyView = () => {
             </p>
           </div>
 
-          {/* Section 6 */}
-          <section>
+          {/* Section 6 - Google AdSense & Cookies */}
+          <section style={{
+            padding: '1.5rem',
+            borderRadius: '12px',
+            background: 'rgba(37, 99, 235, 0.06)',
+            border: '1px solid rgba(37, 99, 235, 0.18)'
+          }}>
             <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-main)', marginBottom: '0.65rem', fontFamily: "'Outfit', sans-serif" }}>
-              6. Cookies and Similar Technologies
+              6. Cookies, Google AdSense & Third-Party Advertising
             </h3>
-            <p style={{ color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
-              The website may use cookies or similar technologies that are necessary for login, authentication, security, or basic website functionality.
+            <p style={{ color: 'var(--text-muted)', marginBottom: '0.75rem' }}>
+              Alpha Arts uses cookies, web beacons, and similar tracking technologies to enhance user experience, authentication, and to display advertisements through Google AdSense.
             </p>
-            <p style={{ color: 'var(--text-muted)' }}>
-              If advertising or analytics services are added to the website in the future, this Privacy Policy may be updated to explain their use.
-            </p>
+            <ul style={{ color: 'var(--text-muted)', paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '0.75rem' }}>
+              <li>
+                <strong>Third-Party Vendors & Google AdSense:</strong> Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to Alpha Arts or other websites across the Internet.
+              </li>
+              <li>
+                <strong>DART Cookies:</strong> Google's use of advertising cookies (such as the DoubleClick DART cookie) enables it and its partners to serve ads to users based on their visit to our site and/or other sites on the Internet.
+              </li>
+              <li>
+                <strong>Opting Out:</strong> Users may opt out of personalized advertising by visiting Google's Ads Settings at <a href="https://www.google.com/settings/ads" target="_blank" rel="noreferrer" style={{ color: '#2563eb', fontWeight: 600 }}>https://www.google.com/settings/ads</a> or by visiting <a href="https://www.aboutads.info/choices/" target="_blank" rel="noreferrer" style={{ color: '#2563eb', fontWeight: 600 }}>www.aboutads.info</a>.
+              </li>
+            </ul>
           </section>
 
           {/* Section 7 */}
           <section>
             <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-main)', marginBottom: '0.65rem', fontFamily: "'Outfit', sans-serif" }}>
-              7. Third-Party Services
+              7. Third-Party Services & Analytics
             </h3>
             <p style={{ color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
-              Our website may use third-party services to provide certain functionality, such as authentication, hosting, analytics, advertising, or file storage.
+              Our website may utilize trusted third-party service providers for hosting (e.g. GitHub Pages), authentication (Google OAuth 2.0), analytics, and digital asset distribution.
             </p>
             <p style={{ color: 'var(--text-muted)' }}>
-              These services may process information according to their own privacy policies. We do not sell your personal information to these services.
+              These services collect standard server logs and technical browser information according to their independent privacy policies. We do not control or sell user data processed by these external services.
             </p>
           </section>
 

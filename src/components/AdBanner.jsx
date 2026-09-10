@@ -122,7 +122,7 @@ export const AdBanner = ({
             className="adsbygoogle"
             style={{ display: 'block', textAlign: 'center', width: '100%', minHeight: bannerHeight }}
             data-ad-client={formattedPublisherId}
-            data-ad-slot="auto"
+            {...(adsSettings?.[`${slot}Id`] ? { 'data-ad-slot': adsSettings[`${slot}Id`] } : {})}
             data-ad-format={adFormat}
             data-full-width-responsive={type === 'responsive' ? 'true' : 'false'}
           />

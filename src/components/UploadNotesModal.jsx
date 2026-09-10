@@ -16,7 +16,8 @@ export const UploadNotesModal = () => {
     currentUser,
     isOwnerUnlocked,
     unlockOwnerMode,
-    lockOwnerMode
+    lockOwnerMode,
+    addNewChapter
   } = useApp();
 
   const [activeTab, setActiveTab] = useState('upload'); // 'upload' | 'manage' | 'tickets'
@@ -27,6 +28,9 @@ export const UploadNotesModal = () => {
   const [category, setCategory] = useState('Handwritten Notes');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [chapterNumber, setChapterNumber] = useState(1);
+  const [chapterTitleInput, setChapterTitleInput] = useState('');
+  const [summaryHtmlUrlInput, setSummaryHtmlUrlInput] = useState('');
   const [author, setAuthor] = useState(currentUser ? currentUser.name : 'Alpha Arts Owner');
   const [pdfFile, setPdfFile] = useState(null);
   const [pdfDataUrl, setPdfDataUrl] = useState('');
@@ -118,20 +122,37 @@ export const UploadNotesModal = () => {
       fileContentUrl: pdfDataUrl || ''
     };
 
+    const newChapterObj = {
+      class: selectedClass === 'class-12' ? 'class-12-arts' : selectedClass,
+      className: classNameDisplay,
+      subject: selectedSubject,
+      chapterNumber: Number(chapterNumber) || 1,
+      chapterTitle: chapterTitleInput.trim() || title.trim(),
+      pdf: newNoteObj,
+      summary: {
+        title: `${classNameDisplay} ${selectedSubject} Chapter ${chapterNumber}: ${chapterTitleInput.trim() || title.trim()} — HTML Summary`,
+        description: description.trim() || `Complete HTML file revision summary for ${classNameDisplay} ${selectedSubject} Chapter ${chapterNumber}.`,
+        htmlUrl: summaryHtmlUrlInput.trim() || `/summaries/${selectedClass}/${selectedSubject.toLowerCase().replace(/[^a-z0-9]/g, '_')}_ch${chapterNumber}.html`
+      }
+    };
+
     setTimeout(() => {
       addNewPdf(newNoteObj);
+      addNewChapter(newChapterObj);
       setIsUploading(false);
       
       try {
         confetti({ particleCount: 85, spread: 75, origin: { y: 0.6 } });
       } catch (err) {}
 
-      setToastMsg({ type: 'success', text: `Success! "${title}" is published under ${classNameDisplay} ${selectedSubject}.` });
+      setToastMsg({ type: 'success', text: `Success! Created Chapter Section & published PDF under ${classNameDisplay} ${selectedSubject}.` });
 
       setTimeout(() => {
         setUploadModalOpen(false);
         setTitle('');
         setDescription('');
+        setChapterTitleInput('');
+        setSummaryHtmlUrlInput('');
         setPdfFile(null);
         setPdfDataUrl('');
         setToastMsg(null);
@@ -405,6 +426,79 @@ export const UploadNotesModal = () => {
                     <option value="Question Bank">Question Bank & Past Papers</option>
                     <option value="Practical & Theory">Practical & Theory Guide</option>
                   </select>
+                </div>
+
+                {/* Chapter Section Details (Chapter No., Chapter Title, HTML Summary File) */}
+                <div style={{ padding: '1rem', background: 'rgba(37, 99, 235, 0.08)', borderRadius: '10px', border: '1px solid rgba(37, 99, 235, 0.25)' }}>
+                  <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#60a5fa', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '0.75rem' }}>
+                    Chapter Section Setup (PDF + HTML Summary)
+                  </span>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '0.85rem', marginBottom: '0.85rem' }}>
+                    <div>
+                      <label style={{ fontSize: '0.8rem', fontWeight: 700, display: 'block', marginBottom: '0.35rem' }}>
+                        Chapter No.
+                      </label>
+                      <input
+                        type="number"
+                        min="1"
+                        value={chapterNumber}
+                        onChange={(e) => setChapterNumber(e.target.value)}
+                        placeholder="e.g. 1"
+                        style={{
+                          width: '100%',
+                          padding: '0.65rem 0.85rem',
+                          borderRadius: '8px',
+                          border: '1px solid var(--border-glass)',
+                          background: 'rgba(15, 23, 42, 0.8)',
+                          color: 'var(--text-main)',
+                          fontSize: '0.875rem'
+                        }}
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ fontSize: '0.8rem', fontWeight: 700, display: 'block', marginBottom: '0.35rem' }}>
+                        Chapter Title
+                      </label>
+                      <input
+                        type="text"
+                        value={chapterTitleInput}
+                        onChange={(e) => setChapterTitleInput(e.target.value)}
+                        placeholder="e.g. Chemical Reactions & Equations"
+                        style={{
+                          width: '100%',
+                          padding: '0.65rem 0.85rem',
+                          borderRadius: '8px',
+                          border: '1px solid var(--border-glass)',
+                          background: 'rgba(15, 23, 42, 0.8)',
+                          color: 'var(--text-main)',
+                          fontSize: '0.875rem'
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label style={{ fontSize: '0.8rem', fontWeight: 700, display: 'block', marginBottom: '0.35rem' }}>
+                      Chapter Summary HTML File URL / Path
+                    </label>
+                    <input
+                      type="text"
+                      value={summaryHtmlUrlInput}
+                      onChange={(e) => setSummaryHtmlUrlInput(e.target.value)}
+                      placeholder="e.g. /summaries/class10/science_ch1_chemical_reactions.html"
+                      style={{
+                        width: '100%',
+                        padding: '0.65rem 0.85rem',
+                        borderRadius: '8px',
+                        border: '1px solid var(--border-glass)',
+                        background: 'rgba(15, 23, 42, 0.8)',
+                        color: 'var(--text-main)',
+                        fontSize: '0.875rem'
+                      }}
+                    />
+                  </div>
                 </div>
 
                 {/* Title Input */}

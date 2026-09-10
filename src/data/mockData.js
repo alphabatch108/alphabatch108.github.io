@@ -41,6 +41,153 @@ export const INITIAL_CLASSES = [
   }
 ];
 
+export const INITIAL_CHAPTERS = [
+  {
+    id: 'ch-c10-sci-ch1',
+    class: 'class-10',
+    className: 'Class 10',
+    subject: 'Science',
+    chapterNumber: 1,
+    chapterTitle: 'Chemical Reactions & Equations',
+    pdf: {
+      id: 'pdf-c10-sci-ch1',
+      title: 'Class 10 Science — Chapter 1: Chemical Reactions & Equations (Complete Notes)',
+      description: 'Handwritten & typed revision notes for Chemical Reactions & Equations including balanced equations, redox, and NCERT solved examples.',
+      fileSize: '3.5 MB',
+      pages: 14,
+      downloads: 620,
+      rating: 5.0,
+      fileContentUrl: 'https://drive.google.com/file/d/1X0aU0ckyZtkbVRMUIeKWhH8uaUk8xc3w/view?usp=drive_link',
+      downloadUrl: 'https://drive.google.com/uc?export=download&id=1X0aU0ckyZtkbVRMUIeKWhH8uaUk8xc3w'
+    },
+    summary: {
+      title: 'Class 10 Science Chapter 1: Chemical Reactions & Equations — HTML Summary',
+      description: 'Comprehensive HTML revision guide covering chemical equations, combination, decomposition, displacement, redox reactions, corrosion & rancidity.',
+      htmlUrl: '/summaries/class10/science_ch1_chemical_reactions.html'
+    }
+  },
+  {
+    id: 'ch-c10-eng-ch1',
+    class: 'class-10',
+    className: 'Class 10',
+    subject: 'English',
+    chapterNumber: 1,
+    chapterTitle: 'A Letter to God',
+    pdf: {
+      id: 'pdf-c10-eng-ch1',
+      title: 'Class 10 English — First Flight Lesson 1: A Letter to God (Notes & QA)',
+      description: 'Complete chapter explanation, character sketch of Lencho, Q&A, and previous board exam questions.',
+      fileSize: '2.9 MB',
+      pages: 10,
+      downloads: 480,
+      rating: 4.9,
+      fileContentUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link',
+      downloadUrl: 'https://drive.google.com/uc?export=download&id=1a4y_zYUysVyIVICuXhmyquO6853kxpAp'
+    },
+    summary: {
+      title: 'Class 10 English Lesson 1: A Letter to God — HTML Summary',
+      description: 'Full HTML summary detailing Lencho’s faith, the hailstorm destruction, postmaster’s contribution, and the ironical ending.',
+      htmlUrl: '/summaries/class10/english_ch1_letter_to_god.html'
+    }
+  },
+  {
+    id: 'ch-c12-eng-ch1',
+    class: 'class-12-arts',
+    className: 'Class 12 Arts',
+    subject: 'English',
+    chapterNumber: 1,
+    chapterTitle: 'The Last Lesson (Flamingo)',
+    pdf: {
+      id: 'pdf-c12-eng-flamingo-ch1-summary',
+      title: 'Class 12 English — Flamingo Lesson - 1: The Last Lesson (Summary & Important Points)',
+      description: 'Class 12 English Core — Flamingo Lesson - 1: The Last Lesson complete chapter summary, key takeaways, and most important points.',
+      fileSize: '3.0 MB',
+      pages: 10,
+      downloads: 410,
+      rating: 5.0,
+      fileContentUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link',
+      downloadUrl: 'https://drive.google.com/uc?export=download&id=1a4y_zYUysVyIVICuXhmyquO6853kxpAp'
+    },
+    summary: {
+      title: 'Class 12 English Lesson 1: The Last Lesson — HTML Summary',
+      description: 'Comprehensive HTML file summary covering Franco-Prussian war background, M. Hamel’s last French class, linguistic chauvinism, and character analysis.',
+      htmlUrl: '/summaries/class12/english_ch1_the_last_lesson.html'
+    }
+  },
+  {
+    id: 'ch-c12-geo-ch1',
+    class: 'class-12-arts',
+    className: 'Class 12 Arts',
+    subject: 'Geography',
+    chapterNumber: 1,
+    chapterTitle: 'मानव भूगोल : प्रकृति एवं विषय क्षेत्र (Human Geography)',
+    pdf: {
+      id: 'pdf-c12-geo-ch1-short-qa',
+      title: 'Class 12 Geography — अध्याय - 1: मानव भूगोल : प्रकृति एवं विषय क्षेत्र (Short Q&A)',
+      description: 'कक्षा 12 भूगोल (Hindi Medium) - अध्याय 1: मानव भूगोल : प्रकृति एवं विषय क्षेत्र के सभी महत्वपूर्ण अति लघुउत्तरीय एवं लघुउत्तरीय प्रश्नोत्तर।',
+      fileSize: '2.8 MB',
+      pages: 12,
+      downloads: 450,
+      rating: 5.0,
+      fileContentUrl: 'https://drive.google.com/file/d/1h116hD1ia0OJZgL9JgFfFen7fErctscH/view?usp=drive_link',
+      downloadUrl: 'https://drive.google.com/uc?export=download&id=1h116hD1ia0OJZgL9JgFfFen7fErctscH'
+    },
+    summary: {
+      title: 'कक्षा 12 भूगोल अध्याय 1: मानव भूगोल : प्रकृति एवं विषय क्षेत्र — HTML सारांश',
+      description: 'पर्यावरण नियतिवाद, संभववाद, नवनियतिवाद (ग्रिफिथ टेलर), एवं मानव भूगोल की प्रमुख विचारधाराओं का HTML सारांश।',
+      htmlUrl: '/summaries/class12/geography_ch1_human_geography.html'
+    }
+  },
+  {
+    id: 'ch-c12-pol-ch1',
+    class: 'class-12-arts',
+    className: 'Class 12 Arts',
+    subject: 'Political Science',
+    chapterNumber: 1,
+    chapterTitle: 'द्विध्रुवीयता का अंत (The End of Bipolarity)',
+    pdf: {
+      id: 'pdf-c12-pol-ch1-short-qa',
+      title: 'Class 12 Political Science — अध्याय 1: द्विध्रुवीयता का अंत (Short Q&A)',
+      description: 'कक्षा 12 राजनीति विज्ञान (Hindi Medium) - अध्याय 1: द्विध्रुवीयता का अंत के सभी महत्वपूर्ण प्रश्नोत्तर।',
+      fileSize: '3.1 MB',
+      pages: 14,
+      downloads: 520,
+      rating: 5.0,
+      fileContentUrl: 'https://drive.google.com/file/d/1Hy5j9fwtCe1Bj1h1Ys1uvl9lz9gYzvV7/view?usp=drive_link',
+      downloadUrl: 'https://drive.google.com/uc?export=download&id=1Hy5j9fwtCe1Bj1h1Ys1uvl9lz9gYzvV7'
+    },
+    summary: {
+      title: 'कक्षा 12 राजनीति विज्ञान अध्याय 1: द्विध्रुवीयता का अंत — HTML सारांश',
+      description: 'सोवियत संघ (USSR) का विघटन, बर्लिन की दीवार, शॉक थेरेपी के परिणाम एवं भारत-रूस संबंधों का HTML दस्तावेज़ सारांश।',
+      htmlUrl: '/summaries/class12/political_ch1_end_of_bipolarity.html'
+    }
+  },
+  {
+    id: 'ch-c12-it-ch1',
+    class: 'class-12-arts',
+    className: 'Class 12 Arts',
+    subject: 'Information Technology (IT)',
+    chapterNumber: 1,
+    chapterTitle: 'Database Management System (DBMS)',
+    pdf: {
+      id: 'pdf-c12-it-dbms-30q',
+      title: 'Class 12 IT — Database Management System: 30 Most Important 1 Mark Questions',
+      description: 'Top 30 expected 1-mark objective questions, MCQs, fill-in-the-blanks, and one-word answers for Class 12 IT DBMS.',
+      fileSize: '3.2 MB',
+      pages: 10,
+      downloads: 380,
+      rating: 5.0,
+      fileContentUrl: 'https://drive.google.com/file/d/1X0aU0ckyZtkbVRMUIeKWhH8uaUk8xc3w/view?usp=drive_link',
+      downloadUrl: 'https://drive.google.com/uc?export=download&id=1X0aU0ckyZtkbVRMUIeKWhH8uaUk8xc3w'
+    },
+    summary: {
+      title: 'Class 12 IT Chapter 1: Database Management System (DBMS) — HTML Summary',
+      description: 'Relational data model, degree & cardinality, primary vs foreign keys, and SQL DDL/DML commands HTML file summary.',
+      htmlUrl: '/summaries/class12/it_ch1_dbms.html'
+    }
+  }
+];
+
 export const INITIAL_PDFS = [
   {
     id: 'pdf-c12-it-dbms-30q',

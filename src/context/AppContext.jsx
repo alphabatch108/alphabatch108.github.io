@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import {
   INITIAL_CLASSES,
   INITIAL_PDFS,
+  INITIAL_CHAPTERS,
   INITIAL_YOUTUBE_LECTURES,
   INITIAL_FAQS,
   INITIAL_TICKETS,
@@ -143,6 +144,7 @@ export const AppProvider = ({ children }) => {
   
   // Modals & Overlay state
   const [viewingPdf, setViewingPdf] = useState(null); // Active PDF in preview modal
+  const [activeSummary, setActiveSummary] = useState(null); // Active Chapter Summary HTML in summary modal
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState('login'); // 'login' | 'signup' | 'forgot'
   const [sqlModalOpen, setSqlModalOpen] = useState(false);
@@ -167,6 +169,32 @@ export const AppProvider = ({ children }) => {
   };
   // App Data States with Central Database Sync & LocalStorage persistence
   const [classes] = useState(INITIAL_CLASSES);
+  
+  const [chapters, setChapters] = useState(() => {
+    const saved = localStorage.getItem('study_hub_chapters');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed;
+        }
+      } catch (e) {}
+    }
+    return INITIAL_CHAPTERS;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('study_hub_chapters', JSON.stringify(chapters));
+  }, [chapters]);
+
+  const addNewChapter = (chapterData) => {
+    const newCh = {
+      id: `ch-${Date.now()}`,
+      ...chapterData
+    };
+    setChapters(prev => [newCh, ...prev]);
+    return { success: true, message: 'New Chapter Section created successfully!' };
+  };
   
   const isFakePdf = (p) => !p || p.id === 'pdf-c12-geo-ch1' || p.id === 'pdf-c12-his-ch1' || p.id === 'pdf-c12-his-pyq-2024' || (typeof p.id === 'string' && p.id.startsWith('pdf-c12-his'));
   const isFakeLecture = (y) => !y || (typeof y.id === 'string' && y.id.startsWith('yt-his'));
@@ -870,6 +898,11 @@ export const AppProvider = ({ children }) => {
         setSearchQuery,
         viewingPdf,
         setViewingPdf,
+        activeSummary,
+        setActiveSummary,
+        chapters,
+        setChapters,
+        addNewChapter,
         authModalOpen,
         setAuthModalOpen,
         authMode,

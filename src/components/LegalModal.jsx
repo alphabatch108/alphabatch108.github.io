@@ -1,5 +1,6 @@
 import React from 'react';
-import { ShieldCheck, X } from 'lucide-react';
+import { ShieldCheck, X, CheckCircle2 } from 'lucide-react';
+
 
 export const LegalModal = ({ isOpen, onClose, activeSection = 'privacy' }) => {
   if (!isOpen) return null;

@@ -14,6 +14,7 @@ import { AboutView } from './components/AboutView';
 import { ContactView } from './components/ContactView';
 import { PDFCard } from './components/PDFCard';
 import { PDFViewerModal } from './components/PDFViewerModal';
+import { HTMLSummaryModal } from './components/HTMLSummaryModal';
 import { SupportSection } from './components/SupportSection';
 import { AIChatbotModal } from './components/AIChatbotModal';
 import { UserProfileModal } from './components/UserProfileModal';
@@ -40,6 +41,8 @@ const MainAppContent = () => {
     searchQuery,
     setSearchQuery,
     pdfs,
+    activeSummary,
+    setActiveSummary,
     currentUser,
     setAuthModalOpen,
     setAuthMode
@@ -359,6 +362,7 @@ const MainAppContent = () => {
 
       {/* Floating Modals */}
       <PDFViewerModal />
+      <HTMLSummaryModal isOpen={!!activeSummary} summaryData={activeSummary} onClose={() => setActiveSummary(null)} />
       <AuthModal />
       <AIChatbotModal />
       <UploadNotesModal />
