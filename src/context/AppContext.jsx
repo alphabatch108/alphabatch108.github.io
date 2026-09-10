@@ -176,7 +176,8 @@ export const AppProvider = ({ children }) => {
       try {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
+          const hasBadUrl = parsed.some(c => c.id === 'ch-c10-sci-ch1' && c.pdf?.fileContentUrl?.includes('drive.google.com'));
+          if (!hasBadUrl) return parsed;
         }
       } catch (e) {}
     }

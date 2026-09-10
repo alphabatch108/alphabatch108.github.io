@@ -51,14 +51,14 @@ export const INITIAL_CHAPTERS = [
     chapterTitle: 'Chemical Reactions & Equations',
     pdf: {
       id: 'pdf-c10-sci-ch1',
-      title: 'Class 10 Science — Chapter 1: Chemical Reactions & Equations (Complete Notes)',
+      title: 'Class 10 Science — Chapter 1: Chemical Reactions & Equations (Notes & Formulas)',
       description: 'Handwritten & typed revision notes for Chemical Reactions & Equations including balanced equations, redox, and NCERT solved examples.',
       fileSize: '3.5 MB',
       pages: 14,
       downloads: 620,
       rating: 5.0,
-      fileContentUrl: 'https://drive.google.com/file/d/1X0aU0ckyZtkbVRMUIeKWhH8uaUk8xc3w/view?usp=drive_link',
-      downloadUrl: 'https://drive.google.com/uc?export=download&id=1X0aU0ckyZtkbVRMUIeKWhH8uaUk8xc3w'
+      fileContentUrl: '/summaries/class10/science_ch1_chemical_reactions.html',
+      downloadUrl: '/summaries/class10/science_ch1_chemical_reactions.html'
     },
     summary: {
       title: 'Class 10 Science Chapter 1: Chemical Reactions & Equations — HTML Summary',
@@ -81,8 +81,8 @@ export const INITIAL_CHAPTERS = [
       pages: 10,
       downloads: 480,
       rating: 4.9,
-      fileContentUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link',
-      downloadUrl: 'https://drive.google.com/uc?export=download&id=1a4y_zYUysVyIVICuXhmyquO6853kxpAp'
+      fileContentUrl: '/summaries/class10/english_ch1_letter_to_god.html',
+      downloadUrl: '/summaries/class10/english_ch1_letter_to_god.html'
     },
     summary: {
       title: 'Class 10 English Lesson 1: A Letter to God — HTML Summary',

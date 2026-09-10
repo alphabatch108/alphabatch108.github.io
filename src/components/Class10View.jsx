@@ -39,11 +39,7 @@ export const Class10View = () => {
     : class10Chapters.filter(ch => ch.subject?.toLowerCase() === activeSubjectFilter.toLowerCase());
 
   const handleSubjectClick = (subjName) => {
-    setActiveSubjectFilter(subjName);
-    const chapterSecElem = document.getElementById('class10-chapter-sections');
-    if (chapterSecElem) {
-      chapterSecElem.scrollIntoView({ behavior: 'smooth' });
-    }
+    setActiveTab('notes', 'class-10', subjName);
   };
 
   const c10Subjects = [
