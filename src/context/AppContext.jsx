@@ -176,8 +176,8 @@ export const AppProvider = ({ children }) => {
       try {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          const hasBadUrl = parsed.some(c => c.id === 'ch-c10-sci-ch1' && c.pdf?.fileContentUrl?.includes('drive.google.com'));
-          if (!hasBadUrl) return parsed;
+          const hasFakeData = parsed.some(c => c.id?.startsWith('ch-c10-') || (c.summary?.htmlUrl && c.summary.htmlUrl.includes('/summaries/')));
+          if (!hasFakeData) return parsed;
         }
       } catch (e) {}
     }

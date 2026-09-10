@@ -43,51 +43,128 @@ export const INITIAL_CLASSES = [
 
 export const INITIAL_CHAPTERS = [
   {
-    id: 'ch-c10-sci-ch1',
-    class: 'class-10',
-    className: 'Class 10',
-    subject: 'Science',
+    id: 'ch-c12-it-dbms',
+    class: 'class-12-arts',
+    className: 'Class 12 Arts',
+    subject: 'Information Technology (IT)',
     chapterNumber: 1,
-    chapterTitle: 'Chemical Reactions & Equations',
+    chapterTitle: 'Database Management System (DBMS)',
     pdf: {
-      id: 'pdf-c10-sci-ch1',
-      title: 'Class 10 Science — Chapter 1: Chemical Reactions & Equations (Notes & Formulas)',
-      description: 'Handwritten & typed revision notes for Chemical Reactions & Equations including balanced equations, redox, and NCERT solved examples.',
-      fileSize: '3.5 MB',
-      pages: 14,
-      downloads: 620,
+      id: 'pdf-c12-it-dbms-30q',
+      title: 'Class 12 IT — Database Management System: 30 Most Important 1 Mark Questions',
+      description: 'Top 30 expected 1-mark objective questions, MCQs, fill-in-the-blanks, and one-word answers for Class 12 IT (Information Technology) Database Management System (DBMS) CBSE Board Exam.',
+      fileSize: '3.2 MB',
+      pages: 10,
+      downloads: 380,
       rating: 5.0,
-      fileContentUrl: '/summaries/class10/science_ch1_chemical_reactions.html',
-      downloadUrl: '/summaries/class10/science_ch1_chemical_reactions.html'
+      fileContentUrl: 'https://drive.google.com/file/d/1X0aU0ckyZtkbVRMUIeKWhH8uaUk8xc3w/view?usp=drive_link',
+      downloadUrl: 'https://drive.google.com/uc?export=download&id=1X0aU0ckyZtkbVRMUIeKWhH8uaUk8xc3w'
     },
     summary: {
-      title: 'Class 10 Science Chapter 1: Chemical Reactions & Equations — HTML Summary',
-      description: 'Comprehensive HTML revision guide covering chemical equations, combination, decomposition, displacement, redox reactions, corrosion & rancidity.',
-      htmlUrl: '/summaries/class10/science_ch1_chemical_reactions.html'
+      title: 'Class 12 IT Chapter 1: Database Management System (DBMS) — HTML Summary',
+      description: 'Relational data model, degree & cardinality, primary vs foreign keys, and SQL DDL/DML commands.',
+      htmlContent: `<div style="padding: 1.5rem; font-family: sans-serif; color: #f8fafc;">
+        <h2 style="color: #38bdf8;">Class 12 IT — Chapter 1: Database Management System (DBMS)</h2>
+        <p><strong>Core Concept:</strong> A software system designed to store, retrieve, manage, and manipulate structured data efficiently.</p>
+        <ul style="line-height: 1.8;">
+          <li><strong>Tuple (Row):</strong> Single record in a table.</li>
+          <li><strong>Attribute (Column):</strong> Named field in a table.</li>
+          <li><strong>Degree:</strong> Total number of attributes in a table.</li>
+          <li><strong>Cardinality:</strong> Total number of tuples in a table.</li>
+          <li><strong>Primary Key:</strong> Unique attribute that uniquely identifies each tuple (cannot be NULL).</li>
+        </ul>
+      </div>`
     }
   },
   {
-    id: 'ch-c10-eng-ch1',
-    class: 'class-10',
-    className: 'Class 10',
-    subject: 'English',
+    id: 'ch-c12-geo-ch1',
+    class: 'class-12-arts',
+    className: 'Class 12 Arts',
+    subject: 'Geography',
     chapterNumber: 1,
-    chapterTitle: 'A Letter to God',
+    chapterTitle: 'मानव भूगोल : प्रकृति एवं विषय क्षेत्र',
     pdf: {
-      id: 'pdf-c10-eng-ch1',
-      title: 'Class 10 English — First Flight Lesson 1: A Letter to God (Notes & QA)',
-      description: 'Complete chapter explanation, character sketch of Lencho, Q&A, and previous board exam questions.',
-      fileSize: '2.9 MB',
-      pages: 10,
-      downloads: 480,
-      rating: 4.9,
-      fileContentUrl: '/summaries/class10/english_ch1_letter_to_god.html',
-      downloadUrl: '/summaries/class10/english_ch1_letter_to_god.html'
+      id: 'pdf-c12-geo-ch1-short-qa',
+      title: 'Class 12 Geography — अध्याय - 1: मानव भूगोल : प्रकृति एवं विषय क्षेत्र (Short Q&A)',
+      description: 'कक्षा 12 भूगोल (Hindi Medium) - अध्याय 1: मानव भूगोल : प्रकृति एवं विषय क्षेत्र के सभी महत्वपूर्ण अति लघुउत्तरीय एवं लघुउत्तरीय प्रश्नोत्तर।',
+      fileSize: '2.8 MB',
+      pages: 12,
+      downloads: 450,
+      rating: 5.0,
+      fileContentUrl: 'https://drive.google.com/file/d/1h116hD1ia0OJZgL9JgFfFen7fErctscH/view?usp=drive_link',
+      downloadUrl: 'https://drive.google.com/uc?export=download&id=1h116hD1ia0OJZgL9JgFfFen7fErctscH'
     },
     summary: {
-      title: 'Class 10 English Lesson 1: A Letter to God — HTML Summary',
-      description: 'Full HTML summary detailing Lencho’s faith, the hailstorm destruction, postmaster’s contribution, and the ironical ending.',
-      htmlUrl: '/summaries/class10/english_ch1_letter_to_god.html'
+      title: 'कक्षा 12 भूगोल अध्याय 1: मानव भूगोल : प्रकृति एवं विषय क्षेत्र — सारांश',
+      description: 'पर्यावरण नियतिवाद, संभववाद, एवं नवनियतिवाद (ग्रिफिथ टेलर)।',
+      htmlContent: `<div style="padding: 1.5rem; font-family: sans-serif; color: #f8fafc;">
+        <h2 style="color: #fbbf24;">कक्षा 12 भूगोल — अध्याय 1: मानव भूगोल : प्रकृति एवं विषय क्षेत्र</h2>
+        <p><strong>रेट्ज़ेल के अनुसार:</strong> "मानव भूगोल मानव समाजों और धरातल के बीच संबंधों का संश्लेषित अध्ययन है।"</p>
+        <ul style="line-height: 1.8;">
+          <li><strong>पर्यावरण नियतिवाद:</strong> मानव के प्राकृतिकरण की प्रारंभिक अवस्था।</li>
+          <li><strong>संभववाद:</strong> प्रौद्योगिकी विकास के साथ प्रकृति की संभावनाओं का उपयोग।</li>
+          <li><strong>नवनियतिवाद (रुको और जाओ नियतिवाद):</strong> ग्रिफिथ टेलर द्वारा प्रतिपादित।</li>
+        </ul>
+      </div>`
+    }
+  },
+  {
+    id: 'ch-c12-pol-ch1',
+    class: 'class-12-arts',
+    className: 'Class 12 Arts',
+    subject: 'Political Science',
+    chapterNumber: 1,
+    chapterTitle: 'द्विध्रुवीयता का अंत',
+    pdf: {
+      id: 'pdf-c12-pol-ch1-short-qa',
+      title: 'Class 12 Political Science — अध्याय 1: द्विध्रुवीयता का अंत (Short Q&A)',
+      description: 'कक्षा 12 राजनीति विज्ञान (Hindi Medium) - अध्याय 1: द्विध्रुवीयता का अंत के सभी महत्वपूर्ण प्रश्नोत्तर।',
+      fileSize: '3.1 MB',
+      pages: 14,
+      downloads: 520,
+      rating: 5.0,
+      fileContentUrl: 'https://drive.google.com/file/d/1Hy5j9fwtCe1Bj1h1Ys1uvl9lz9gYzvV7/view?usp=drive_link',
+      downloadUrl: 'https://drive.google.com/uc?export=download&id=1Hy5j9fwtCe1Bj1h1Ys1uvl9lz9gYzvV7'
+    },
+    summary: {
+      title: 'कक्षा 12 राजनीति विज्ञान अध्याय 1: द्विध्रुवीयता का अंत — सारांश',
+      description: 'सोवियत संघ (USSR) का विघटन, बर्लिन की दीवार, शॉक थेरेपी के परिणाम।',
+      htmlContent: `<div style="padding: 1.5rem; font-family: sans-serif; color: #f8fafc;">
+        <h2 style="color: #f87171;">कक्षा 12 राजनीति विज्ञान — अध्याय 1: द्विध्रुवीयता का अंत</h2>
+        <p><strong>ऐतिहासिक घटना:</strong> 9 नवंबर 1989 को बर्लिन की दीवार का गिरना और 25 दिसंबर 1991 को सोवियत संघ (USSR) का विघटन।</p>
+        <ul style="line-height: 1.8;">
+          <li><strong>सोवियत प्रणाली:</strong> 1917 की बोल्शेविक क्रांति के बाद समाजवाद पर आधारित शासन।</li>
+          <li><strong>शॉक थेरेपी:</strong> साम्यवाद से पूंजीवाद की ओर कष्टप्रद परिवर्तन ("इतिहास की सबसे बड़ी गराज सेल")।</li>
+        </ul>
+      </div>`
+    }
+  },
+  {
+    id: 'ch-c12-hin-ch1',
+    class: 'class-12-arts',
+    className: 'Class 12 Arts',
+    subject: 'Hindi',
+    chapterNumber: 1,
+    chapterTitle: "आरोह (कविता - 1 'आत्मपरिचय')",
+    pdf: {
+      id: 'pdf-c12-hin-aaroh-ch1-part1',
+      title: "Class 12 Hindi — आरोह (कविता - 1 'आत्मपरिचय' (सारांश एवं व्याख्या ) part - 1",
+      description: "कक्षा 12 हिंदी (Hindi Medium) - आरोह (कविता - 1 'आत्मपरिचय' (सारांश एवं व्याख्या ) part - 1 सम्पूर्ण नोट्स एवं व्याख्या।",
+      fileSize: '3.0 MB',
+      pages: 8,
+      downloads: 310,
+      rating: 5.0,
+      fileContentUrl: 'https://drive.google.com/file/d/1-Nu6L1HpOKvfgl6MnvX6q1jTypSZ2PqQ/view?usp=drive_link',
+      downloadUrl: 'https://drive.google.com/uc?export=download&id=1-Nu6L1HpOKvfgl6MnvX6q1jTypSZ2PqQ'
+    },
+    summary: {
+      title: "कक्षा 12 हिंदी आरोह कविता 1: आत्मपरिचय — सारांश एवं व्याख्या",
+      description: 'हरिवंश राय बच्चन द्वारा रचित कविता आत्मपरिचय का सारांश।',
+      htmlContent: `<div style="padding: 1.5rem; font-family: sans-serif; color: #f8fafc;">
+        <h2 style="color: #fb923c;">कक्षा 12 हिंदी — आरोह कविता 1: आत्मपरिचय</h2>
+        <p><strong>कवि:</strong> हरिवंश राय बच्चन</p>
+        <p>कवि अपने जीवन के अंतर्विरोधों और जग के साथ अपने संबंधों की व्याख्या करते हैं।</p>
+      </div>`
     }
   },
   {
@@ -109,81 +186,17 @@ export const INITIAL_CHAPTERS = [
       downloadUrl: 'https://drive.google.com/uc?export=download&id=1a4y_zYUysVyIVICuXhmyquO6853kxpAp'
     },
     summary: {
-      title: 'Class 12 English Lesson 1: The Last Lesson — HTML Summary',
-      description: 'Comprehensive HTML file summary covering Franco-Prussian war background, M. Hamel’s last French class, linguistic chauvinism, and character analysis.',
-      htmlUrl: '/summaries/class12/english_ch1_the_last_lesson.html'
-    }
-  },
-  {
-    id: 'ch-c12-geo-ch1',
-    class: 'class-12-arts',
-    className: 'Class 12 Arts',
-    subject: 'Geography',
-    chapterNumber: 1,
-    chapterTitle: 'मानव भूगोल : प्रकृति एवं विषय क्षेत्र (Human Geography)',
-    pdf: {
-      id: 'pdf-c12-geo-ch1-short-qa',
-      title: 'Class 12 Geography — अध्याय - 1: मानव भूगोल : प्रकृति एवं विषय क्षेत्र (Short Q&A)',
-      description: 'कक्षा 12 भूगोल (Hindi Medium) - अध्याय 1: मानव भूगोल : प्रकृति एवं विषय क्षेत्र के सभी महत्वपूर्ण अति लघुउत्तरीय एवं लघुउत्तरीय प्रश्नोत्तर।',
-      fileSize: '2.8 MB',
-      pages: 12,
-      downloads: 450,
-      rating: 5.0,
-      fileContentUrl: 'https://drive.google.com/file/d/1h116hD1ia0OJZgL9JgFfFen7fErctscH/view?usp=drive_link',
-      downloadUrl: 'https://drive.google.com/uc?export=download&id=1h116hD1ia0OJZgL9JgFfFen7fErctscH'
-    },
-    summary: {
-      title: 'कक्षा 12 भूगोल अध्याय 1: मानव भूगोल : प्रकृति एवं विषय क्षेत्र — HTML सारांश',
-      description: 'पर्यावरण नियतिवाद, संभववाद, नवनियतिवाद (ग्रिफिथ टेलर), एवं मानव भूगोल की प्रमुख विचारधाराओं का HTML सारांश।',
-      htmlUrl: '/summaries/class12/geography_ch1_human_geography.html'
-    }
-  },
-  {
-    id: 'ch-c12-pol-ch1',
-    class: 'class-12-arts',
-    className: 'Class 12 Arts',
-    subject: 'Political Science',
-    chapterNumber: 1,
-    chapterTitle: 'द्विध्रुवीयता का अंत (The End of Bipolarity)',
-    pdf: {
-      id: 'pdf-c12-pol-ch1-short-qa',
-      title: 'Class 12 Political Science — अध्याय 1: द्विध्रुवीयता का अंत (Short Q&A)',
-      description: 'कक्षा 12 राजनीति विज्ञान (Hindi Medium) - अध्याय 1: द्विध्रुवीयता का अंत के सभी महत्वपूर्ण प्रश्नोत्तर।',
-      fileSize: '3.1 MB',
-      pages: 14,
-      downloads: 520,
-      rating: 5.0,
-      fileContentUrl: 'https://drive.google.com/file/d/1Hy5j9fwtCe1Bj1h1Ys1uvl9lz9gYzvV7/view?usp=drive_link',
-      downloadUrl: 'https://drive.google.com/uc?export=download&id=1Hy5j9fwtCe1Bj1h1Ys1uvl9lz9gYzvV7'
-    },
-    summary: {
-      title: 'कक्षा 12 राजनीति विज्ञान अध्याय 1: द्विध्रुवीयता का अंत — HTML सारांश',
-      description: 'सोवियत संघ (USSR) का विघटन, बर्लिन की दीवार, शॉक थेरेपी के परिणाम एवं भारत-रूस संबंधों का HTML दस्तावेज़ सारांश।',
-      htmlUrl: '/summaries/class12/political_ch1_end_of_bipolarity.html'
-    }
-  },
-  {
-    id: 'ch-c12-it-ch1',
-    class: 'class-12-arts',
-    className: 'Class 12 Arts',
-    subject: 'Information Technology (IT)',
-    chapterNumber: 1,
-    chapterTitle: 'Database Management System (DBMS)',
-    pdf: {
-      id: 'pdf-c12-it-dbms-30q',
-      title: 'Class 12 IT — Database Management System: 30 Most Important 1 Mark Questions',
-      description: 'Top 30 expected 1-mark objective questions, MCQs, fill-in-the-blanks, and one-word answers for Class 12 IT DBMS.',
-      fileSize: '3.2 MB',
-      pages: 10,
-      downloads: 380,
-      rating: 5.0,
-      fileContentUrl: 'https://drive.google.com/file/d/1X0aU0ckyZtkbVRMUIeKWhH8uaUk8xc3w/view?usp=drive_link',
-      downloadUrl: 'https://drive.google.com/uc?export=download&id=1X0aU0ckyZtkbVRMUIeKWhH8uaUk8xc3w'
-    },
-    summary: {
-      title: 'Class 12 IT Chapter 1: Database Management System (DBMS) — HTML Summary',
-      description: 'Relational data model, degree & cardinality, primary vs foreign keys, and SQL DDL/DML commands HTML file summary.',
-      htmlUrl: '/summaries/class12/it_ch1_dbms.html'
+      title: 'Class 12 English Lesson 1: The Last Lesson — Summary',
+      description: 'Theme of linguistic chauvinism, M. Hamel’s last French class, and importance of mother tongue.',
+      htmlContent: `<div style="padding: 1.5rem; font-family: sans-serif; color: #f8fafc;">
+        <h2 style="color: #60a5fa;">Class 12 English — Flamingo Lesson 1: The Last Lesson</h2>
+        <p><strong>Author:</strong> Alphonse Daudet</p>
+        <p>Set during Franco-Prussian War when Berlin ordered that only German be taught in schools of Alsace and Lorraine.</p>
+        <ul style="line-height: 1.8;">
+          <li><strong>M. Hamel's Words:</strong> "French is the most beautiful, clearest, and most logical language in the world."</li>
+          <li><strong>Closing:</strong> M. Hamel wrote on the blackboard: <em>"Vive La France!"</em></li>
+        </ul>
+      </div>`
     }
   }
 ];
