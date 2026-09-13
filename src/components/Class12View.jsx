@@ -57,7 +57,11 @@ export const Class12View = () => {
       });
 
   const handleSubjectClick = (subjName) => {
-    setActiveTab('notes', 'class-12-arts', subjName);
+    if (subjName === 'English') {
+      setActiveSubjectFilter('English');
+    } else {
+      setActiveTab('notes', 'class-12-arts', subjName);
+    }
   };
 
   const c12Subjects = [
@@ -94,7 +98,7 @@ export const Class12View = () => {
     {
       id: 'eng',
       name: 'English',
-      desc: 'Flamingo and Vistas chapters, summaries, and grammar.',
+      desc: 'Flamingo and Vistas chapters, prose, poetry, and supplementary reader notes.',
       icon: BookOpen
     },
     {
@@ -144,6 +148,12 @@ export const Class12View = () => {
         </span>
         <span>&gt;</span>
         <span style={{ color: '#2563eb', fontWeight: 600 }}>Class 12</span>
+        {activeSubjectFilter !== 'All' && (
+          <>
+            <span>&gt;</span>
+            <span style={{ color: 'var(--text-main)', fontWeight: 600 }}>{activeSubjectFilter}</span>
+          </>
+        )}
       </div>
 
       {/* Page Heading & Subtitle */}
@@ -180,76 +190,129 @@ export const Class12View = () => {
         
         {/* Main Content Column (Left) */}
         <div>
-          {/* Subject Cards Grid (8 cards with uniform blue icons matching Image 4) */}
+          {/* Subject Filter Pills Bar */}
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))',
-            gap: '1.25rem',
-            marginBottom: '2rem'
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            overflowX: 'auto',
+            paddingBottom: '0.5rem',
+            marginBottom: '1.5rem'
           }}>
-            {c12Subjects.map((subj) => {
-              const IconComp = subj.icon;
-              return (
-                <div
-                  key={subj.id}
-                  onClick={() => handleSubjectClick(subj.name)}
-                  style={{
-                    padding: '1.5rem 1.25rem',
-                    borderRadius: '12px',
-                    background: 'var(--bg-card)',
-                    border: '1px solid var(--border-color)',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.04)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'flex-start'
-                  }}
-                  className="hover-lift"
-                >
-                  {/* Square Blue Icon Container matching Image 4 */}
-                  <div style={{
-                    width: '42px',
-                    height: '42px',
-                    borderRadius: '10px',
-                    background: '#2563eb',
-                    color: '#ffffff',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: '1.15rem'
-                  }}>
-                    <IconComp size={22} />
-                  </div>
-
-                  <h3 style={{
-                    fontSize: '1.15rem',
-                    fontWeight: 700,
-                    color: 'var(--text-main)',
-                    marginBottom: '0.4rem',
-                    fontFamily: "'Outfit', sans-serif"
-                  }}>
-                    {subj.name}
-                  </h3>
-
-                  <p style={{
-                    fontSize: '0.825rem',
-                    color: 'var(--text-muted)',
-                    lineHeight: 1.5,
-                    margin: 0
-                  }}>
-                    {subj.desc}
-                  </p>
-                </div>
-              );
-            })}
+            <button
+              onClick={() => setActiveSubjectFilter('All')}
+              className={`btn btn-sm ${activeSubjectFilter === 'All' ? 'btn-primary' : 'btn-secondary'}`}
+              style={{ borderRadius: '9999px', padding: '0.35rem 0.9rem', fontSize: '0.8rem', whiteSpace: 'nowrap' }}
+            >
+              All Subjects
+            </button>
+            {c12Subjects.map(s => (
+              <button
+                key={s.id}
+                onClick={() => handleSubjectClick(s.name)}
+                className={`btn btn-sm ${activeSubjectFilter === s.name ? 'btn-primary' : 'btn-secondary'}`}
+                style={{ borderRadius: '9999px', padding: '0.35rem 0.9rem', fontSize: '0.8rem', whiteSpace: 'nowrap' }}
+              >
+                {s.name}
+              </button>
+            ))}
           </div>
 
-          {/* Middle Banner (Responsive) matching Image 4 */}
-          <AdBanner slot="middleBanner" type="responsive" label="Advertisement (Responsive)" />
+          {/* VIEW A: ALL SUBJECTS GRID (Shown when activeSubjectFilter === 'All') */}
+          {activeSubjectFilter === 'All' && (
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))',
+              gap: '1.25rem',
+              marginBottom: '2rem'
+            }}>
+              {c12Subjects.map((subj) => {
+                const IconComp = subj.icon;
+                return (
+                  <div
+                    key={subj.id}
+                    onClick={() => handleSubjectClick(subj.name)}
+                    style={{
+                      padding: '1.5rem 1.25rem',
+                      borderRadius: '12px',
+                      background: 'var(--bg-card)',
+                      border: '1px solid var(--border-color)',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease',
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.04)',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'flex-start'
+                    }}
+                    className="hover-lift"
+                  >
+                    {/* Square Blue Icon Container */}
+                    <div style={{
+                      width: '42px',
+                      height: '42px',
+                      borderRadius: '10px',
+                      background: '#2563eb',
+                      color: '#ffffff',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginBottom: '1.15rem'
+                    }}>
+                      <IconComp size={22} />
+                    </div>
 
-          {/* CLASS 12 ENGLISH BOOKS (FLAMINGO & VISTAS OPTIONS) */}
-          <EnglishBooksSection />
+                    <h3 style={{
+                      fontSize: '1.15rem',
+                      fontWeight: 700,
+                      color: 'var(--text-main)',
+                      marginBottom: '0.4rem',
+                      fontFamily: "'Outfit', sans-serif"
+                    }}>
+                      {subj.name}
+                    </h3>
+
+                    <p style={{
+                      fontSize: '0.825rem',
+                      color: 'var(--text-muted)',
+                      lineHeight: 1.5,
+                      margin: 0
+                    }}>
+                      {subj.desc}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* VIEW B: ENGLISH SUBJECT SECTION (Shown strictly inside English section) */}
+          {(activeSubjectFilter === 'English' || activeSubjectFilter === 'eng') && (
+            <div style={{ marginBottom: '2rem' }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginBottom: '1rem',
+                paddingBottom: '0.75rem',
+                borderBottom: '1px solid var(--border-color)'
+              }}>
+                <button
+                  onClick={() => setActiveSubjectFilter('All')}
+                  className="btn btn-secondary btn-sm hover-lift"
+                  style={{ borderRadius: '8px', fontSize: '0.8rem' }}
+                >
+                  ← Back to All Subjects
+                </button>
+                <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#2563eb' }}>
+                  Class 12 Arts / English Section
+                </span>
+              </div>
+              <EnglishBooksSection />
+            </div>
+          )}
+
+          {/* Middle Banner (Responsive) */}
+          <AdBanner slot="middleBanner" type="responsive" label="Advertisement (Responsive)" />
 
 
           {/* Featured Notes Section: Class 12 IT Database Management System (DBMS) 30 1 Mark Questions */}
