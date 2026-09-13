@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { AdBanner } from './AdBanner';
 import { ChapterSectionCard } from './ChapterSectionCard';
+import { EnglishBooksSection } from './EnglishBooksSection';
 import { 
   Languages, 
   BookOpen, 
@@ -246,6 +247,9 @@ export const Class12View = () => {
 
           {/* Middle Banner (Responsive) matching Image 4 */}
           <AdBanner slot="middleBanner" type="responsive" label="Advertisement (Responsive)" />
+
+          {/* CLASS 12 ENGLISH BOOKS (FLAMINGO & VISTAS OPTIONS) */}
+          <EnglishBooksSection />
 
 
           {/* Featured Notes Section: Class 12 IT Database Management System (DBMS) 30 1 Mark Questions */}
