@@ -171,17 +171,8 @@ export const AppProvider = ({ children }) => {
   const [classes] = useState(INITIAL_CLASSES);
   
   const [chapters, setChapters] = useState(() => {
-    const saved = localStorage.getItem('study_hub_chapters');
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          const hasFakeData = parsed.some(c => c.id?.startsWith('ch-c10-') || (c.summary?.htmlUrl && c.summary.htmlUrl.includes('/summaries/')));
-          if (!hasFakeData) return parsed;
-        }
-      } catch (e) {}
-    }
-    return INITIAL_CHAPTERS;
+    localStorage.removeItem('study_hub_chapters');
+    return [];
   });
 
   useEffect(() => {
@@ -201,28 +192,9 @@ export const AppProvider = ({ children }) => {
   const isFakeLecture = (y) => !y || (typeof y.id === 'string' && y.id.startsWith('yt-his'));
 
   const [pdfs, setPdfs] = useState(() => {
-    const saved = localStorage.getItem('study_hub_uploaded_pdfs');
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          const map = new Map();
-          parsed.forEach(p => {
-            if (!isFakePdf(p)) map.set(p.id, p);
-          });
-          INITIAL_PDFS.forEach(p => {
-            if (!isFakePdf(p)) {
-              const existing = map.get(p.id) || {};
-              map.set(p.id, { ...existing, ...p });
-            }
-          });
-          const cleanList = Array.from(map.values());
-          localStorage.setItem('study_hub_uploaded_pdfs', JSON.stringify(cleanList));
-          return cleanList;
-        }
-      } catch (e) {}
-    }
-    return INITIAL_PDFS.filter(p => !isFakePdf(p));
+    localStorage.removeItem('study_hub_uploaded_pdfs');
+    localStorage.removeItem('study_hub_user_downloads');
+    return [];
   });
 
   const [youtubeLectures, setYoutubeLectures] = useState(() => {
@@ -339,7 +311,6 @@ export const AppProvider = ({ children }) => {
           if (cloudList.length > 0) {
             setPdfs(prev => {
               const uniqueMap = new Map();
-              INITIAL_PDFS.forEach(p => { if (!isFakePdf(p)) uniqueMap.set(p.id, p); });
               prev.forEach(p => { if (!isFakePdf(p)) uniqueMap.set(p.id, p); });
               cloudList.forEach(p => { if (!isFakePdf(p)) uniqueMap.set(p.id, p); });
               const mergedList = Array.from(uniqueMap.values());
