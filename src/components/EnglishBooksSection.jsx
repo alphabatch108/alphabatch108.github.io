@@ -10,228 +10,18 @@ import {
   GraduationCap
 } from 'lucide-react';
 
-export const ENGLISH_BOOKS_DATA = [
-  // FLAMINGO PROSE
-  {
-    id: 'flam-p1',
-    book: 'flamingo',
-    type: 'prose',
-    chNum: 1,
-    title: 'The Last Lesson',
-    author: 'Alphonse Daudet',
-    category: 'Flamingo • Prose',
-    desc: 'Theme of linguistic chauvinism, patriotic feelings, and M. Hamel’s final emotional French class in Alsace & Lorraine.',
-    fileContentUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link'
-  },
-  {
-    id: 'flam-p2',
-    book: 'flamingo',
-    type: 'prose',
-    chNum: 2,
-    title: 'Lost Spring',
-    author: 'Anees Jung',
-    category: 'Flamingo • Prose',
-    desc: 'Stories of stolen childhood — Saheb-e-Alam (ragpicker in Seemapuri) and Mukesh (bangle maker in Firozabad).',
-    fileContentUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link'
-  },
-  {
-    id: 'flam-p3',
-    book: 'flamingo',
-    type: 'prose',
-    chNum: 3,
-    title: 'Deep Water',
-    author: 'William Douglas',
-    category: 'Flamingo • Prose',
-    desc: 'Overcoming terrifying hydrophobia from a YMCA pool incident through sheer willpower and a professional instructor.',
-    fileContentUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link'
-  },
-  {
-    id: 'flam-p4',
-    book: 'flamingo',
-    type: 'prose',
-    chNum: 4,
-    title: 'The Rattrap',
-    author: 'Selma Lagerlöf',
-    category: 'Flamingo • Prose',
-    desc: 'Essential human goodness in a cynical peddler awakened by Edla Willmansson’s selfless kindness and hospitality.',
-    fileContentUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link'
-  },
-  {
-    id: 'flam-p5',
-    book: 'flamingo',
-    type: 'prose',
-    chNum: 5,
-    title: 'Indigo',
-    author: 'Louis Fischer',
-    category: 'Flamingo • Prose',
-    desc: 'Rajkumar Shukla’s tenacity bringing Gandhi to Champaran (1916) to fight British landlord sharecropping injustice.',
-    fileContentUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link'
-  },
-  {
-    id: 'flam-p6',
-    book: 'flamingo',
-    type: 'prose',
-    chNum: 6,
-    title: 'Poets and Pancakes',
-    author: 'Asokamitran',
-    category: 'Flamingo • Prose',
-    desc: 'Life at Gemini Studios in Madras, makeup department (Pancake brand), Kothamangalam Subbu, and Stephen Spender’s visit.',
-    fileContentUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link'
-  },
-  {
-    id: 'flam-p7',
-    book: 'flamingo',
-    type: 'prose',
-    chNum: 7,
-    title: 'The Interview',
-    author: 'Christopher Silvester',
-    category: 'Flamingo • Prose',
-    desc: 'Different perspectives on interviews and Umberto Eco’s secret to writing bestsellers in his empty spaces (interstices).',
-    fileContentUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link'
-  },
-  {
-    id: 'flam-p8',
-    book: 'flamingo',
-    type: 'prose',
-    chNum: 8,
-    title: 'Going Places',
-    author: 'A. R. Barton',
-    category: 'Flamingo • Prose',
-    desc: 'Teenage daydreaming and hero-worship — Sophie’s imaginary romance with football star Danny Casey vs Jansie’s reality.',
-    fileContentUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link'
-  },
-
-  // FLAMINGO POETRY
-  {
-    id: 'flam-po1',
-    book: 'flamingo',
-    type: 'poetry',
-    chNum: 1,
-    title: 'My Mother at Sixty-six',
-    author: 'Kamala Das',
-    category: 'Flamingo • Poetry',
-    desc: 'Poignant poem on aging, mortality, mother’s pale face like a late winter’s moon, and hiding pain behind a smile.',
-    fileContentUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link'
-  },
-  {
-    id: 'flam-po2',
-    book: 'flamingo',
-    type: 'poetry',
-    chNum: 2,
-    title: 'Keeping Quiet',
-    author: 'Pablo Neruda',
-    category: 'Flamingo • Poetry',
-    desc: 'Call for quiet introspection, counting to twelve, and halting destructive human activities for universal harmony.',
-    fileContentUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link'
-  },
-  {
-    id: 'flam-po3',
-    book: 'flamingo',
-    type: 'poetry',
-    chNum: 3,
-    title: 'A Thing of Beauty',
-    author: 'John Keats',
-    category: 'Flamingo • Poetry',
-    desc: 'Extract from Endymion — A thing of beauty is a joy forever, providing an endless fountain of immortal drink.',
-    fileContentUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link'
-  },
-  {
-    id: 'flam-po4',
-    book: 'flamingo',
-    type: 'poetry',
-    chNum: 4,
-    title: 'A Roadside Stand',
-    author: 'Robert Frost',
-    category: 'Flamingo • Poetry',
-    desc: 'Critique of social inequality — rural roadside stall owners waiting for city traffic to buy berries and flowers.',
-    fileContentUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link'
-  },
-  {
-    id: 'flam-po5',
-    book: 'flamingo',
-    type: 'poetry',
-    chNum: 5,
-    title: 'Aunt Jennifer’s Tigers',
-    author: 'Adrienne Rich',
-    category: 'Flamingo • Poetry',
-    desc: 'Feminist poem contrasting Aunt Jennifer’s oppressed marriage with her bright, fearless embroidered tigers.',
-    fileContentUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link'
-  },
-
-  // VISTAS SUPPLEMENTARY
-  {
-    id: 'vis-1',
-    book: 'vistas',
-    type: 'vistas',
-    chNum: 1,
-    title: 'The Third Level',
-    author: 'Jack Finney',
-    category: 'Vistas • Supplementary',
-    desc: 'Psychological story of Charley finding the 3rd level at Grand Central Station leading to 1894 Galesburg, Illinois.',
-    fileContentUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link'
-  },
-  {
-    id: 'vis-2',
-    book: 'vistas',
-    type: 'vistas',
-    chNum: 2,
-    title: 'The Tiger King',
-    author: 'Kalki',
-    category: 'Vistas • Supplementary',
-    desc: 'Satire on political power — Maharaja of Pratibandapuram hunting 99 tigers to evade a death prophecy.',
-    fileContentUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link'
-  },
-  {
-    id: 'vis-3',
-    book: 'vistas',
-    type: 'vistas',
-    chNum: 3,
-    title: 'Journey to the End of the Earth',
-    author: 'Tishani Doshi',
-    category: 'Vistas • Supplementary',
-    desc: 'Expedition to Antarctica with Geoff Green’s "Students on Ice" program — understanding global climate history.',
-    fileContentUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link'
-  },
-  {
-    id: 'vis-4',
-    book: 'vistas',
-    type: 'vistas',
-    chNum: 4,
-    title: 'The Enemy',
-    author: 'Pearl S. Buck',
-    category: 'Vistas • Supplementary',
-    desc: 'Dr. Sadao Hoki’s conflict between national loyalty during WWII and medical duty when saving an American POW.',
-    fileContentUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link'
-  },
-  {
-    id: 'vis-5',
-    book: 'vistas',
-    type: 'vistas',
-    chNum: 5,
-    title: 'On the Face of It',
-    author: 'Susan Hill',
-    category: 'Vistas • Supplementary',
-    desc: 'Emotional play between Derry (14-yr-old with acid-burnt face) and Mr. Lamb (elderly man with tin leg in his apple garden).',
-    fileContentUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link'
-  },
-  {
-    id: 'vis-6',
-    book: 'vistas',
-    type: 'vistas',
-    chNum: 6,
-    title: 'Memories of Childhood',
-    author: 'Zitkala-Sa & Bama',
-    category: 'Vistas • Supplementary',
-    desc: 'Two autobiographical episodes — "The Cutting of My Long Hair" (Native American) & "We Too Are Human Beings" (Dalit India).',
-    fileContentUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link'
-  }
-];
+export const ENGLISH_BOOKS_DATA = [];
 
 export const EnglishBooksSection = () => {
   const { setViewingPdf } = useApp();
   const [selectedBook, setSelectedBook] = useState('flamingo'); // 'flamingo' | 'vistas'
   const [flamingoFilter, setFlamingoFilter] = useState('all'); // 'all' | 'prose' | 'poetry'
   const [searchQuery, setSearchQuery] = useState('');
+
+  const flamingoChapters = ENGLISH_BOOKS_DATA.filter(ch => ch.book === 'flamingo');
+  const flamingoProse = flamingoChapters.filter(ch => ch.type === 'prose');
+  const flamingoPoetry = flamingoChapters.filter(ch => ch.type === 'poetry');
+  const vistasChapters = ENGLISH_BOOKS_DATA.filter(ch => ch.book === 'vistas');
 
   // Filter items by book option, sub-type, and search query
   const filteredChapters = ENGLISH_BOOKS_DATA.filter(item => {
@@ -355,14 +145,14 @@ export const EnglishBooksSection = () => {
               Flamingo
             </h3>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.4, marginBottom: '0.65rem' }}>
-              Textbook for Class XII (8 Prose & 5 Poetry Chapters)
+              Textbook for Class XII ({flamingoProse.length} Prose & {flamingoPoetry.length} Poetry Chapters)
             </p>
             <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
               <span className="badge" style={{ background: 'rgba(244, 63, 94, 0.15)', color: '#f43f5e', fontSize: '0.725rem' }}>
-                8 Prose
+                {flamingoProse.length} Prose
               </span>
               <span className="badge" style={{ background: 'rgba(244, 63, 94, 0.15)', color: '#f43f5e', fontSize: '0.725rem' }}>
-                5 Poems
+                {flamingoPoetry.length} Poems
               </span>
             </div>
           </div>
@@ -432,7 +222,7 @@ export const EnglishBooksSection = () => {
             </p>
             <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
               <span className="badge" style={{ background: 'rgba(13, 148, 136, 0.15)', color: '#0d9488', fontSize: '0.725rem' }}>
-                6 Reader Chapters
+                {vistasChapters.length} Reader Chapters
               </span>
             </div>
           </div>
@@ -469,7 +259,7 @@ export const EnglishBooksSection = () => {
                   cursor: 'pointer'
                 }}
               >
-                All Chapters (13)
+                All Chapters ({flamingoChapters.length})
               </button>
               <button
                 onClick={() => setFlamingoFilter('prose')}
@@ -484,7 +274,7 @@ export const EnglishBooksSection = () => {
                   cursor: 'pointer'
                 }}
               >
-                Prose (8)
+                Prose ({flamingoProse.length})
               </button>
               <button
                 onClick={() => setFlamingoFilter('poetry')}
@@ -499,12 +289,12 @@ export const EnglishBooksSection = () => {
                   cursor: 'pointer'
                 }}
               >
-                Poetry (5)
+                Poetry ({flamingoPoetry.length})
               </button>
             </>
           ) : (
             <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#0d9488', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <BookMarked size={16} /> Showing All Vistas Supplementary Chapters (6)
+              <BookMarked size={16} /> Showing All Vistas Supplementary Chapters ({vistasChapters.length})
             </span>
           )}
         </div>
