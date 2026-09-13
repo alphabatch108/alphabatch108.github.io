@@ -8,6 +8,7 @@ import { GeographyBooksSection } from './GeographyBooksSection';
 import { PolSciBooksSection } from './PolSciBooksSection';
 import { ITBooksSection } from './ITBooksSection';
 import { PsychologyBooksSection } from './PsychologyBooksSection';
+import { EconomicsBooksSection } from './EconomicsBooksSection';
 import { 
   Languages, 
   BookOpen, 
@@ -62,7 +63,7 @@ export const Class12View = () => {
       });
 
   const handleSubjectClick = (subjName) => {
-    if (subjName === 'English' || subjName === 'Hindi' || subjName === 'Geography' || subjName === 'Political Science' || subjName === 'Information Technology (IT)' || subjName === 'IT' || subjName === 'Psychology' || subjName === 'psy') {
+    if (subjName === 'English' || subjName === 'Hindi' || subjName === 'Geography' || subjName === 'Political Science' || subjName === 'Information Technology (IT)' || subjName === 'IT' || subjName === 'Psychology' || subjName === 'psy' || subjName === 'Economics' || subjName === 'eco') {
       setActiveSubjectFilter(subjName);
     } else {
       setActiveTab('notes', 'class-12-arts', subjName);
@@ -443,6 +444,32 @@ export const Class12View = () => {
                 </span>
               </div>
               <PsychologyBooksSection />
+            </div>
+          )}
+
+          {/* VIEW H: ECONOMICS SUBJECT SECTION (Shown strictly inside Economics section) */}
+          {(activeSubjectFilter === 'Economics' || activeSubjectFilter === 'eco') && (
+            <div style={{ marginBottom: '2rem' }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginBottom: '1rem',
+                paddingBottom: '0.75rem',
+                borderBottom: '1px solid var(--border-color)'
+              }}>
+                <button
+                  onClick={() => setActiveSubjectFilter('All')}
+                  className="btn btn-secondary btn-sm hover-lift"
+                  style={{ borderRadius: '8px', fontSize: '0.8rem' }}
+                >
+                  ← Back to All Subjects
+                </button>
+                <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#16a34a' }}>
+                  Class 12 Arts / Economics Section
+                </span>
+              </div>
+              <EconomicsBooksSection />
             </div>
           )}
 
