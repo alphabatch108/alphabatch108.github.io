@@ -4,6 +4,7 @@ import { AdBanner } from './AdBanner';
 import { ChapterSectionCard } from './ChapterSectionCard';
 import { EnglishBooksSection } from './EnglishBooksSection';
 import { HindiBooksSection } from './HindiBooksSection';
+import { GeographyBooksSection } from './GeographyBooksSection';
 import { 
   Languages, 
   BookOpen, 
@@ -58,7 +59,7 @@ export const Class12View = () => {
       });
 
   const handleSubjectClick = (subjName) => {
-    if (subjName === 'English' || subjName === 'Hindi') {
+    if (subjName === 'English' || subjName === 'Hindi' || subjName === 'Geography') {
       setActiveSubjectFilter(subjName);
     } else {
       setActiveTab('notes', 'class-12-arts', subjName);
@@ -81,7 +82,7 @@ export const Class12View = () => {
     {
       id: 'geo',
       name: 'Geography',
-      desc: 'Human Geography and India: People and Economy.',
+      desc: 'मानव भूगोल के मूल सिद्धांत एवं भारत: लोग और अर्थव्यवस्था।',
       icon: Globe2
     },
     {
@@ -335,6 +336,32 @@ export const Class12View = () => {
                 </span>
               </div>
               <HindiBooksSection />
+            </div>
+          )}
+
+          {/* VIEW D: GEOGRAPHY SUBJECT SECTION (Shown strictly inside Geography section) */}
+          {(activeSubjectFilter === 'Geography' || activeSubjectFilter === 'geo') && (
+            <div style={{ marginBottom: '2rem' }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginBottom: '1rem',
+                paddingBottom: '0.75rem',
+                borderBottom: '1px solid var(--border-color)'
+              }}>
+                <button
+                  onClick={() => setActiveSubjectFilter('All')}
+                  className="btn btn-secondary btn-sm hover-lift"
+                  style={{ borderRadius: '8px', fontSize: '0.8rem' }}
+                >
+                  ← Back to All Subjects
+                </button>
+                <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#059669' }}>
+                  Class 12 Arts / Geography Section
+                </span>
+              </div>
+              <GeographyBooksSection />
             </div>
           )}
 
