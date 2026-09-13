@@ -6,6 +6,7 @@ import { EnglishBooksSection } from './EnglishBooksSection';
 import { HindiBooksSection } from './HindiBooksSection';
 import { GeographyBooksSection } from './GeographyBooksSection';
 import { PolSciBooksSection } from './PolSciBooksSection';
+import { ITBooksSection } from './ITBooksSection';
 import { 
   Languages, 
   BookOpen, 
@@ -60,7 +61,7 @@ export const Class12View = () => {
       });
 
   const handleSubjectClick = (subjName) => {
-    if (subjName === 'English' || subjName === 'Hindi' || subjName === 'Geography' || subjName === 'Political Science') {
+    if (subjName === 'English' || subjName === 'Hindi' || subjName === 'Geography' || subjName === 'Political Science' || subjName === 'Information Technology (IT)' || subjName === 'IT') {
       setActiveSubjectFilter(subjName);
     } else {
       setActiveTab('notes', 'class-12-arts', subjName);
@@ -389,6 +390,32 @@ export const Class12View = () => {
                 </span>
               </div>
               <PolSciBooksSection />
+            </div>
+          )}
+
+          {/* VIEW F: INFORMATION TECHNOLOGY SUBJECT SECTION (Shown strictly inside IT section) */}
+          {(activeSubjectFilter === 'Information Technology (IT)' || activeSubjectFilter === 'it' || activeSubjectFilter === 'IT') && (
+            <div style={{ marginBottom: '2rem' }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginBottom: '1rem',
+                paddingBottom: '0.75rem',
+                borderBottom: '1px solid var(--border-color)'
+              }}>
+                <button
+                  onClick={() => setActiveSubjectFilter('All')}
+                  className="btn btn-secondary btn-sm hover-lift"
+                  style={{ borderRadius: '8px', fontSize: '0.8rem' }}
+                >
+                  ← Back to All Subjects
+                </button>
+                <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#0891b2' }}>
+                  Class 12 Arts / Information Technology (IT) Section
+                </span>
+              </div>
+              <ITBooksSection />
             </div>
           )}
 
