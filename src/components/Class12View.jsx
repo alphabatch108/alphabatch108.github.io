@@ -3,6 +3,7 @@ import { useApp } from '../context/AppContext';
 import { AdBanner } from './AdBanner';
 import { ChapterSectionCard } from './ChapterSectionCard';
 import { EnglishBooksSection } from './EnglishBooksSection';
+import { HindiBooksSection } from './HindiBooksSection';
 import { 
   Languages, 
   BookOpen, 
@@ -57,8 +58,8 @@ export const Class12View = () => {
       });
 
   const handleSubjectClick = (subjName) => {
-    if (subjName === 'English') {
-      setActiveSubjectFilter('English');
+    if (subjName === 'English' || subjName === 'Hindi') {
+      setActiveSubjectFilter(subjName);
     } else {
       setActiveTab('notes', 'class-12-arts', subjName);
     }
@@ -92,7 +93,7 @@ export const Class12View = () => {
     {
       id: 'hin',
       name: 'Hindi',
-      desc: 'Vitan, Aroh, Antra, and Antral detailed study materials.',
+      desc: 'आरोह एवं वितान पाठ्यपुस्तकों की सम्पूर्ण अध्ययन सामग्री।',
       icon: Languages
     },
     {
@@ -308,6 +309,32 @@ export const Class12View = () => {
                 </span>
               </div>
               <EnglishBooksSection />
+            </div>
+          )}
+
+          {/* VIEW C: HINDI SUBJECT SECTION (Shown strictly inside Hindi section) */}
+          {(activeSubjectFilter === 'Hindi' || activeSubjectFilter === 'hin') && (
+            <div style={{ marginBottom: '2rem' }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginBottom: '1rem',
+                paddingBottom: '0.75rem',
+                borderBottom: '1px solid var(--border-color)'
+              }}>
+                <button
+                  onClick={() => setActiveSubjectFilter('All')}
+                  className="btn btn-secondary btn-sm hover-lift"
+                  style={{ borderRadius: '8px', fontSize: '0.8rem' }}
+                >
+                  ← Back to All Subjects
+                </button>
+                <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#ea580c' }}>
+                  Class 12 Arts / Hindi Section
+                </span>
+              </div>
+              <HindiBooksSection />
             </div>
           )}
 
