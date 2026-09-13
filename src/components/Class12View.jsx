@@ -5,6 +5,7 @@ import { ChapterSectionCard } from './ChapterSectionCard';
 import { EnglishBooksSection } from './EnglishBooksSection';
 import { HindiBooksSection } from './HindiBooksSection';
 import { GeographyBooksSection } from './GeographyBooksSection';
+import { PolSciBooksSection } from './PolSciBooksSection';
 import { 
   Languages, 
   BookOpen, 
@@ -59,7 +60,7 @@ export const Class12View = () => {
       });
 
   const handleSubjectClick = (subjName) => {
-    if (subjName === 'English' || subjName === 'Hindi' || subjName === 'Geography') {
+    if (subjName === 'English' || subjName === 'Hindi' || subjName === 'Geography' || subjName === 'Political Science') {
       setActiveSubjectFilter(subjName);
     } else {
       setActiveTab('notes', 'class-12-arts', subjName);
@@ -76,7 +77,7 @@ export const Class12View = () => {
     {
       id: 'pol',
       name: 'Political Science',
-      desc: 'Contemporary World Politics and Politics in India.',
+      desc: 'समकालीन विश्व राजनीति एवं स्वतंत्र भारत में राजनीति।',
       icon: Landmark
     },
     {
@@ -362,6 +363,32 @@ export const Class12View = () => {
                 </span>
               </div>
               <GeographyBooksSection />
+            </div>
+          )}
+
+          {/* VIEW E: POLITICAL SCIENCE SUBJECT SECTION (Shown strictly inside Political Science section) */}
+          {(activeSubjectFilter === 'Political Science' || activeSubjectFilter === 'pol') && (
+            <div style={{ marginBottom: '2rem' }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginBottom: '1rem',
+                paddingBottom: '0.75rem',
+                borderBottom: '1px solid var(--border-color)'
+              }}>
+                <button
+                  onClick={() => setActiveSubjectFilter('All')}
+                  className="btn btn-secondary btn-sm hover-lift"
+                  style={{ borderRadius: '8px', fontSize: '0.8rem' }}
+                >
+                  ← Back to All Subjects
+                </button>
+                <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#dc2626' }}>
+                  Class 12 Arts / Political Science Section
+                </span>
+              </div>
+              <PolSciBooksSection />
             </div>
           )}
 
