@@ -484,27 +484,6 @@ export const EnglishBooksSection = () => {
                   );
                 })()}
 
-                <a
-                  href={item.fileContentUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    fontSize: '0.75rem',
-                    color: 'var(--accent-cyan)',
-                    fontWeight: 600,
-                    textDecoration: 'none',
-                    gridColumn: '1 / -1',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '0.35rem',
-                    marginTop: '0.25rem'
-                  }}
-                  className="hover-lift"
-                >
-                  <span>Open directly in Google Drive</span>
-                  <ExternalLink size={12} />
-                </a>
               </div>
             </div>
           ))
