@@ -218,7 +218,7 @@ export const Class12View = () => {
       }} className="class12-layout-grid">
         
         {/* Main Content Column (Left) */}
-        <div>
+        <div style={{ minWidth: 0, width: '100%', maxWidth: '100%' }}>
           {/* Subject Filter Pills Bar */}
           <div 
             className="subject-pills-bar touch-scroll"
@@ -228,7 +228,10 @@ export const Class12View = () => {
               gap: '0.5rem',
               overflowX: 'auto',
               paddingBottom: '0.5rem',
-              marginBottom: '1.5rem'
+              marginBottom: '1.5rem',
+              width: '100%',
+              maxWidth: '100%',
+              minWidth: 0
             }}
           >
             <button
@@ -601,7 +604,7 @@ export const Class12View = () => {
         </div>
 
         {/* Sidebar Column (Right) */}
-        <div>
+        <div style={{ minWidth: 0, width: '100%', maxWidth: '100%' }}>
           {/* Square Ad Banner matching Image 4 */}
           <AdBanner slot="sidebar" type="300x250" label="Advertisement (300x250)" />
 

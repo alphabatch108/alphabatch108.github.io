@@ -47,7 +47,7 @@ export const PsychologyBooksSection = () => {
   };
 
   return (
-    <section id="class12-psychology-books-section" style={{ marginTop: '1rem', marginBottom: '2rem' }}>
+    <section id="class12-psychology-books-section" style={{ marginTop: '1rem', marginBottom: '2rem', minWidth: 0, width: '100%', maxWidth: '100%' }}>
       
       {/* Section Header */}
       <div style={{ marginBottom: '1.5rem' }}>

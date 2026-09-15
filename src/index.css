@@ -587,6 +587,18 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* Responsive Media Queries & Mobile Optimization System */
+.class12-layout-grid,
+.class10-layout-grid {
+  width: 100%;
+  max-width: 100%;
+}
+
+.class12-layout-grid > div,
+.class10-layout-grid > div {
+  min-width: 0;
+  max-width: 100%;
+}
+
 @media (max-width: 1024px) {
   .class12-layout-grid,
   .class10-layout-grid,
