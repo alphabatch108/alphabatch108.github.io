@@ -332,59 +332,96 @@ export const getColdWarEraNoteHTML = (pdf) => {
   `;
 };
 
-export const createNoteDocumentBlob = (pdf) => {
-  let htmlContent = '';
-  
+export const getNoteDocumentHTML = (pdf) => {
+  if (!pdf) return '';
   if (pdf.id === 'pdf-c12-pol-coldwar' || pdf.title?.toLowerCase().includes('cold war')) {
-    htmlContent = getColdWarEraNoteHTML(pdf);
-  } else {
-    htmlContent = `
+    return getColdWarEraNoteHTML(pdf);
+  }
+
+  const safeTitle = pdf.title || 'Revision Notes & Board Study Material';
+  const safeClass = pdf.className || pdf.class || 'Class 12 Arts';
+  const safeSubject = pdf.subject || 'General Studies';
+  const safeAuthor = pdf.author || 'Alpha Arts Academic Team';
+  const safeDesc = pdf.description || 'Comprehensive board exam chapter notes, quick summary, key concepts, formulas and model questions.';
+
+  return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>${pdf.title}</title>
+  <title>${safeTitle}</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Outfit:wght@600;800&display=swap');
-    body { font-family: 'Inter', sans-serif; margin: 0; padding: 40px; background: #f8fafc; color: #0f172a; }
-    .page { max-width: 800px; margin: 0 auto 30px auto; background: #fff; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0; }
-    .title { font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 800; color: #1e1b4b; }
-    .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; }
-    .section { background: #f1f5f9; border-left: 4px solid #6366f1; padding: 18px; border-radius: 6px; margin: 20px 0; }
+    body { font-family: 'Inter', sans-serif; margin: 0; padding: 30px 20px; background: #f8fafc; color: #0f172a; line-height: 1.6; }
+    .page { max-width: 820px; margin: 0 auto 30px auto; background: #fff; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+    .title { font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 800; color: #1e1b4b; margin: 10px 0 6px 0; }
+    .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-right: 6px; }
+    .section { background: #f1f5f9; border-left: 4px solid #4338ca; padding: 18px; border-radius: 6px; margin: 20px 0; }
+    .highlight-card { background: #eef2ff; border: 1px solid #c7d2fe; border-radius: 8px; padding: 16px; margin: 15px 0; }
+    .qa-box { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 14px 16px; margin: 12px 0; }
+    .qa-q { font-weight: 700; color: #1e1b4b; margin-bottom: 4px; }
+    .footer-stamp { text-align: center; color: #94a3b8; font-size: 11px; margin-top: 25px; border-top: 1px solid #e2e8f0; padding-top: 15px; }
   </style>
 </head>
 <body>
   <div class="page" id="page-1">
-    <div style="border-bottom: 2px solid #6366f1; padding-bottom: 15px; margin-bottom: 20px;">
-      <span class="badge" style="background:#e0e7ff; color:#4338ca;">${pdf.className || 'Class 12 Arts'}</span>
-      <span class="badge" style="background:#dcfce7; color:#15803d;">${pdf.subject || 'General'}</span>
-      <h1 class="title">${pdf.title}</h1>
-      <p style="color:#64748b; font-size:13px;">Authored by ${pdf.author || 'Alpha Arts Academic Team'} • Verified 2026 Notes (Page 1 of 2)</p>
+    <div style="border-bottom: 3px solid #4338ca; padding-bottom: 15px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-start;">
+      <div>
+        <span class="badge" style="background:#e0e7ff; color:#4338ca;">${safeClass}</span>
+        <span class="badge" style="background:#dcfce7; color:#15803d;">${safeSubject}</span>
+        <h1 class="title">${safeTitle}</h1>
+        <p style="color:#64748b; font-size:13px; margin:0;">Authored by <strong>${safeAuthor}</strong> • Board Verified 2026 Material</p>
+      </div>
+      <div style="text-align: right; font-size: 12px; color: #64748b;">
+        <strong>Page 1 of 2</strong>
+      </div>
     </div>
+
     <div class="section">
-      <h3 style="margin-top:0; color:#334155;">📌 High-Yield Chapter Overview</h3>
-      <p>${pdf.description}</p>
+      <h3 style="margin-top:0; color:#1e1b4b;">📌 Chapter Overview & Key Summary</h3>
+      <p style="font-size:14px; margin-bottom:0;">${safeDesc}</p>
     </div>
-    <div class="section" style="border-left-color: #10b981;">
-      <h3 style="margin-top:0; color:#065f46;">📚 Core Concept Highlights & Board Examination Notes</h3>
-      <ul>
-        <li><strong>Section 1: Fundamental Definitions & Terminology:</strong> Complete syllabus coverage according to latest board guidelines.</li>
-        <li><strong>Section 2: Diagrammatic Representations & Maps:</strong> High weightage diagrams and timeline charts for board exam practice.</li>
+
+    <div class="highlight-card">
+      <h3 style="margin-top:0; color:#3730a3; font-size:16px;">📚 Core Concept Highlights</h3>
+      <ul style="margin:8px 0 0 0; padding-left:20px; font-size:13.5px;">
+        <li><strong>Key Syllabus Unit:</strong> Comprehensive coverage structured for Class 10 & 12 Board Examinations.</li>
+        <li><strong>High-Yield Points:</strong> Focused coverage of key definitions, historical timelines, and theoretical models.</li>
+        <li><strong>Scoring Strategy:</strong> Bullet points structured to maximize marks in long-answer & short-answer sections.</li>
       </ul>
+    </div>
+
+    <div class="footer-stamp">
+      Alpha Arts Official Portal • Free Printable Board Revision Notes 2026
     </div>
   </div>
 
   <div class="page" id="page-2">
-    <div style="border-bottom: 2px solid #10b981; padding-bottom: 15px; margin-bottom: 20px;">
-      <span class="badge" style="background:#dcfce7; color:#15803d;">Page 2 of 2</span>
-      <h2 class="title" style="font-size:20px;">Advanced Exam Question Framework</h2>
+    <div style="border-bottom: 3px solid #10b981; padding-bottom: 15px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-start;">
+      <div>
+        <span class="badge" style="background:#dcfce7; color:#15803d;">Board Exam Practice</span>
+        <h2 class="title" style="font-size:20px; margin: 4px 0 0 0;">Important Questions & Exam Solutions</h2>
+      </div>
+      <div style="text-align: right; font-size: 12px; color: #64748b;">
+        <strong>Page 2 of 2</strong>
+      </div>
     </div>
-    <div class="section" style="border-left-color: #a855f7;">
-      <h3 style="margin-top:0; color:#581c87;">💡 Key Board Questions & Answers</h3>
-      <p><strong>Q1: What are the primary objectives of this unit?</strong></p>
-      <p>Answer: Master all key concepts, definitions, and high-yield scoring points to score 95%+ in board examinations.</p>
+
+    <div class="qa-box">
+      <div class="qa-q">Q1. What are the key concepts covered in this chapter?</div>
+      <div style="font-size:13px; color:#334155;">
+        <strong>Answer:</strong> This chapter covers fundamental principles, core definitions, and analytical perspectives necessary for achieving 95%+ marks in board examinations.
+      </div>
     </div>
-    <div style="text-align:center; color:#94a3b8; font-size:12px; margin-top:30px; border-top:1px solid #e2e8f0; padding-top:15px;">
+
+    <div class="qa-box">
+      <div class="qa-q">Q2. How should students prepare this topic for exams?</div>
+      <div style="font-size:13px; color:#334155;">
+        <strong>Answer:</strong> Revise the bullet points, practice previous year questions (PYQs), and memorize key terminology provided in these notes.
+      </div>
+    </div>
+
+    <div class="footer-stamp">
       Alpha Arts Official Portal • Free Board Examination Study Notes
     </div>
   </div>
@@ -401,9 +438,12 @@ export const createNoteDocumentBlob = (pdf) => {
   </script>
 </body>
 </html>
-    `;
-  }
+  `;
+};
 
+export const createNoteDocumentBlob = (pdf) => {
+  const htmlContent = getNoteDocumentHTML(pdf);
   const blob = new Blob([htmlContent], { type: 'text/html' });
   return URL.createObjectURL(blob);
 };
+

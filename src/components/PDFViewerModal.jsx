@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { X, Download, Eye, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
+import { X, Download, Eye, ChevronLeft, ChevronRight, ExternalLink, FileText } from 'lucide-react';
 import { AdBanner } from './AdBanner';
 import confetti from 'canvas-confetti';
-import { createNoteDocumentBlob } from '../utils/documentGenerator';
+import { createNoteDocumentBlob, getNoteDocumentHTML } from '../utils/documentGenerator';
 
 export const PDFViewerModal = () => {
   const { viewingPdf, setViewingPdf, pdfs = [], adsSettings } = useApp();
   const [currentPage, setCurrentPage] = useState(1);
+  const [viewMode, setViewMode] = useState('auto'); // 'auto' | 'drive' | 'html'
   const iframeRef = React.useRef(null);
 
   React.useEffect(() => {
     setCurrentPage(1);
+    setViewMode('auto');
   }, [viewingPdf]);
 
   React.useEffect(() => {
@@ -29,10 +31,11 @@ export const PDFViewerModal = () => {
 
   const totalPages = viewingPdf.pages || 12;
 
-  // Extract Google Drive Embed / Preview URL
+  // Extract Google Drive Embed / Preview URL safely
   const getEmbedUrl = (pdf) => {
-    if (!pdf || !pdf.fileContentUrl) return '';
-    const url = pdf.fileContentUrl;
+    if (!pdf) return '';
+    const url = pdf.fileContentUrl || pdf.driveUrl || pdf.embedUrl || '';
+    if (!url || url === '#') return '';
     if (url.includes('drive.google.com')) {
       const match = url.match(/\/file\/d\/([^\/]+)/) || url.match(/id=([^\&]+)/);
       if (match && match[1]) {
@@ -40,7 +43,7 @@ export const PDFViewerModal = () => {
       }
       return url.replace(/\/view(\?.*)?$/, '/preview');
     }
-    if (url.startsWith('data:application/pdf') || url.startsWith('http')) {
+    if (url.startsWith('data:application/pdf') || (url.startsWith('http') && !url.includes('drive.google.com'))) {
       return url;
     }
     return '';
@@ -49,14 +52,16 @@ export const PDFViewerModal = () => {
   // Extract Google Drive Direct Download URL
   const getDownloadUrl = (pdf) => {
     if (!pdf) return '';
-    if (pdf.fileContentUrl && pdf.fileContentUrl.includes('drive.google.com')) {
-      return pdf.fileContentUrl;
+    const rawUrl = pdf.fileContentUrl || pdf.driveUrl || pdf.embedUrl || '';
+    if (rawUrl && rawUrl.includes('drive.google.com')) {
+      return rawUrl;
     }
     if (pdf.downloadUrl) return pdf.downloadUrl;
-    return pdf.fileContentUrl || '';
+    return rawUrl || '';
   };
 
-  const isDriveUrl = viewingPdf.fileContentUrl && viewingPdf.fileContentUrl.includes('drive.google.com');
+  const rawFileUrl = viewingPdf.fileContentUrl || viewingPdf.driveUrl || viewingPdf.embedUrl || '';
+  const isDriveUrl = Boolean(rawFileUrl && rawFileUrl.includes('drive.google.com'));
 
   const [adUnlocked, setAdUnlocked] = useState(() => {
     return viewingPdf ? Boolean(sessionStorage.getItem(`ad_unlocked_${viewingPdf.id}`)) : false;
@@ -90,15 +95,15 @@ export const PDFViewerModal = () => {
       const dlUrl = getDownloadUrl(viewingPdf);
 
       if (isDriveUrl || (dlUrl && dlUrl.startsWith('http'))) {
-        window.open(dlUrl || viewingPdf.fileContentUrl, '_blank');
+        window.open(dlUrl || rawFileUrl, '_blank');
         return;
       }
 
-      const isDataUri = viewingPdf.fileContentUrl && (viewingPdf.fileContentUrl.startsWith('data:') || viewingPdf.fileContentUrl.startsWith('http'));
+      const isDataUri = rawFileUrl && (rawFileUrl.startsWith('data:') || rawFileUrl.startsWith('http'));
       const link = document.createElement('a');
-      link.href = isDataUri ? viewingPdf.fileContentUrl : createNoteDocumentBlob(viewingPdf);
+      link.href = isDataUri ? rawFileUrl : createNoteDocumentBlob(viewingPdf);
       link.target = '_blank';
-      link.download = isDataUri ? `${viewingPdf.title.replace(/[^a-zA-Z0-9\s]/g, '')}.pdf` : `${viewingPdf.title.replace(/[^a-zA-Z0-9\s]/g, '')}_Notes.html`;
+      link.download = isDataUri ? `${(viewingPdf.title || 'Notes').replace(/[^a-zA-Z0-9\s]/g, '')}.pdf` : `${(viewingPdf.title || 'Notes').replace(/[^a-zA-Z0-9\s]/g, '')}_Notes.html`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -110,6 +115,7 @@ export const PDFViewerModal = () => {
     .slice(0, 3);
 
   const embedSrc = getEmbedUrl(viewingPdf);
+  const showDriveEmbed = embedSrc && viewMode !== 'html';
 
   return (
     <div className="modal-overlay" onClick={() => setViewingPdf(null)}>
@@ -134,9 +140,9 @@ export const PDFViewerModal = () => {
           background: 'rgba(15, 23, 42, 0.7)'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-            <span className="badge badge-primary">{viewingPdf.className}</span>
-            <span className="badge badge-emerald">{viewingPdf.subject}</span>
-            <span style={{ fontSize: '0.825rem', color: 'var(--text-muted)' }}>{viewingPdf.category}</span>
+            <span className="badge badge-primary">{viewingPdf.className || viewingPdf.class || 'Class 12 Arts'}</span>
+            <span className="badge badge-emerald">{viewingPdf.subject || 'Notes'}</span>
+            <span style={{ fontSize: '0.825rem', color: 'var(--text-muted)' }}>{viewingPdf.category || 'Board Notes'}</span>
           </div>
 
           <button
@@ -167,11 +173,11 @@ export const PDFViewerModal = () => {
           {/* PDF Metadata Header */}
           <div style={{ marginBottom: '1.5rem' }}>
             <h2 style={{ fontSize: '1.45rem', fontWeight: 800, marginBottom: '0.6rem', lineHeight: 1.3 }}>
-              {viewingPdf.title}
+              {viewingPdf.title || 'Board Examination Notes'}
             </h2>
 
             <p style={{ fontSize: '0.925rem', color: 'var(--text-muted)', marginBottom: '1.15rem', lineHeight: 1.6 }}>
-              {viewingPdf.description}
+              {viewingPdf.description || 'Verified board exam revision notes and chapter summary.'}
             </p>
 
             <div style={{
@@ -192,7 +198,7 @@ export const PDFViewerModal = () => {
 
               {isDriveUrl && (
                 <a
-                  href={viewingPdf.fileContentUrl}
+                  href={rawFileUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
@@ -229,8 +235,10 @@ export const PDFViewerModal = () => {
             <div style={{
               width: '100%',
               display: 'flex',
+              flexWrap: 'wrap',
               alignItems: 'center',
               justifyContent: 'space-between',
+              gap: '0.5rem',
               marginBottom: '1rem',
               fontSize: '0.85rem',
               color: '#94a3b8',
@@ -242,62 +250,99 @@ export const PDFViewerModal = () => {
                 <span>PDF Document Reader</span>
               </span>
 
-              {isDriveUrl ? (
-                <a
-                  href={viewingPdf.fileContentUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    background: 'rgba(37, 99, 235, 0.15)',
-                    color: '#2563eb',
-                    border: '1px solid rgba(37, 99, 235, 0.3)',
-                    padding: '0.3rem 0.75rem',
-                    borderRadius: '6px',
-                    fontSize: '0.775rem',
-                    fontWeight: 700,
-                    textDecoration: 'none',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.35rem'
-                  }}
-                  className="hover-lift"
-                >
-                  <span>Open Full PDF in Drive</span>
-                  <ExternalLink size={12} />
-                </a>
-              ) : (
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-                  <button
-                    disabled={currentPage <= 1}
-                    onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-                    className="btn btn-secondary btn-sm hover-lift"
-                    style={{ padding: '0.25rem 0.75rem' }}
-                  >
-                    <ChevronLeft size={14} />
-                    Prev
-                  </button>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                {embedSrc && (
+                  <div style={{ display: 'flex', gap: '0.35rem', background: 'rgba(255,255,255,0.06)', padding: '2px', borderRadius: '6px' }}>
+                    <button
+                      onClick={() => setViewMode('drive')}
+                      style={{
+                        padding: '0.25rem 0.6rem',
+                        fontSize: '0.75rem',
+                        fontWeight: 600,
+                        borderRadius: '4px',
+                        border: 'none',
+                        cursor: 'pointer',
+                        background: showDriveEmbed ? '#2563eb' : 'transparent',
+                        color: showDriveEmbed ? '#ffffff' : '#94a3b8'
+                      }}
+                    >
+                      Drive View
+                    </button>
+                    <button
+                      onClick={() => setViewMode('html')}
+                      style={{
+                        padding: '0.25rem 0.6rem',
+                        fontSize: '0.75rem',
+                        fontWeight: 600,
+                        borderRadius: '4px',
+                        border: 'none',
+                        cursor: 'pointer',
+                        background: !showDriveEmbed ? '#2563eb' : 'transparent',
+                        color: !showDriveEmbed ? '#ffffff' : '#94a3b8'
+                      }}
+                    >
+                      Notes View
+                    </button>
+                  </div>
+                )}
 
-                  <span style={{ fontWeight: 700, color: '#f8fafc' }}>Page {currentPage} of {totalPages}</span>
-
-                  <button
-                    disabled={currentPage >= totalPages}
-                    onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
-                    className="btn btn-secondary btn-sm hover-lift"
-                    style={{ padding: '0.25rem 0.75rem' }}
+                {isDriveUrl && showDriveEmbed ? (
+                  <a
+                    href={rawFileUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      background: 'rgba(37, 99, 235, 0.15)',
+                      color: '#2563eb',
+                      border: '1px solid rgba(37, 99, 235, 0.3)',
+                      padding: '0.3rem 0.75rem',
+                      borderRadius: '6px',
+                      fontSize: '0.775rem',
+                      fontWeight: 700,
+                      textDecoration: 'none',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.35rem'
+                    }}
+                    className="hover-lift"
                   >
-                    Next
-                    <ChevronRight size={14} />
-                  </button>
-                </div>
-              )}
+                    <span>Open Full PDF in Drive</span>
+                    <ExternalLink size={12} />
+                  </a>
+                ) : (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+                    <button
+                      disabled={currentPage <= 1}
+                      onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                      className="btn btn-secondary btn-sm hover-lift"
+                      style={{ padding: '0.25rem 0.75rem' }}
+                    >
+                      <ChevronLeft size={14} />
+                      Prev
+                    </button>
+
+                    <span style={{ fontWeight: 700, color: '#f8fafc' }}>Page {currentPage} of {totalPages}</span>
+
+                    <button
+                      disabled={currentPage >= totalPages}
+                      onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                      className="btn btn-secondary btn-sm hover-lift"
+                      style={{ padding: '0.25rem 0.75rem' }}
+                    >
+                      Next
+                      <ChevronRight size={14} />
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Document Rendered Preview: Real Document Iframe */}
-            {embedSrc ? (
+            {showDriveEmbed ? (
               <iframe
                 ref={iframeRef}
                 src={embedSrc}
-                title={viewingPdf.title}
+                title={viewingPdf.title || 'PDF Preview'}
                 className="pdf-iframe-viewer"
                 style={{
                   width: '100%',
@@ -312,8 +357,8 @@ export const PDFViewerModal = () => {
             ) : (
               <iframe
                 ref={iframeRef}
-                srcDoc={createNoteDocumentBlob(viewingPdf)}
-                title={viewingPdf.title}
+                srcDoc={getNoteDocumentHTML(viewingPdf)}
+                title={viewingPdf.title || 'Notes Preview'}
                 className="pdf-iframe-viewer"
                 style={{
                   width: '100%',
