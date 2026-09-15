@@ -34,52 +34,62 @@ export const ClassSection = () => {
             boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15)',
             cursor: 'pointer'
           }} 
-          className="hover-lift"
+          className="class-card-item hover-lift"
         >
           
           {/* Blue Icon Graphic Circle with "school" text/symbol */}
-          <div style={{
-            width: '64px',
-            height: '64px',
-            borderRadius: '50%',
-            background: '#2563eb',
-            color: '#ffffff',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: '1.75rem',
-            boxShadow: '0 4px 14px rgba(37, 99, 235, 0.4)',
-            fontWeight: 800,
-            fontSize: '0.85rem',
-            fontFamily: 'monospace, var(--font-sans)',
-            userSelect: 'none'
-          }}>
+          <div 
+            className="class-card-icon"
+            style={{
+              width: '64px',
+              height: '64px',
+              borderRadius: '50%',
+              background: '#2563eb',
+              color: '#ffffff',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '1.75rem',
+              boxShadow: '0 4px 14px rgba(37, 99, 235, 0.4)',
+              fontWeight: 800,
+              fontSize: '0.85rem',
+              fontFamily: 'monospace, var(--font-sans)',
+              userSelect: 'none'
+            }}
+          >
             school
           </div>
 
-          <h3 style={{
-            fontSize: '1.75rem',
-            fontWeight: 800,
-            color: 'var(--text-main)',
-            marginBottom: '1rem',
-            letterSpacing: '-0.02em',
-            fontFamily: "'Outfit', sans-serif"
-          }}>
+          <h3 
+            className="class-card-title"
+            style={{
+              fontSize: '1.75rem',
+              fontWeight: 800,
+              color: 'var(--text-main)',
+              marginBottom: '1rem',
+              letterSpacing: '-0.02em',
+              fontFamily: "'Outfit', sans-serif"
+            }}
+          >
             Class 10
           </h3>
 
-          <p style={{
-            fontSize: '0.9rem',
-            color: 'var(--text-muted)',
-            lineHeight: 1.6,
-            marginBottom: '2rem',
-            flex: '1'
-          }}>
+          <p 
+            className="class-card-desc"
+            style={{
+              fontSize: '0.9rem',
+              color: 'var(--text-muted)',
+              lineHeight: 1.6,
+              marginBottom: '2rem',
+              flex: '1'
+            }}
+          >
             Foundation builder. Access core subject notes, previous year papers, and conceptual breakdowns for board exam preparation.
           </p>
 
           <button
             onClick={(e) => { e.stopPropagation(); handleClassClick('class-10', 'class-10'); }}
+            className="class-card-btn"
             style={{
               background: 'transparent',
               border: 'none',
@@ -114,52 +124,62 @@ export const ClassSection = () => {
             boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15)',
             cursor: 'pointer'
           }} 
-          className="hover-lift"
+          className="class-card-item hover-lift"
         >
           
           {/* Teal/Emerald Icon Graphic Circle with "school" text/symbol */}
-          <div style={{
-            width: '64px',
-            height: '64px',
-            borderRadius: '50%',
-            background: '#10b981',
-            color: '#ffffff',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: '1.75rem',
-            boxShadow: '0 4px 14px rgba(16, 185, 129, 0.4)',
-            fontWeight: 800,
-            fontSize: '0.85rem',
-            fontFamily: 'monospace, var(--font-sans)',
-            userSelect: 'none'
-          }}>
+          <div 
+            className="class-card-icon"
+            style={{
+              width: '64px',
+              height: '64px',
+              borderRadius: '50%',
+              background: '#10b981',
+              color: '#ffffff',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '1.75rem',
+              boxShadow: '0 4px 14px rgba(16, 185, 129, 0.4)',
+              fontWeight: 800,
+              fontSize: '0.85rem',
+              fontFamily: 'monospace, var(--font-sans)',
+              userSelect: 'none'
+            }}
+          >
             school
           </div>
 
-          <h3 style={{
-            fontSize: '1.75rem',
-            fontWeight: 800,
-            color: 'var(--text-main)',
-            marginBottom: '1rem',
-            letterSpacing: '-0.02em',
-            fontFamily: "'Outfit', sans-serif"
-          }}>
+          <h3 
+            className="class-card-title"
+            style={{
+              fontSize: '1.75rem',
+              fontWeight: 800,
+              color: 'var(--text-main)',
+              marginBottom: '1rem',
+              letterSpacing: '-0.02em',
+              fontFamily: "'Outfit', sans-serif"
+            }}
+          >
             Class 12 Arts
           </h3>
 
-          <p style={{
-            fontSize: '0.9rem',
-            color: 'var(--text-muted)',
-            lineHeight: 1.6,
-            marginBottom: '2rem',
-            flex: '1'
-          }}>
+          <p 
+            className="class-card-desc"
+            style={{
+              fontSize: '0.9rem',
+              color: 'var(--text-muted)',
+              lineHeight: 1.6,
+              marginBottom: '2rem',
+              flex: '1'
+            }}
+          >
             Comprehensive curriculum for Arts. Access detailed notes for History, Geography, Political Science, and Sociology designed for board excellence.
           </p>
 
           <button
             onClick={(e) => { e.stopPropagation(); handleClassClick('class-12', 'class-12-arts'); }}
+            className="class-card-btn"
             style={{
               background: 'transparent',
               border: 'none',
@@ -180,6 +200,42 @@ export const ClassSection = () => {
         </div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .class-cards-grid {
+            grid-template-columns: 1fr 1fr !important;
+            gap: 0.75rem !important;
+          }
+          .class-card-item {
+            padding: 1.15rem 0.85rem !important;
+            border-radius: 12px !important;
+          }
+          .class-card-icon {
+            width: 42px !important;
+            height: 42px !important;
+            font-size: 0.7rem !important;
+            margin-bottom: 0.75rem !important;
+          }
+          .class-card-title {
+            font-size: 1.15rem !important;
+            margin-bottom: 0.35rem !important;
+          }
+          .class-card-desc {
+            font-size: 0.75rem !important;
+            line-height: 1.4 !important;
+            margin-bottom: 0.85rem !important;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+          .class-card-btn {
+            font-size: 0.75rem !important;
+            gap: 0.25rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };
