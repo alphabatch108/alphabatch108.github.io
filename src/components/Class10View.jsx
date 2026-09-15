@@ -326,27 +326,18 @@ export const Class10View = () => {
                     </div>
 
                     <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.65rem',
                       paddingTop: '0.85rem',
                       borderTop: '1px solid var(--border-color)'
                     }}>
-                      <button
-                        onClick={() => setViewingPdf(pdf)}
-                        className="btn btn-primary btn-sm"
-                        style={{ flex: 1, padding: '0.45rem 0.75rem', fontSize: '0.8rem', borderRadius: '6px' }}
-                      >
-                        Preview PYQ
-                      </button>
                       <a
                         href={pdf.downloadUrl || pdf.fileContentUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="btn btn-secondary btn-sm"
-                        style={{ padding: '0.45rem 0.75rem', fontSize: '0.8rem', borderRadius: '6px', textDecoration: 'none' }}
+                        className="btn btn-primary btn-sm"
+                        style={{ width: '100%', padding: '0.55rem 0.75rem', fontSize: '0.825rem', borderRadius: '6px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem' }}
                       >
-                        Download
+                        <Download size={14} />
+                        <span>Download PYQ PDF</span>
                       </a>
                     </div>
                   </div>

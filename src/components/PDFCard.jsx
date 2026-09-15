@@ -69,7 +69,7 @@ export const PDFCard = ({ pdf }) => {
     }}>
       {/* Sleek Vector Card Header */}
       <div 
-        onClick={handlePreview} 
+        onClick={handleDownload} 
         style={{
           position: 'relative',
           padding: '1.25rem 1.25rem 0.5rem 1.25rem',
@@ -112,7 +112,7 @@ export const PDFCard = ({ pdf }) => {
 
           {/* Title */}
           <h3 
-            onClick={handlePreview}
+            onClick={handleDownload}
             style={{
               fontSize: '1.08rem',
               fontWeight: 800,
@@ -153,34 +153,25 @@ export const PDFCard = ({ pdf }) => {
 
         {/* Card Footer: Action Buttons */}
         <div style={{ paddingTop: '0.9rem', borderTop: '1px solid var(--border-glass-bright)' }}>
-          {/* Buttons Row */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.15fr', gap: '0.5rem' }}>
-            <button
-              onClick={handlePreview}
-              className="btn btn-secondary btn-sm hover-lift"
-              style={{ width: '100%', borderRadius: 'var(--radius-sm)', fontSize: '0.8rem', padding: '0.5rem 0.6rem' }}
-            >
-              <Eye size={14} />
-              <span>Preview</span>
-            </button>
-
-            <button
-              onClick={handleDownload}
-              className="btn btn-primary btn-sm btn-glow hover-lift"
-              style={{ 
-                width: '100%', 
-                borderRadius: 'var(--radius-sm)', 
-                fontSize: '0.8rem', 
-                gap: '0.35rem', 
-                padding: '0.5rem 0.6rem',
-                background: adUnlocked ? '#059669' : undefined,
-                borderColor: adUnlocked ? '#059669' : undefined
-              }}
-            >
-              <Download size={14} />
-              <span>{adUnlocked ? 'Get File 🔓' : 'Download'}</span>
-            </button>
-          </div>
+          <button
+            onClick={handleDownload}
+            className="btn btn-primary btn-sm btn-glow hover-lift"
+            style={{ 
+              width: '100%', 
+              borderRadius: 'var(--radius-sm)', 
+              fontSize: '0.85rem', 
+              gap: '0.4rem', 
+              padding: '0.6rem 0.8rem',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: adUnlocked ? '#059669' : undefined,
+              borderColor: adUnlocked ? '#059669' : undefined
+            }}
+          >
+            <Download size={15} />
+            <span>{adUnlocked ? 'Get Notes File 🔓' : 'Download Notes PDF'}</span>
+          </button>
         </div>
       </div>
 

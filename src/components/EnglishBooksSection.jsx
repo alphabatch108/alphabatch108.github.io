@@ -396,26 +396,9 @@ export const EnglishBooksSection = () => {
 
               {/* Action Buttons */}
               <div style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: '0.5rem',
                 paddingTop: '0.85rem',
                 borderTop: '1px solid var(--border-color)'
               }}>
-                <button
-                  onClick={() => handlePreviewNotes(item)}
-                  className="btn btn-secondary btn-sm hover-lift"
-                  style={{
-                    fontSize: '0.785rem',
-                    padding: '0.5rem 0.5rem',
-                    borderRadius: '8px',
-                    gap: '0.35rem'
-                  }}
-                >
-                  <Eye size={14} />
-                  <span>Preview</span>
-                </button>
-
                 {(() => {
                   const isUnlocked = adClickedMap[item.id] || Boolean(sessionStorage.getItem(`ad_unlocked_${item.id}`));
                   return (
@@ -423,20 +406,23 @@ export const EnglishBooksSection = () => {
                       onClick={(e) => handleDownloadNotes(item, e)}
                       className="btn btn-primary btn-sm hover-lift btn-glow"
                       style={{
-                        fontSize: '0.785rem',
-                        padding: '0.5rem 0.5rem',
+                        width: '100%',
+                        fontSize: '0.825rem',
+                        padding: '0.55rem 0.75rem',
                         borderRadius: '8px',
-                        gap: '0.35rem',
+                        gap: '0.4rem',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                         background: isUnlocked ? '#059669' : (item.book === 'flamingo' ? '#f43f5e' : '#0d9488'),
                         borderColor: isUnlocked ? '#059669' : (item.book === 'flamingo' ? '#f43f5e' : '#0d9488')
                       }}
                     >
-                      <Download size={14} />
-                      <span>{isUnlocked ? 'Get Drive File 🔓' : 'Download PDF'}</span>
+                      <Download size={15} />
+                      <span>{isUnlocked ? 'Get Drive File 🔓' : 'Download PDF Notes'}</span>
                     </button>
                   );
                 })()}
-
               </div>
             </div>
           ))

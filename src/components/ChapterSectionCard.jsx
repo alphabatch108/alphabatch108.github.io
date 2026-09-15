@@ -162,30 +162,18 @@ export const ChapterSectionCard = ({ chapter, onPreviewPdf, onOpenSummary }) => 
           </div>
 
           <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.65rem',
             paddingTop: '0.85rem',
             borderTop: '1px solid var(--border-color)'
           }}>
-            <button
-              onClick={() => onPreviewPdf && onPreviewPdf(pdf || { title: `${chapterTitle} Notes PDF`, class: className, subject: subject })}
-              className="btn btn-primary btn-sm"
-              style={{ flex: 1, padding: '0.5rem 0.75rem', fontSize: '0.8rem', borderRadius: '8px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.35rem' }}
-            >
-              <Eye size={14} />
-              <span>Preview PDF</span>
-            </button>
-
             <a
               href={pdf?.downloadUrl || pdf?.fileContentUrl || '#'}
               target="_blank"
               rel="noreferrer"
-              className="btn btn-secondary btn-sm"
-              style={{ padding: '0.5rem 0.85rem', fontSize: '0.8rem', borderRadius: '8px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}
+              className="btn btn-primary btn-sm"
+              style={{ width: '100%', padding: '0.55rem 0.85rem', fontSize: '0.825rem', borderRadius: '8px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.35rem' }}
             >
               <Download size={14} />
-              <span>Download</span>
+              <span>Download Notes PDF</span>
             </a>
           </div>
         </div>

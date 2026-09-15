@@ -288,46 +288,30 @@ export const GeographyBooksSection = () => {
               </div>
 
               <div style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: '0.5rem',
                 paddingTop: '0.85rem',
                 borderTop: '1px solid var(--border-color)'
               }}>
-                <button
-                  onClick={() => handlePreviewNotes(item)}
-                  className="btn btn-primary btn-sm hover-lift"
-                  style={{
-                    fontSize: '0.785rem',
-                    padding: '0.5rem 0.5rem',
-                    borderRadius: '8px',
-                    gap: '0.35rem',
-                    background: item.book === 'human' ? '#059669' : '#0284c7',
-                    borderColor: item.book === 'human' ? '#059669' : '#0284c7'
-                  }}
-                >
-                  <FileText size={14} />
-                  <span>नोट्स देखें</span>
-                </button>
-
                 <a
                   href={item.fileContentUrl || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-secondary btn-sm hover-lift"
+                  className="btn btn-primary btn-sm hover-lift"
                   style={{
-                    fontSize: '0.785rem',
-                    padding: '0.5rem 0.5rem',
+                    width: '100%',
+                    fontSize: '0.825rem',
+                    padding: '0.55rem 0.75rem',
                     borderRadius: '8px',
-                    gap: '0.35rem',
+                    gap: '0.4rem',
                     textDecoration: 'none',
                     display: 'inline-flex',
                     alignItems: 'center',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    background: item.book === 'human' ? '#059669' : '#0284c7',
+                    borderColor: item.book === 'human' ? '#059669' : '#0284c7'
                   }}
                 >
-                  <ExternalLink size={14} />
-                  <span>गूगल ड्राइव</span>
+                  <Download size={15} />
+                  <span>डाउनलोड नोट्स PDF</span>
                 </a>
               </div>
             </div>

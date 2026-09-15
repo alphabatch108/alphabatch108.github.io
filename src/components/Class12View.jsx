@@ -563,18 +563,8 @@ export const Class12View = () => {
                   style={{ padding: '0.65rem 1.4rem', borderRadius: '8px', fontSize: '0.875rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: '#0891b2', borderColor: '#0891b2' }}
                 >
                   <Download size={16} />
-                  <span>Download PDF</span>
+                  <span>Download IT DBMS Notes PDF</span>
                 </a>
-
-                {/* View PDF Modal Button */}
-                <button
-                  onClick={() => setViewingPdf(itDbmsPdf)}
-                  className="btn btn-secondary hover-lift"
-                  style={{ padding: '0.65rem 1.4rem', borderRadius: '8px', fontSize: '0.875rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
-                >
-                  <FileText size={16} />
-                  <span>Preview Notes</span>
-                </button>
 
                 {/* Open Google Drive Link Button */}
                 <a

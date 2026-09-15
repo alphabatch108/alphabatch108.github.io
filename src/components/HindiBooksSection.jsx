@@ -349,28 +349,9 @@ export const HindiBooksSection = () => {
 
               {/* Action Buttons */}
               <div style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: '0.5rem',
                 paddingTop: '0.85rem',
                 borderTop: '1px solid var(--border-color)'
               }}>
-                <button
-                  onClick={() => handlePreviewNotes(item)}
-                  className="btn btn-primary btn-sm hover-lift"
-                  style={{
-                    fontSize: '0.785rem',
-                    padding: '0.5rem 0.5rem',
-                    borderRadius: '8px',
-                    gap: '0.35rem',
-                    background: item.book === 'aroh' ? '#ea580c' : '#10b981',
-                    borderColor: item.book === 'aroh' ? '#ea580c' : '#10b981'
-                  }}
-                >
-                  <FileText size={14} />
-                  <span>नोट्स देखें</span>
-                </button>
-
                 <a
                   href={item.fileContentUrl || '#'}
                   target="_blank"
