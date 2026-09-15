@@ -14,8 +14,8 @@ export const AdBanner = ({
   const isEnabled = adsSettings?.enabled !== false;
   const isSlotEnabled = !slot || adsSettings?.[slot] !== false;
 
-  // Default to official verified site Publisher ID if none is set in context
-  const rawPublisherId = adsSettings?.publisherId || 'ca-pub-4733389173568893';
+  // Publisher ID from settings
+  const rawPublisherId = adsSettings?.publisherId || '';
 
   const formattedPublisherId = React.useMemo(() => {
     if (!rawPublisherId) return '';

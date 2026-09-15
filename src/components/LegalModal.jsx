@@ -61,7 +61,7 @@ export const LegalModal = ({ isOpen, onClose, activeSection = 'privacy' }) => {
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--accent-emerald)', fontWeight: 700, marginBottom: '0.75rem' }}>
                 <CheckCircle2 size={16} />
-                <span>Google AdSense Compliant Privacy Disclosure</span>
+                <span>Third-Party Advertising & Privacy Disclosure</span>
               </div>
 
               <p style={{ marginBottom: '1.15rem' }}>
@@ -69,10 +69,10 @@ export const LegalModal = ({ isOpen, onClose, activeSection = 'privacy' }) => {
               </p>
 
               <h4 style={{ color: 'var(--text-main)', fontSize: '1rem', marginTop: '1.25rem', marginBottom: '0.5rem', fontWeight: 700 }}>
-                1. Google AdSense & DoubleClick DART Cookies
+                1. Third-Party Advertising & Cookies (Monetag)
               </h4>
               <p style={{ marginBottom: '1.15rem' }}>
-                Google is one of a third-party vendor on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to our site and other sites on the internet. However, visitors may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy Policy at the following URL: <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noreferrer" style={{ color: 'var(--primary)' }}>https://policies.google.com/technologies/ads</a>.
+                Alpha Arts partners with third-party ad networks such as Monetag to deliver relevant ads and monetization. These ad networks may use cookies, web beacons, and JavaScript to measure ad performance and display relevant content. Visitors can manage cookie settings directly in their web browser.
               </p>
 
               <h4 style={{ color: 'var(--text-main)', fontSize: '1rem', marginTop: '1.25rem', marginBottom: '0.5rem', fontWeight: 700 }}>

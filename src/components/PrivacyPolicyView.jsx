@@ -135,7 +135,7 @@ export const PrivacyPolicyView = () => {
             </p>
           </div>
 
-          {/* Section 6 - Google AdSense & Cookies */}
+          {/* Section 6 - Third-Party Advertising & Cookies */}
           <section style={{
             padding: '1.5rem',
             borderRadius: '12px',
@@ -143,20 +143,20 @@ export const PrivacyPolicyView = () => {
             border: '1px solid rgba(37, 99, 235, 0.18)'
           }}>
             <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-main)', marginBottom: '0.65rem', fontFamily: "'Outfit', sans-serif" }}>
-              6. Cookies, Google AdSense & Third-Party Advertising
+              6. Cookies & Third-Party Advertising (Monetag & Partners)
             </h3>
             <p style={{ color: 'var(--text-muted)', marginBottom: '0.75rem' }}>
-              Alpha Arts uses cookies, web beacons, and similar tracking technologies to enhance user experience, authentication, and to display advertisements through Google AdSense.
+              Alpha Arts uses cookies, web beacons, and similar tracking technologies to enhance user experience, authentication, and to display advertisements through authorized third-party ad networks such as Monetag.
             </p>
             <ul style={{ color: 'var(--text-muted)', paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '0.75rem' }}>
               <li>
-                <strong>Third-Party Vendors & Google AdSense:</strong> Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to Alpha Arts or other websites across the Internet.
+                <strong>Third-Party Ad Networks:</strong> Third-party ad vendors and networks (including Monetag) use cookies and web scripts to serve relevant advertisements, measure ad performance, and prevent fraud.
               </li>
               <li>
-                <strong>DART Cookies:</strong> Google's use of advertising cookies (such as the DoubleClick DART cookie) enables it and its partners to serve ads to users based on their visit to our site and/or other sites on the Internet.
+                <strong>Ad Preferences & Cookies:</strong> Advertising partners may set cookies or use web storage to personalize user experience and ensure safety.
               </li>
               <li>
-                <strong>Opting Out:</strong> Users may opt out of personalized advertising by visiting Google's Ads Settings at <a href="https://www.google.com/settings/ads" target="_blank" rel="noreferrer" style={{ color: '#2563eb', fontWeight: 600 }}>https://www.google.com/settings/ads</a> or by visiting <a href="https://www.aboutads.info/choices/" target="_blank" rel="noreferrer" style={{ color: '#2563eb', fontWeight: 600 }}>www.aboutads.info</a>.
+                <strong>Opting Out:</strong> Users may manage cookie preferences in browser settings or visit <a href="https://www.aboutads.info/choices/" target="_blank" rel="noreferrer" style={{ color: '#2563eb', fontWeight: 600 }}>www.aboutads.info</a> to opt out of interest-based advertising.
               </li>
             </ul>
           </section>

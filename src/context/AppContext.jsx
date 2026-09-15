@@ -249,7 +249,7 @@ export const AppProvider = ({ children }) => {
       sidebar: true,
       footer: true,
       pdfPage: true,
-      publisherId: 'ca-pub-4733389173568893',
+      publisherId: '',
       customNotice: 'Sponsored Educational Announcement'
     };
     const saved = localStorage.getItem('study_hub_ads');
@@ -258,8 +258,7 @@ export const AppProvider = ({ children }) => {
         const parsed = JSON.parse(saved);
         return {
           ...defaults,
-          ...parsed,
-          publisherId: parsed.publisherId || defaults.publisherId
+          ...parsed
         };
       } catch (e) {}
     }
