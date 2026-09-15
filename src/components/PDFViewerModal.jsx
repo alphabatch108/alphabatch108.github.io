@@ -19,13 +19,18 @@ export const PDFViewerModal = () => {
   React.useEffect(() => {
     if (!viewingPdf) return;
 
-    // Send GOTO_PAGE event to iframe for multi-page document scrolling
-    if (iframeRef.current && iframeRef.current.contentWindow) {
+    // Scroll to target page in native paper viewport or send message to iframe
+    if (viewMode === 'notes') {
+      const pageElem = document.getElementById(`page-${currentPage}`);
+      if (pageElem) {
+        pageElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    } else if (iframeRef.current && iframeRef.current.contentWindow) {
       try {
         iframeRef.current.contentWindow.postMessage({ type: 'GOTO_PAGE', page: currentPage }, '*');
       } catch (e) {}
     }
-  }, [currentPage, viewingPdf]);
+  }, [currentPage, viewingPdf, viewMode]);
 
   const blobUrl = React.useMemo(() => {
     if (!viewingPdf) return '';
@@ -367,7 +372,7 @@ export const PDFViewerModal = () => {
               </div>
             </div>
 
-            {/* Document Rendered Preview: Real Document Iframe */}
+            {/* Document Rendered Preview: Real Document Canvas */}
             {showDriveEmbed ? (
               <iframe
                 key={`drive_${viewingPdf.id || 'pdf'}_${currentPage}`}
@@ -386,20 +391,21 @@ export const PDFViewerModal = () => {
                 allow="autoplay; encrypted-media"
               />
             ) : (
-              <iframe
-                key={`notes_${viewingPdf.id || 'pdf'}_${currentPage}`}
-                ref={iframeRef}
-                srcDoc={htmlDoc}
-                title={viewingPdf.title || 'Notes Preview'}
-                className="pdf-iframe-viewer"
+              <div
+                key={`notes_div_${viewingPdf.id || 'pdf'}`}
+                className="note-document-paper-viewport"
                 style={{
                   width: '100%',
                   height: 'clamp(420px, 65vh, 650px)',
-                  border: 'none',
+                  overflowY: 'auto',
                   borderRadius: '8px',
                   boxShadow: '0 12px 40px rgba(0,0,0,0.6)',
-                  background: '#ffffff'
+                  background: '#f8fafc',
+                  color: '#0f172a',
+                  padding: '1.25rem 0.5rem',
+                  border: '1px solid #cbd5e1'
                 }}
+                dangerouslySetInnerHTML={{ __html: htmlDoc }}
               />
             )}
 
