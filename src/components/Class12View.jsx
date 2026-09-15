@@ -256,39 +256,48 @@ export const Class12View = () => {
                       flexDirection: 'column',
                       alignItems: 'flex-start'
                     }}
-                    className="hover-lift"
+                    className="c12-subject-card hover-lift"
                   >
                     {/* Square Blue Icon Container */}
-                    <div style={{
-                      width: '42px',
-                      height: '42px',
-                      borderRadius: '10px',
-                      background: '#2563eb',
-                      color: '#ffffff',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginBottom: '1.15rem'
-                    }}>
+                    <div 
+                      className="c12-card-icon"
+                      style={{
+                        width: '42px',
+                        height: '42px',
+                        borderRadius: '10px',
+                        background: '#2563eb',
+                        color: '#ffffff',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginBottom: '1.15rem'
+                      }}
+                    >
                       <IconComp size={22} />
                     </div>
 
-                    <h3 style={{
-                      fontSize: '1.15rem',
-                      fontWeight: 700,
-                      color: 'var(--text-main)',
-                      marginBottom: '0.4rem',
-                      fontFamily: "'Outfit', sans-serif"
-                    }}>
+                    <h3 
+                      className="c12-card-title"
+                      style={{
+                        fontSize: '1.15rem',
+                        fontWeight: 700,
+                        color: 'var(--text-main)',
+                        marginBottom: '0.4rem',
+                        fontFamily: "'Outfit', sans-serif"
+                      }}
+                    >
                       {subj.name}
                     </h3>
 
-                    <p style={{
-                      fontSize: '0.825rem',
-                      color: 'var(--text-muted)',
-                      lineHeight: 1.5,
-                      margin: 0
-                    }}>
+                    <p 
+                      className="c12-card-desc"
+                      style={{
+                        fontSize: '0.825rem',
+                        color: 'var(--text-muted)',
+                        lineHeight: 1.5,
+                        margin: 0
+                      }}
+                    >
                       {subj.desc}
                     </p>
                   </div>
