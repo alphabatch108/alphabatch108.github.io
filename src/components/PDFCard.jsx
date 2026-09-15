@@ -5,7 +5,7 @@ import confetti from 'canvas-confetti';
 import { createNoteDocumentBlob } from '../utils/documentGenerator';
 
 export const PDFCard = ({ pdf }) => {
-  const { setViewingPdf, incrementPdfView } = useApp();
+  const { setViewingPdf, incrementPdfView, adsSettings } = useApp();
 
   const handlePreview = () => {
     incrementPdfView(pdf.id);
@@ -24,6 +24,14 @@ export const PDFCard = ({ pdf }) => {
       });
     } catch (err) {
       // Fallback
+    }
+
+    // Open Monetag Direct Link Ad in new tab
+    const directAdUrl = adsSettings?.directLink || 'https://omg10.com/4/11805675';
+    if (directAdUrl) {
+      try {
+        window.open(directAdUrl, '_blank');
+      } catch (err) {}
     }
 
     if (pdf.fileContentUrl && pdf.fileContentUrl.includes('drive.google.com')) {

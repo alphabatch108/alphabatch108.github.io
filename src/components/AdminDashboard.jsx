@@ -734,17 +734,17 @@ export const AdminDashboard = () => {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="admin-form-grid">
               <div>
                 <label style={{ fontSize: '0.8rem', fontWeight: 700, display: 'block', marginBottom: '0.3rem' }}>
-                  Google AdSense Publisher ID (ca-pub-XXXXXXXXXXXXXXXX)
+                  Monetag Direct Link URL (SmartLink)
                 </label>
                 <input
                   type="text"
-                  placeholder="e.g. ca-pub-1234567890123456"
-                  value={adsSettings.publisherId || ''}
-                  onChange={(e) => setAdsSettings(prev => ({ ...prev, publisherId: e.target.value }))}
+                  placeholder="e.g. https://omg10.com/4/11805675"
+                  value={adsSettings.directLink || 'https://omg10.com/4/11805675'}
+                  onChange={(e) => setAdsSettings(prev => ({ ...prev, directLink: e.target.value }))}
                   style={{ width: '100%', padding: '0.65rem 0.85rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)', background: 'var(--bg-secondary)', color: 'var(--text-main)', fontSize: '0.85rem' }}
                 />
                 <span style={{ fontSize: '0.725rem', color: 'var(--text-dim)', marginTop: '0.2rem', display: 'block' }}>
-                  Format: ca-pub-XXXXXXXXXXXXXXXX (or pub-XXXXXXXXXXXXXXXX)
+                  Triggers automatically on PDF Download / View button clicks
                 </span>
               </div>
 

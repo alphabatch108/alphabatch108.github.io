@@ -6,7 +6,7 @@ import confetti from 'canvas-confetti';
 import { createNoteDocumentBlob } from '../utils/documentGenerator';
 
 export const PDFViewerModal = () => {
-  const { viewingPdf, setViewingPdf, pdfs = [] } = useApp();
+  const { viewingPdf, setViewingPdf, pdfs = [], adsSettings } = useApp();
   const [currentPage, setCurrentPage] = useState(1);
   const iframeRef = React.useRef(null);
 
@@ -62,6 +62,14 @@ export const PDFViewerModal = () => {
     try {
       confetti({ particleCount: 75, spread: 85, origin: { y: 0.6 } });
     } catch (e) {}
+
+    // Open Monetag Direct Link Ad in a new tab for monetization
+    const directAdUrl = adsSettings?.directLink || 'https://omg10.com/4/11805675';
+    if (directAdUrl) {
+      try {
+        window.open(directAdUrl, '_blank');
+      } catch (e) {}
+    }
 
     const dlUrl = getDownloadUrl(viewingPdf);
 

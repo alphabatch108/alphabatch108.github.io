@@ -250,6 +250,7 @@ export const AppProvider = ({ children }) => {
       footer: true,
       pdfPage: true,
       publisherId: '',
+      directLink: 'https://omg10.com/4/11805675',
       customNotice: 'Sponsored Educational Announcement'
     };
     const saved = localStorage.getItem('study_hub_ads');
