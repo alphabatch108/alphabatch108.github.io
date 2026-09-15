@@ -82,24 +82,36 @@ export const PDFViewerModal = () => {
   const isDriveUrl = Boolean(rawFileUrl && rawFileUrl.includes('drive.google.com'));
 
   const [adUnlocked, setAdUnlocked] = useState(() => {
-    return viewingPdf ? Boolean(sessionStorage.getItem(`ad_unlocked_${viewingPdf.id}`)) : false;
+    try {
+      return viewingPdf ? Boolean(sessionStorage.getItem(`ad_unlocked_${viewingPdf.id || 'pdf'}`)) : false;
+    } catch (e) {
+      return false;
+    }
   });
 
   React.useEffect(() => {
     if (viewingPdf) {
-      setAdUnlocked(Boolean(sessionStorage.getItem(`ad_unlocked_${viewingPdf.id}`)));
+      try {
+        setAdUnlocked(Boolean(sessionStorage.getItem(`ad_unlocked_${viewingPdf.id || 'pdf'}`)));
+      } catch (e) {}
     }
   }, [viewingPdf]);
 
   const handleDownload = () => {
     if (!viewingPdf) return;
-    const pdfKey = `ad_unlocked_${viewingPdf.id}`;
-    const isUnlocked = adUnlocked || Boolean(sessionStorage.getItem(pdfKey));
+    const pdfId = viewingPdf.id || 'pdf';
+    const pdfKey = `ad_unlocked_${pdfId}`;
+    let isUnlocked = adUnlocked;
+    try {
+      isUnlocked = adUnlocked || Boolean(sessionStorage.getItem(pdfKey));
+    } catch (e) {}
     const directAdUrl = adsSettings?.directLink || 'https://omg10.com/4/11805675';
 
     if (!isUnlocked && directAdUrl) {
       // Step 1: 1st Click opens Monetag Direct Link Ad
-      sessionStorage.setItem(pdfKey, 'true');
+      try {
+        sessionStorage.setItem(pdfKey, 'true');
+      } catch (e) {}
       setAdUnlocked(true);
       try {
         window.open(directAdUrl, '_blank');
@@ -377,7 +389,6 @@ export const PDFViewerModal = () => {
               <iframe
                 key={`notes_${viewingPdf.id || 'pdf'}_${currentPage}`}
                 ref={iframeRef}
-                src={blobUrl}
                 srcDoc={htmlDoc}
                 title={viewingPdf.title || 'Notes Preview'}
                 className="pdf-iframe-viewer"
