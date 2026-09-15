@@ -86,83 +86,76 @@ export const AdBanner = ({
     bannerTitle = 'Responsive Auto-Ad Banner';
   }
 
-  const displayLabel = label || `Google AdSense — ${bannerTitle}`;
   const customNotice = adsSettings?.customNotice || 'Sponsored Educational Announcement';
+  const handleBannerClick = () => {
+    const directAdUrl = adsSettings?.directLink || 'https://omg10.com/4/11805675';
+    if (directAdUrl) {
+      try {
+        window.open(directAdUrl, '_blank');
+      } catch (e) {}
+    }
+  };
 
   return (
     <aside 
-      className="ad-banner-wrapper animate-fade-in-up"
+      onClick={handleBannerClick}
+      className="ad-banner-wrapper animate-fade-in-up hover-lift"
       style={{
         width: '100%',
         maxWidth: bannerMaxWidth,
         minHeight: bannerHeight,
         margin: '1.5rem auto',
-        borderRadius: '12px',
-        background: 'rgba(15, 23, 42, 0.75)',
-        border: '1.5px dashed rgba(37, 99, 235, 0.4)',
+        borderRadius: '14px',
+        background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(30, 41, 59, 0.75))',
+        border: '1.5px solid rgba(56, 189, 248, 0.3)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
         overflow: 'hidden',
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.25)',
         transition: 'all 0.3s ease',
-        padding: '0.5rem',
+        padding: '0.85rem 1.25rem',
+        cursor: 'pointer',
         ...style
       }}
     >
-      {hasAdSenseId ? (
-        <div style={{ width: '100%', overflow: 'hidden', minHeight: bannerHeight, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-          <div style={{ fontSize: '0.65rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.2rem' }}>
-            {customNotice}
-          </div>
-          <ins
-            ref={adRef}
-            className="adsbygoogle"
-            style={{ display: 'block', textAlign: 'center', width: '100%', minHeight: bannerHeight }}
-            data-ad-client={formattedPublisherId}
-            {...(adsSettings?.[`${slot}Id`] ? { 'data-ad-slot': adsSettings[`${slot}Id`] } : {})}
-            data-ad-format={adFormat}
-            data-full-width-responsive={type === 'responsive' ? 'true' : 'false'}
-          />
-        </div>
-      ) : (
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '0.45rem',
+        color: '#94a3b8',
+        fontSize: '0.85rem',
+        fontWeight: 600,
+        textAlign: 'center',
+        userSelect: 'none'
+      }}>
+        <span style={{
+          fontSize: '0.7rem',
+          letterSpacing: '0.08em',
+          textTransform: 'uppercase',
+          color: '#38bdf8',
+          background: 'rgba(56, 189, 248, 0.15)',
+          border: '1px solid rgba(56, 189, 248, 0.3)',
+          padding: '0.2rem 0.85rem',
+          borderRadius: '9999px',
+          fontWeight: 800,
+          display: 'inline-flex',
           alignItems: 'center',
-          justifyContent: 'center',
-          gap: '0.4rem',
-          color: '#94a3b8',
-          fontSize: '0.825rem',
-          fontWeight: 600,
-          textAlign: 'center',
-          padding: '0.85rem 1.25rem',
-          userSelect: 'none'
+          gap: '0.35rem'
         }}>
-          <span style={{
-            fontSize: '0.7rem',
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            color: '#38bdf8',
-            background: 'rgba(56, 189, 248, 0.12)',
-            border: '1px solid rgba(56, 189, 248, 0.25)',
-            padding: '0.2rem 0.75rem',
-            borderRadius: '9999px',
-            fontWeight: 800,
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.35rem'
-          }}>
-            📢 {customNotice}
-          </span>
-          <span style={{ color: '#f8fafc', fontWeight: 700 }}>{displayLabel}</span>
-          <span style={{ fontSize: '0.725rem', color: '#64748b' }}>
-            (To show live Google Ads: Enter your Publisher ID in Admin Governance Console ⚙️)
-          </span>
-        </div>
-      )}
+          📢 {customNotice}
+        </span>
+        <span style={{ color: '#f8fafc', fontWeight: 700, fontSize: '0.925rem' }}>
+          Sponsored Partner Announcement • Click to View Offer
+        </span>
+        <span style={{ fontSize: '0.75rem', color: '#38bdf8', fontWeight: 600 }}>
+          Click here to explore special student resources & partner offers 🚀
+        </span>
+      </div>
     </aside>
   );
 };
