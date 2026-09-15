@@ -7,13 +7,30 @@ import {
   CheckCircle2, 
   BookMarked,
   ExternalLink,
-  GraduationCap
+  GraduationCap,
+  Download,
+  Eye
 } from 'lucide-react';
+import confetti from 'canvas-confetti';
 
-export const ENGLISH_BOOKS_DATA = [];
+export const ENGLISH_BOOKS_DATA = [
+  {
+    id: 'pdf-c12-eng-flamingo-ch1-summary',
+    book: 'flamingo',
+    type: 'prose',
+    chNum: 1,
+    title: 'Lesson 1: The Last Lesson (Chapter Summary & Key Points)',
+    author: 'Alphonse Daudet',
+    desc: 'Class 12 English Core — Flamingo Lesson - 1: The Last Lesson complete chapter summary, key takeaways, character sketches of M. Hamel & Franz, and most important points.',
+    category: 'Summary & Key Points',
+    fileContentUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link',
+    driveUrl: 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link',
+    downloadUrl: 'https://drive.google.com/uc?export=download&id=1a4y_zYUysVyIVICuXhmyquO6853kxpAp'
+  }
+];
 
 export const EnglishBooksSection = () => {
-  const { setViewingPdf } = useApp();
+  const { setViewingPdf, adsSettings } = useApp();
   const [selectedBook, setSelectedBook] = useState('flamingo'); // 'flamingo' | 'vistas'
   const [flamingoFilter, setFlamingoFilter] = useState('all'); // 'all' | 'prose' | 'poetry'
   const [searchQuery, setSearchQuery] = useState('');
@@ -45,12 +62,33 @@ export const EnglishBooksSection = () => {
       className: 'Class 12 Arts',
       subject: 'English',
       category: item.category,
-      fileSize: '2.4 MB',
+      fileSize: '3.0 MB',
       pages: 10,
       author: item.author,
       description: item.desc,
-      fileContentUrl: item.fileContentUrl || 'https://drive.google.com/file/d/1a4y_zYUysVyIVICuXhmyquO6853kxpAp/view?usp=drive_link'
+      fileContentUrl: item.fileContentUrl,
+      downloadUrl: item.downloadUrl
     });
+  };
+
+  const handleDownloadNotes = (item, e) => {
+    if (e) e.stopPropagation();
+    try {
+      confetti({ particleCount: 75, spread: 80, origin: { y: 0.7 } });
+    } catch (err) {}
+
+    // Monetag Direct Link Ad Integration
+    const directAdUrl = adsSettings?.directLink || 'https://omg10.com/4/11805675';
+    if (directAdUrl) {
+      try {
+        window.open(directAdUrl, '_blank');
+      } catch (err) {}
+    }
+
+    const dlUrl = item.downloadUrl || item.fileContentUrl;
+    if (dlUrl) {
+      window.open(dlUrl, '_blank');
+    }
   };
 
   return (
@@ -404,7 +442,21 @@ export const EnglishBooksSection = () => {
               }}>
                 <button
                   onClick={() => handlePreviewNotes(item)}
-                  className="btn btn-primary btn-sm hover-lift"
+                  className="btn btn-secondary btn-sm hover-lift"
+                  style={{
+                    fontSize: '0.785rem',
+                    padding: '0.5rem 0.5rem',
+                    borderRadius: '8px',
+                    gap: '0.35rem'
+                  }}
+                >
+                  <Eye size={14} />
+                  <span>Preview</span>
+                </button>
+
+                <button
+                  onClick={(e) => handleDownloadNotes(item, e)}
+                  className="btn btn-primary btn-sm hover-lift btn-glow"
                   style={{
                     fontSize: '0.785rem',
                     padding: '0.5rem 0.5rem',
@@ -414,28 +466,30 @@ export const EnglishBooksSection = () => {
                     borderColor: item.book === 'flamingo' ? '#f43f5e' : '#0d9488'
                   }}
                 >
-                  <FileText size={14} />
-                  <span>View Notes</span>
+                  <Download size={14} />
+                  <span>Download PDF</span>
                 </button>
 
                 <a
                   href={item.fileContentUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-secondary btn-sm hover-lift"
                   style={{
-                    fontSize: '0.785rem',
-                    padding: '0.5rem 0.5rem',
-                    borderRadius: '8px',
-                    gap: '0.35rem',
+                    fontSize: '0.75rem',
+                    color: 'var(--accent-cyan)',
+                    fontWeight: 600,
                     textDecoration: 'none',
+                    gridColumn: '1 / -1',
                     display: 'inline-flex',
                     alignItems: 'center',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    gap: '0.35rem',
+                    marginTop: '0.25rem'
                   }}
+                  className="hover-lift"
                 >
-                  <ExternalLink size={14} />
-                  <span>Google Drive</span>
+                  <span>Open directly in Google Drive</span>
+                  <ExternalLink size={12} />
                 </a>
               </div>
             </div>
