@@ -75,46 +75,25 @@ export const GeographyBooksSection = () => {
       </div>
 
       {/* 2 BOOK SELECTION CARDS (PROMINENT OPTIONS WITH COVER LOGOS) */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-        gap: '1.25rem',
-        marginBottom: '1.75rem'
-      }}>
+      <div className="book-selection-grid">
         {/* OPTION 1: HUMAN GEOGRAPHY (मानव भूगोल के मूल सिद्धांत) */}
         <div
           onClick={() => setSelectedBook('human')}
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1.25rem',
-            padding: '1.25rem',
-            borderRadius: '16px',
             background: selectedBook === 'human' 
               ? 'linear-gradient(135deg, rgba(5, 150, 105, 0.15), rgba(16, 185, 129, 0.05))' 
               : 'var(--bg-card)',
             border: selectedBook === 'human' 
               ? '2px solid #059669' 
               : '1px solid var(--border-color)',
-            cursor: 'pointer',
-            transition: 'all 0.25s ease',
             boxShadow: selectedBook === 'human' 
               ? '0 8px 24px rgba(5, 150, 105, 0.2)' 
-              : '0 4px 12px rgba(0,0,0,0.04)',
-            position: 'relative'
+              : '0 4px 12px rgba(0,0,0,0.04)'
           }}
-          className="hover-lift"
+          className="book-card-item hover-lift"
         >
           {/* Cover Logo Image */}
-          <div style={{
-            width: '88px',
-            height: '124px',
-            borderRadius: '8px',
-            overflow: 'hidden',
-            flexShrink: 0,
-            boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-            border: '1px solid rgba(255,255,255,0.1)'
-          }}>
+          <div className="book-cover-wrapper">
             <img 
               src="/images/geo_human_cover.jpg" 
               alt="मानव भूगोल के मूल सिद्धांत पाठ्यपुस्तक कवर" 
@@ -122,25 +101,26 @@ export const GeographyBooksSection = () => {
             />
           </div>
 
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.35rem' }}>
               <span style={{ fontSize: '0.725rem', fontWeight: 700, color: '#059669', textTransform: 'uppercase' }}>
                 विकल्प 1 • सिद्धांत पाठ्यपुस्तक
               </span>
               {selectedBook === 'human' && (
-                <CheckCircle2 size={16} style={{ color: '#059669', marginLeft: 'auto' }} />
+                <CheckCircle2 size={16} style={{ color: '#059669', marginLeft: 'auto', flexShrink: 0 }} />
               )}
             </div>
-            <h3 style={{
-              fontSize: '1.2rem',
-              fontWeight: 800,
-              color: 'var(--text-main)',
-              marginBottom: '0.25rem',
-              fontFamily: "'Outfit', sans-serif"
-            }}>
+            <h3 
+              className="book-card-title"
+              style={{
+                fontWeight: 800,
+                color: 'var(--text-main)',
+                fontFamily: "'Outfit', sans-serif"
+              }}
+            >
               मानव भूगोल के मूल सिद्धांत
             </h3>
-            <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.4, marginBottom: '0.65rem' }}>
+            <p className="book-card-sub" style={{ color: 'var(--text-muted)' }}>
               कक्षा XII के लिए भूगोल की प्रथम पाठ्यपुस्तक (Fundamentals of Human Geography)
             </p>
             <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
@@ -155,36 +135,20 @@ export const GeographyBooksSection = () => {
         <div
           onClick={() => setSelectedBook('india')}
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1.25rem',
-            padding: '1.25rem',
-            borderRadius: '16px',
             background: selectedBook === 'india' 
               ? 'linear-gradient(135deg, rgba(2, 132, 199, 0.15), rgba(14, 165, 233, 0.05))' 
               : 'var(--bg-card)',
             border: selectedBook === 'india' 
               ? '2px solid #0284c7' 
               : '1px solid var(--border-color)',
-            cursor: 'pointer',
-            transition: 'all 0.25s ease',
             boxShadow: selectedBook === 'india' 
               ? '0 8px 24px rgba(2, 132, 199, 0.2)' 
-              : '0 4px 12px rgba(0,0,0,0.04)',
-            position: 'relative'
+              : '0 4px 12px rgba(0,0,0,0.04)'
           }}
-          className="hover-lift"
+          className="book-card-item hover-lift"
         >
           {/* Cover Logo Image */}
-          <div style={{
-            width: '88px',
-            height: '124px',
-            borderRadius: '8px',
-            overflow: 'hidden',
-            flexShrink: 0,
-            boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-            border: '1px solid rgba(255,255,255,0.1)'
-          }}>
+          <div className="book-cover-wrapper">
             <img 
               src="/images/geo_india_cover.jpg" 
               alt="भारत: लोग और अर्थव्यवस्था पाठ्यपुस्तक कवर" 
@@ -192,25 +156,26 @@ export const GeographyBooksSection = () => {
             />
           </div>
 
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.35rem' }}>
               <span style={{ fontSize: '0.725rem', fontWeight: 700, color: '#0284c7', textTransform: 'uppercase' }}>
                 विकल्प 2 • भारतीय अर्थव्यवस्था पाठ्यपुस्तक
               </span>
               {selectedBook === 'india' && (
-                <CheckCircle2 size={16} style={{ color: '#0284c7', marginLeft: 'auto' }} />
+                <CheckCircle2 size={16} style={{ color: '#0284c7', marginLeft: 'auto', flexShrink: 0 }} />
               )}
             </div>
-            <h3 style={{
-              fontSize: '1.2rem',
-              fontWeight: 800,
-              color: 'var(--text-main)',
-              marginBottom: '0.25rem',
-              fontFamily: "'Outfit', sans-serif"
-            }}>
+            <h3 
+              className="book-card-title"
+              style={{
+                fontWeight: 800,
+                color: 'var(--text-main)',
+                fontFamily: "'Outfit', sans-serif"
+              }}
+            >
               भारत: लोग और अर्थव्यवस्था
             </h3>
-            <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.4, marginBottom: '0.65rem' }}>
+            <p className="book-card-sub" style={{ color: 'var(--text-muted)' }}>
               कक्षा XII के लिए भूगोल की द्वितीय पाठ्यपुस्तक (India: People and Economy)
             </p>
             <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
@@ -223,27 +188,17 @@ export const GeographyBooksSection = () => {
       </div>
 
       {/* FILTER & SEARCH BAR CONTROL BAR */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap',
-        gap: '1rem',
-        marginBottom: '1.5rem',
-        padding: '0.75rem 1rem',
-        borderRadius: '12px',
-        background: 'var(--bg-card)',
-        border: '1px solid var(--border-color)'
-      }}>
+      <div className="book-filter-bar">
         {/* Left Status Bar */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <div className="sub-filter-group" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <span style={{
             fontSize: '0.85rem',
             fontWeight: 600,
             color: selectedBook === 'human' ? '#059669' : '#0284c7',
             display: 'flex',
             alignItems: 'center',
-            gap: '0.4rem'
+            gap: '0.4rem',
+            whiteSpace: 'nowrap'
           }}>
             <BookMarked size={16} /> 
             {selectedBook === 'human'
@@ -254,7 +209,7 @@ export const GeographyBooksSection = () => {
         </div>
 
         {/* Right Search Bar */}
-        <div style={{ position: 'relative', minWidth: '220px' }}>
+        <div className="search-wrapper" style={{ position: 'relative', minWidth: '220px' }}>
           <Search size={14} style={{ position: 'absolute', left: '0.75rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
           <input
             type="text"
@@ -276,11 +231,7 @@ export const GeographyBooksSection = () => {
       </div>
 
       {/* CHAPTERS GRID */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(290px, 1fr))',
-        gap: '1.25rem'
-      }}>
+      <div className="book-chapters-grid">
         {filteredChapters.length > 0 ? (
           filteredChapters.map((item) => (
             <div

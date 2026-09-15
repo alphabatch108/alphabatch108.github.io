@@ -77,46 +77,25 @@ export const EconomicsBooksSection = () => {
       </div>
 
       {/* 2 BOOK SELECTION CARDS (PROMINENT OPTIONS WITH COVER LOGOS) */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-        gap: '1.25rem',
-        marginBottom: '1.75rem'
-      }}>
+      <div className="book-selection-grid">
         {/* BOOK 1: व्यष्टि अर्थशास्त्र (Microeconomics) */}
         <div
           onClick={() => setActiveBook(activeBook === 'micro' ? 'all' : 'micro')}
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1.25rem',
-            padding: '1.25rem',
-            borderRadius: '16px',
             background: activeBook === 'micro'
               ? 'linear-gradient(135deg, rgba(22, 163, 74, 0.18), rgba(34, 197, 94, 0.08))'
               : 'var(--bg-card)',
             border: activeBook === 'micro'
               ? '2px solid #16a34a'
               : '1px solid var(--border-color)',
-            cursor: 'pointer',
-            transition: 'all 0.25s ease',
             boxShadow: activeBook === 'micro'
               ? '0 8px 24px rgba(22, 163, 74, 0.2)'
-              : '0 4px 12px rgba(0,0,0,0.04)',
-            position: 'relative'
+              : '0 4px 12px rgba(0,0,0,0.04)'
           }}
-          className="hover-lift"
+          className="book-card-item hover-lift"
         >
           {/* Cover Logo Image */}
-          <div style={{
-            width: '88px',
-            height: '124px',
-            borderRadius: '8px',
-            overflow: 'hidden',
-            flexShrink: 0,
-            boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-            border: '1px solid rgba(255,255,255,0.1)'
-          }}>
+          <div className="book-cover-wrapper">
             <img 
               src="/images/micro_eco_cover.jpg" 
               alt="व्यष्टि अर्थशास्त्र Cover Logo" 
@@ -124,25 +103,26 @@ export const EconomicsBooksSection = () => {
             />
           </div>
 
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.35rem' }}>
               <span style={{ fontSize: '0.725rem', fontWeight: 700, color: '#16a34a', textTransform: 'uppercase' }}>
                 Book 1 • व्यष्टि अर्थशास्त्र
               </span>
               {activeBook === 'micro' && (
-                <CheckCircle2 size={16} style={{ color: '#16a34a', marginLeft: 'auto' }} />
+                <CheckCircle2 size={16} style={{ color: '#16a34a', marginLeft: 'auto', flexShrink: 0 }} />
               )}
             </div>
-            <h3 style={{
-              fontSize: '1.3rem',
-              fontWeight: 800,
-              color: 'var(--text-main)',
-              marginBottom: '0.25rem',
-              fontFamily: "'Outfit', sans-serif"
-            }}>
+            <h3 
+              className="book-card-title"
+              style={{
+                fontWeight: 800,
+                color: 'var(--text-main)',
+                fontFamily: "'Outfit', sans-serif"
+              }}
+            >
               व्यष्टि अर्थशास्त्र: एक परिचय
             </h3>
-            <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.4, marginBottom: '0.65rem' }}>
+            <p className="book-card-sub" style={{ color: 'var(--text-muted)' }}>
               Microeconomics Textbook ({microCount} Chapters)
             </p>
             <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
@@ -157,36 +137,20 @@ export const EconomicsBooksSection = () => {
         <div
           onClick={() => setActiveBook(activeBook === 'macro' ? 'all' : 'macro')}
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1.25rem',
-            padding: '1.25rem',
-            borderRadius: '16px',
             background: activeBook === 'macro'
               ? 'linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(59, 130, 246, 0.08))'
               : 'var(--bg-card)',
             border: activeBook === 'macro'
               ? '2px solid #2563eb'
               : '1px solid var(--border-color)',
-            cursor: 'pointer',
-            transition: 'all 0.25s ease',
             boxShadow: activeBook === 'macro'
               ? '0 8px 24px rgba(37, 99, 235, 0.2)'
-              : '0 4px 12px rgba(0,0,0,0.04)',
-            position: 'relative'
+              : '0 4px 12px rgba(0,0,0,0.04)'
           }}
-          className="hover-lift"
+          className="book-card-item hover-lift"
         >
           {/* Cover Logo Image */}
-          <div style={{
-            width: '88px',
-            height: '124px',
-            borderRadius: '8px',
-            overflow: 'hidden',
-            flexShrink: 0,
-            boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-            border: '1px solid rgba(255,255,255,0.1)'
-          }}>
+          <div className="book-cover-wrapper">
             <img 
               src="/images/macro_eco_cover.jpg" 
               alt="समष्टि अर्थशास्त्र Cover Logo" 
@@ -194,25 +158,26 @@ export const EconomicsBooksSection = () => {
             />
           </div>
 
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.35rem' }}>
               <span style={{ fontSize: '0.725rem', fontWeight: 700, color: '#2563eb', textTransform: 'uppercase' }}>
                 Book 2 • समष्टि अर्थशास्त्र
               </span>
               {activeBook === 'macro' && (
-                <CheckCircle2 size={16} style={{ color: '#2563eb', marginLeft: 'auto' }} />
+                <CheckCircle2 size={16} style={{ color: '#2563eb', marginLeft: 'auto', flexShrink: 0 }} />
               )}
             </div>
-            <h3 style={{
-              fontSize: '1.3rem',
-              fontWeight: 800,
-              color: 'var(--text-main)',
-              marginBottom: '0.25rem',
-              fontFamily: "'Outfit', sans-serif"
-            }}>
+            <h3 
+              className="book-card-title"
+              style={{
+                fontWeight: 800,
+                color: 'var(--text-main)',
+                fontFamily: "'Outfit', sans-serif"
+              }}
+            >
               समष्टि अर्थशास्त्र: एक परिचय
             </h3>
-            <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.4, marginBottom: '0.65rem' }}>
+            <p className="book-card-sub" style={{ color: 'var(--text-muted)' }}>
               Macroeconomics Textbook ({macroCount} Chapters)
             </p>
             <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
@@ -225,45 +190,34 @@ export const EconomicsBooksSection = () => {
       </div>
 
       {/* FILTER & SEARCH BAR CONTROL BAR */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap',
-        gap: '1rem',
-        marginBottom: '1.5rem',
-        padding: '0.75rem 1rem',
-        borderRadius: '12px',
-        background: 'var(--bg-card)',
-        border: '1px solid var(--border-color)'
-      }}>
+      <div className="book-filter-bar">
         {/* Left Filter Buttons */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+        <div className="sub-filter-group" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
           <button
             onClick={() => setActiveBook('all')}
             className={`btn btn-sm ${activeBook === 'all' ? 'btn-primary' : 'btn-secondary'}`}
-            style={{ borderRadius: '8px', fontSize: '0.8rem' }}
+            style={{ borderRadius: '8px', fontSize: '0.8rem', whiteSpace: 'nowrap' }}
           >
             All Economics Books ({ECONOMICS_BOOKS_DATA.length})
           </button>
           <button
             onClick={() => setActiveBook('micro')}
             className={`btn btn-sm ${activeBook === 'micro' ? 'btn-primary' : 'btn-secondary'}`}
-            style={{ borderRadius: '8px', fontSize: '0.8rem', background: activeBook === 'micro' ? '#16a34a' : '', borderColor: activeBook === 'micro' ? '#16a34a' : '' }}
+            style={{ borderRadius: '8px', fontSize: '0.8rem', background: activeBook === 'micro' ? '#16a34a' : '', borderColor: activeBook === 'micro' ? '#16a34a' : '', whiteSpace: 'nowrap' }}
           >
             1. व्यष्टि अर्थशास्त्र ({microCount})
           </button>
           <button
             onClick={() => setActiveBook('macro')}
             className={`btn btn-sm ${activeBook === 'macro' ? 'btn-primary' : 'btn-secondary'}`}
-            style={{ borderRadius: '8px', fontSize: '0.8rem', background: activeBook === 'macro' ? '#2563eb' : '', borderColor: activeBook === 'macro' ? '#2563eb' : '' }}
+            style={{ borderRadius: '8px', fontSize: '0.8rem', background: activeBook === 'macro' ? '#2563eb' : '', borderColor: activeBook === 'macro' ? '#2563eb' : '', whiteSpace: 'nowrap' }}
           >
             2. समष्टि अर्थशास्त्र ({macroCount})
           </button>
         </div>
 
         {/* Right Search Bar */}
-        <div style={{ position: 'relative', minWidth: '220px' }}>
+        <div className="search-wrapper" style={{ position: 'relative', minWidth: '220px' }}>
           <Search size={14} style={{ position: 'absolute', left: '0.75rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
           <input
             type="text"
@@ -285,11 +239,7 @@ export const EconomicsBooksSection = () => {
       </div>
 
       {/* CHAPTERS GRID */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(290px, 1fr))',
-        gap: '1.25rem'
-      }}>
+      <div className="book-chapters-grid">
         {filteredChapters.length > 0 ? (
           filteredChapters.map((item) => (
             <div

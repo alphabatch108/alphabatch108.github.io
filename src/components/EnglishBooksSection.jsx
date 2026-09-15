@@ -126,46 +126,25 @@ export const EnglishBooksSection = () => {
       </div>
 
       {/* 2 BOOK SELECTION CARDS (PROMINENT OPTIONS WITH COVER LOGOS) */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-        gap: '1.25rem',
-        marginBottom: '1.75rem'
-      }}>
+      <div className="book-selection-grid">
         {/* OPTION 1: FLAMINGO BOOK CARD */}
         <div
           onClick={() => setSelectedBook('flamingo')}
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1.25rem',
-            padding: '1.25rem',
-            borderRadius: '16px',
             background: selectedBook === 'flamingo' 
               ? 'linear-gradient(135deg, rgba(225, 29, 72, 0.15), rgba(244, 63, 94, 0.05))' 
               : 'var(--bg-card)',
             border: selectedBook === 'flamingo' 
               ? '2px solid #f43f5e' 
               : '1px solid var(--border-color)',
-            cursor: 'pointer',
-            transition: 'all 0.25s ease',
             boxShadow: selectedBook === 'flamingo' 
               ? '0 8px 24px rgba(244, 63, 94, 0.2)' 
-              : '0 4px 12px rgba(0,0,0,0.04)',
-            position: 'relative'
+              : '0 4px 12px rgba(0,0,0,0.04)'
           }}
-          className="hover-lift"
+          className="book-card-item hover-lift"
         >
           {/* Cover Logo Image */}
-          <div style={{
-            width: '88px',
-            height: '124px',
-            borderRadius: '8px',
-            overflow: 'hidden',
-            flexShrink: 0,
-            boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-            border: '1px solid rgba(255,255,255,0.1)'
-          }}>
+          <div className="book-cover-wrapper">
             <img 
               src="/images/flamingo_cover.png" 
               alt="Flamingo Textbook Logo" 
@@ -173,25 +152,26 @@ export const EnglishBooksSection = () => {
             />
           </div>
 
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.35rem' }}>
               <span style={{ fontSize: '0.725rem', fontWeight: 700, color: '#f43f5e', textTransform: 'uppercase' }}>
                 Option 1 • Main Textbook
               </span>
               {selectedBook === 'flamingo' && (
-                <CheckCircle2 size={16} style={{ color: '#f43f5e', marginLeft: 'auto' }} />
+                <CheckCircle2 size={16} style={{ color: '#f43f5e', marginLeft: 'auto', flexShrink: 0 }} />
               )}
             </div>
-            <h3 style={{
-              fontSize: '1.3rem',
-              fontWeight: 800,
-              color: 'var(--text-main)',
-              marginBottom: '0.25rem',
-              fontFamily: "'Outfit', sans-serif"
-            }}>
+            <h3 
+              className="book-card-title"
+              style={{
+                fontWeight: 800,
+                color: 'var(--text-main)',
+                fontFamily: "'Outfit', sans-serif"
+              }}
+            >
               Flamingo
             </h3>
-            <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.4, marginBottom: '0.65rem' }}>
+            <p className="book-card-sub" style={{ color: 'var(--text-muted)' }}>
               Textbook for Class XII ({flamingoProse.length} Prose & {flamingoPoetry.length} Poetry Chapters)
             </p>
             <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
@@ -209,36 +189,20 @@ export const EnglishBooksSection = () => {
         <div
           onClick={() => setSelectedBook('vistas')}
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1.25rem',
-            padding: '1.25rem',
-            borderRadius: '16px',
             background: selectedBook === 'vistas' 
               ? 'linear-gradient(135deg, rgba(13, 148, 136, 0.15), rgba(45, 212, 191, 0.05))' 
               : 'var(--bg-card)',
             border: selectedBook === 'vistas' 
               ? '2px solid #0d9488' 
               : '1px solid var(--border-color)',
-            cursor: 'pointer',
-            transition: 'all 0.25s ease',
             boxShadow: selectedBook === 'vistas' 
               ? '0 8px 24px rgba(13, 148, 136, 0.2)' 
-              : '0 4px 12px rgba(0,0,0,0.04)',
-            position: 'relative'
+              : '0 4px 12px rgba(0,0,0,0.04)'
           }}
-          className="hover-lift"
+          className="book-card-item hover-lift"
         >
           {/* Cover Logo Image */}
-          <div style={{
-            width: '88px',
-            height: '124px',
-            borderRadius: '8px',
-            overflow: 'hidden',
-            flexShrink: 0,
-            boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-            border: '1px solid rgba(255,255,255,0.1)'
-          }}>
+          <div className="book-cover-wrapper">
             <img 
               src="/images/vistas_cover.jpg" 
               alt="Vistas Supplementary Reader Logo" 
@@ -246,25 +210,26 @@ export const EnglishBooksSection = () => {
             />
           </div>
 
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.35rem' }}>
               <span style={{ fontSize: '0.725rem', fontWeight: 700, color: '#0d9488', textTransform: 'uppercase' }}>
                 Option 2 • Supplementary
               </span>
               {selectedBook === 'vistas' && (
-                <CheckCircle2 size={16} style={{ color: '#0d9488', marginLeft: 'auto' }} />
+                <CheckCircle2 size={16} style={{ color: '#0d9488', marginLeft: 'auto', flexShrink: 0 }} />
               )}
             </div>
-            <h3 style={{
-              fontSize: '1.3rem',
-              fontWeight: 800,
-              color: 'var(--text-main)',
-              marginBottom: '0.25rem',
-              fontFamily: "'Outfit', sans-serif"
-            }}>
+            <h3 
+              className="book-card-title"
+              style={{
+                fontWeight: 800,
+                color: 'var(--text-main)',
+                fontFamily: "'Outfit', sans-serif"
+              }}
+            >
               Vistas
             </h3>
-            <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.4, marginBottom: '0.65rem' }}>
+            <p className="book-card-sub" style={{ color: 'var(--text-muted)' }}>
               Supplementary Reader in English for Class XII
             </p>
             <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
@@ -277,20 +242,9 @@ export const EnglishBooksSection = () => {
       </div>
 
       {/* FILTER & SEARCH BAR CONTROL BAR */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap',
-        gap: '1rem',
-        marginBottom: '1.5rem',
-        padding: '0.75rem 1rem',
-        borderRadius: '12px',
-        background: 'var(--bg-card)',
-        border: '1px solid var(--border-color)'
-      }}>
+      <div className="book-filter-bar">
         {/* Left Sub-filters */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <div className="sub-filter-group" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           {selectedBook === 'flamingo' ? (
             <>
               <button
@@ -303,7 +257,8 @@ export const EnglishBooksSection = () => {
                   background: flamingoFilter === 'all' ? '#f43f5e' : 'transparent',
                   color: flamingoFilter === 'all' ? '#fff' : 'var(--text-muted)',
                   border: 'none',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap'
                 }}
               >
                 All Chapters ({flamingoChapters.length})
@@ -318,7 +273,8 @@ export const EnglishBooksSection = () => {
                   background: flamingoFilter === 'prose' ? '#f43f5e' : 'transparent',
                   color: flamingoFilter === 'prose' ? '#fff' : 'var(--text-muted)',
                   border: 'none',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap'
                 }}
               >
                 Prose ({flamingoProse.length})
@@ -333,21 +289,22 @@ export const EnglishBooksSection = () => {
                   background: flamingoFilter === 'poetry' ? '#f43f5e' : 'transparent',
                   color: flamingoFilter === 'poetry' ? '#fff' : 'var(--text-muted)',
                   border: 'none',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap'
                 }}
               >
                 Poetry ({flamingoPoetry.length})
               </button>
             </>
           ) : (
-            <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#0d9488', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <BookMarked size={16} /> Showing All Vistas Supplementary Chapters ({vistasChapters.length})
+            <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#0d9488', display: 'flex', alignItems: 'center', gap: '0.4rem', whiteSpace: 'nowrap' }}>
+              <BookMarked size={16} /> Showing All Vistas Chapters ({vistasChapters.length})
             </span>
           )}
         </div>
 
         {/* Right Search Bar */}
-        <div style={{ position: 'relative', minWidth: '220px' }}>
+        <div className="search-wrapper" style={{ position: 'relative', minWidth: '220px' }}>
           <Search size={14} style={{ position: 'absolute', left: '0.75rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
           <input
             type="text"
@@ -369,11 +326,7 @@ export const EnglishBooksSection = () => {
       </div>
 
       {/* CHAPTERS GRID */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(290px, 1fr))',
-        gap: '1.25rem'
-      }}>
+      <div className="book-chapters-grid">
         {filteredChapters.length > 0 ? (
           filteredChapters.map((item) => (
             <div

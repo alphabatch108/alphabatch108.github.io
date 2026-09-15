@@ -72,37 +72,18 @@ export const PsychologyBooksSection = () => {
       </div>
 
       {/* 1 BOOK SELECTION CARD (PROMINENT OPTION WITH COVER LOGO) */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-        gap: '1.25rem',
-        marginBottom: '1.75rem'
-      }}>
+      <div className="book-selection-grid">
         {/* OPTION 1: PSYCHOLOGY BOOK CARD */}
         <div
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1.25rem',
-            padding: '1.25rem',
-            borderRadius: '16px',
             background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(168, 85, 247, 0.05))',
             border: '2px solid #8b5cf6',
-            boxShadow: '0 8px 24px rgba(139, 92, 246, 0.2)',
-            position: 'relative'
+            boxShadow: '0 8px 24px rgba(139, 92, 246, 0.2)'
           }}
-          className="hover-lift"
+          className="book-card-item hover-lift"
         >
           {/* Cover Logo Image */}
-          <div style={{
-            width: '88px',
-            height: '124px',
-            borderRadius: '8px',
-            overflow: 'hidden',
-            flexShrink: 0,
-            boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-            border: '1px solid rgba(255,255,255,0.1)'
-          }}>
+          <div className="book-cover-wrapper">
             <img 
               src="/images/psychology_cover.jpg" 
               alt="Psychology Textbook Logo" 
@@ -110,23 +91,24 @@ export const PsychologyBooksSection = () => {
             />
           </div>
 
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.35rem' }}>
               <span style={{ fontSize: '0.725rem', fontWeight: 700, color: '#8b5cf6', textTransform: 'uppercase' }}>
                 Main Textbook • मनोविज्ञान
               </span>
-              <CheckCircle2 size={16} style={{ color: '#8b5cf6', marginLeft: 'auto' }} />
+              <CheckCircle2 size={16} style={{ color: '#8b5cf6', marginLeft: 'auto', flexShrink: 0 }} />
             </div>
-            <h3 style={{
-              fontSize: '1.3rem',
-              fontWeight: 800,
-              color: 'var(--text-main)',
-              marginBottom: '0.25rem',
-              fontFamily: "'Outfit', sans-serif"
-            }}>
+            <h3 
+              className="book-card-title"
+              style={{
+                fontWeight: 800,
+                color: 'var(--text-main)',
+                fontFamily: "'Outfit', sans-serif"
+              }}
+            >
               मनोविज्ञान
             </h3>
-            <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.4, marginBottom: '0.65rem' }}>
+            <p className="book-card-sub" style={{ color: 'var(--text-muted)' }}>
               कक्षा 12 के लिए पाठ्यपुस्तक ({psyChapters.length} Chapters)
             </p>
             <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
@@ -139,34 +121,24 @@ export const PsychologyBooksSection = () => {
       </div>
 
       {/* FILTER & SEARCH BAR CONTROL BAR */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap',
-        gap: '1rem',
-        marginBottom: '1.5rem',
-        padding: '0.75rem 1rem',
-        borderRadius: '12px',
-        background: 'var(--bg-card)',
-        border: '1px solid var(--border-color)'
-      }}>
+      <div className="book-filter-bar">
         {/* Left Status Bar */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <div className="sub-filter-group" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <span style={{
             fontSize: '0.85rem',
             fontWeight: 600,
             color: '#8b5cf6',
             display: 'flex',
             alignItems: 'center',
-            gap: '0.4rem'
+            gap: '0.4rem',
+            whiteSpace: 'nowrap'
           }}>
             <BookMarked size={16} /> Psychology / मनोविज्ञान ({psyChapters.length} Chapters)
           </span>
         </div>
 
         {/* Right Search Bar */}
-        <div style={{ position: 'relative', minWidth: '220px' }}>
+        <div className="search-wrapper" style={{ position: 'relative', minWidth: '220px' }}>
           <Search size={14} style={{ position: 'absolute', left: '0.75rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
           <input
             type="text"
@@ -188,11 +160,7 @@ export const PsychologyBooksSection = () => {
       </div>
 
       {/* CHAPTERS GRID */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(290px, 1fr))',
-        gap: '1.25rem'
-      }}>
+      <div className="book-chapters-grid">
         {filteredChapters.length > 0 ? (
           filteredChapters.map((item) => (
             <div

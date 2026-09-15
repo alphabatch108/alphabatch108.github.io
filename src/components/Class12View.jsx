@@ -185,6 +185,29 @@ export const Class12View = () => {
       {/* Top Banner in Main Area */}
       <AdBanner slot="homepageBanner" type="728x90" label="Advertisement (728x90)" />
 
+      {/* Banner Image matching Class 10 Hero */}
+      <div style={{
+        width: '100%',
+        borderRadius: '16px',
+        overflow: 'hidden',
+        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)',
+        marginTop: '1.25rem',
+        marginBottom: '1.5rem',
+        maxHeight: '320px',
+        border: '1px solid var(--border-color)'
+      }}>
+        <img
+          src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=1200&q=80"
+          alt="Class 12 Study Workspace & Books Desk"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            display: 'block'
+          }}
+        />
+      </div>
+
       {/* 2-Column Main Layout */}
       <div style={{
         display: 'grid',

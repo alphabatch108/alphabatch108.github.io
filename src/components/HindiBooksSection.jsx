@@ -79,46 +79,25 @@ export const HindiBooksSection = () => {
       </div>
 
       {/* 2 BOOK SELECTION CARDS (PROMINENT OPTIONS WITH COVER LOGOS) */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-        gap: '1.25rem',
-        marginBottom: '1.75rem'
-      }}>
+      <div className="book-selection-grid">
         {/* OPTION 1: AROH (आरोह) BOOK CARD */}
         <div
           onClick={() => setSelectedBook('aroh')}
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1.25rem',
-            padding: '1.25rem',
-            borderRadius: '16px',
             background: selectedBook === 'aroh' 
               ? 'linear-gradient(135deg, rgba(234, 88, 12, 0.15), rgba(249, 115, 22, 0.05))' 
               : 'var(--bg-card)',
             border: selectedBook === 'aroh' 
               ? '2px solid #ea580c' 
               : '1px solid var(--border-color)',
-            cursor: 'pointer',
-            transition: 'all 0.25s ease',
             boxShadow: selectedBook === 'aroh' 
               ? '0 8px 24px rgba(234, 88, 12, 0.2)' 
-              : '0 4px 12px rgba(0,0,0,0.04)',
-            position: 'relative'
+              : '0 4px 12px rgba(0,0,0,0.04)'
           }}
-          className="hover-lift"
+          className="book-card-item hover-lift"
         >
           {/* Cover Logo Image */}
-          <div style={{
-            width: '88px',
-            height: '124px',
-            borderRadius: '8px',
-            overflow: 'hidden',
-            flexShrink: 0,
-            boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-            border: '1px solid rgba(255,255,255,0.1)'
-          }}>
+          <div className="book-cover-wrapper">
             <img 
               src="/images/aroh_cover.jpg" 
               alt="आरोह पाठ्यपुस्तक कवर" 
@@ -126,25 +105,26 @@ export const HindiBooksSection = () => {
             />
           </div>
 
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.35rem' }}>
               <span style={{ fontSize: '0.725rem', fontWeight: 700, color: '#ea580c', textTransform: 'uppercase' }}>
                 विकल्प 1 • मुख्य पाठ्यपुस्तक
               </span>
               {selectedBook === 'aroh' && (
-                <CheckCircle2 size={16} style={{ color: '#ea580c', marginLeft: 'auto' }} />
+                <CheckCircle2 size={16} style={{ color: '#ea580c', marginLeft: 'auto', flexShrink: 0 }} />
               )}
             </div>
-            <h3 style={{
-              fontSize: '1.3rem',
-              fontWeight: 800,
-              color: 'var(--text-main)',
-              marginBottom: '0.25rem',
-              fontFamily: "'Outfit', sans-serif"
-            }}>
+            <h3 
+              className="book-card-title"
+              style={{
+                fontWeight: 800,
+                color: 'var(--text-main)',
+                fontFamily: "'Outfit', sans-serif"
+              }}
+            >
               आरोह (Aroh)
             </h3>
-            <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.4, marginBottom: '0.65rem' }}>
+            <p className="book-card-sub" style={{ color: 'var(--text-muted)' }}>
               कक्षा XII के लिए हिंदी की मुख्य पाठ्यपुस्तक ({arohProse.length} गद्य & {arohPoetry.length} काव्य खंड)
             </p>
             <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
@@ -162,36 +142,20 @@ export const HindiBooksSection = () => {
         <div
           onClick={() => setSelectedBook('vitan')}
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1.25rem',
-            padding: '1.25rem',
-            borderRadius: '16px',
             background: selectedBook === 'vitan' 
               ? 'linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(5, 150, 105, 0.05))' 
               : 'var(--bg-card)',
             border: selectedBook === 'vitan' 
               ? '2px solid #10b981' 
               : '1px solid var(--border-color)',
-            cursor: 'pointer',
-            transition: 'all 0.25s ease',
             boxShadow: selectedBook === 'vitan' 
               ? '0 8px 24px rgba(16, 185, 129, 0.2)' 
-              : '0 4px 12px rgba(0,0,0,0.04)',
-            position: 'relative'
+              : '0 4px 12px rgba(0,0,0,0.04)'
           }}
-          className="hover-lift"
+          className="book-card-item hover-lift"
         >
           {/* Cover Logo Image */}
-          <div style={{
-            width: '88px',
-            height: '124px',
-            borderRadius: '8px',
-            overflow: 'hidden',
-            flexShrink: 0,
-            boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-            border: '1px solid rgba(255,255,255,0.1)'
-          }}>
+          <div className="book-cover-wrapper">
             <img 
               src="/images/vitan_cover.jpg" 
               alt="वितान पाठ्यपुस्तक कवर" 
@@ -199,25 +163,26 @@ export const HindiBooksSection = () => {
             />
           </div>
 
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.35rem' }}>
               <span style={{ fontSize: '0.725rem', fontWeight: 700, color: '#10b981', textTransform: 'uppercase' }}>
                 विकल्प 2 • पूरक पाठ्यपुस्तक
               </span>
               {selectedBook === 'vitan' && (
-                <CheckCircle2 size={16} style={{ color: '#10b981', marginLeft: 'auto' }} />
+                <CheckCircle2 size={16} style={{ color: '#10b981', marginLeft: 'auto', flexShrink: 0 }} />
               )}
             </div>
-            <h3 style={{
-              fontSize: '1.3rem',
-              fontWeight: 800,
-              color: 'var(--text-main)',
-              marginBottom: '0.25rem',
-              fontFamily: "'Outfit', sans-serif"
-            }}>
+            <h3 
+              className="book-card-title"
+              style={{
+                fontWeight: 800,
+                color: 'var(--text-main)',
+                fontFamily: "'Outfit', sans-serif"
+              }}
+            >
               वितान (Vitan)
             </h3>
-            <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.4, marginBottom: '0.65rem' }}>
+            <p className="book-card-sub" style={{ color: 'var(--text-muted)' }}>
               कक्षा XII के लिए हिंदी की पूरक पाठ्यपुस्तक (Supplementary Reader)
             </p>
             <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
@@ -230,20 +195,9 @@ export const HindiBooksSection = () => {
       </div>
 
       {/* FILTER & SEARCH BAR CONTROL BAR */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap',
-        gap: '1rem',
-        marginBottom: '1.5rem',
-        padding: '0.75rem 1rem',
-        borderRadius: '12px',
-        background: 'var(--bg-card)',
-        border: '1px solid var(--border-color)'
-      }}>
+      <div className="book-filter-bar">
         {/* Left Sub-filters */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <div className="sub-filter-group" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           {selectedBook === 'aroh' ? (
             <>
               <button
@@ -256,7 +210,8 @@ export const HindiBooksSection = () => {
                   background: arohFilter === 'all' ? '#ea580c' : 'transparent',
                   color: arohFilter === 'all' ? '#fff' : 'var(--text-muted)',
                   border: 'none',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap'
                 }}
               >
                 सभी अध्याय ({arohChapters.length})
@@ -271,7 +226,8 @@ export const HindiBooksSection = () => {
                   background: arohFilter === 'prose' ? '#ea580c' : 'transparent',
                   color: arohFilter === 'prose' ? '#fff' : 'var(--text-muted)',
                   border: 'none',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap'
                 }}
               >
                 गद्य खंड ({arohProse.length})
@@ -286,21 +242,22 @@ export const HindiBooksSection = () => {
                   background: arohFilter === 'poetry' ? '#ea580c' : 'transparent',
                   color: arohFilter === 'poetry' ? '#fff' : 'var(--text-muted)',
                   border: 'none',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap'
                 }}
               >
                 काव्य खंड ({arohPoetry.length})
               </button>
             </>
           ) : (
-            <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#10b981', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+            <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#10b981', display: 'flex', alignItems: 'center', gap: '0.4rem', whiteSpace: 'nowrap' }}>
               <BookMarked size={16} /> वितान पूरक पाठ्यपुस्तक अध्याय ({vitanChapters.length})
             </span>
           )}
         </div>
 
         {/* Right Search Bar */}
-        <div style={{ position: 'relative', minWidth: '220px' }}>
+        <div className="search-wrapper" style={{ position: 'relative', minWidth: '220px' }}>
           <Search size={14} style={{ position: 'absolute', left: '0.75rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
           <input
             type="text"
@@ -322,11 +279,7 @@ export const HindiBooksSection = () => {
       </div>
 
       {/* CHAPTERS GRID */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(290px, 1fr))',
-        gap: '1.25rem'
-      }}>
+      <div className="book-chapters-grid">
         {filteredChapters.length > 0 ? (
           filteredChapters.map((item) => (
             <div

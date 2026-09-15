@@ -75,46 +75,25 @@ export const PolSciBooksSection = () => {
       </div>
 
       {/* 2 BOOK SELECTION CARDS (PROMINENT OPTIONS WITH COVER LOGOS) */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-        gap: '1.25rem',
-        marginBottom: '1.75rem'
-      }}>
+      <div className="book-selection-grid">
         {/* OPTION 1: WORLD POLITICS (समकालीन विश्व राजनीति) */}
         <div
           onClick={() => setSelectedBook('world')}
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1.25rem',
-            padding: '1.25rem',
-            borderRadius: '16px',
             background: selectedBook === 'world' 
               ? 'linear-gradient(135deg, rgba(220, 38, 38, 0.15), rgba(239, 68, 68, 0.05))' 
               : 'var(--bg-card)',
             border: selectedBook === 'world' 
               ? '2px solid #dc2626' 
               : '1px solid var(--border-color)',
-            cursor: 'pointer',
-            transition: 'all 0.25s ease',
             boxShadow: selectedBook === 'world' 
               ? '0 8px 24px rgba(220, 38, 38, 0.2)' 
-              : '0 4px 12px rgba(0,0,0,0.04)',
-            position: 'relative'
+              : '0 4px 12px rgba(0,0,0,0.04)'
           }}
-          className="hover-lift"
+          className="book-card-item hover-lift"
         >
           {/* Cover Logo Image */}
-          <div style={{
-            width: '88px',
-            height: '124px',
-            borderRadius: '8px',
-            overflow: 'hidden',
-            flexShrink: 0,
-            boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-            border: '1px solid rgba(255,255,255,0.1)'
-          }}>
+          <div className="book-cover-wrapper">
             <img 
               src="/images/pol_world_cover.jpg" 
               alt="समकालीन विश्व राजनीति पाठ्यपुस्तक कवर" 
@@ -122,25 +101,26 @@ export const PolSciBooksSection = () => {
             />
           </div>
 
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.35rem' }}>
               <span style={{ fontSize: '0.725rem', fontWeight: 700, color: '#dc2626', textTransform: 'uppercase' }}>
                 विकल्प 1 • विश्व राजनीति
               </span>
               {selectedBook === 'world' && (
-                <CheckCircle2 size={16} style={{ color: '#dc2626', marginLeft: 'auto' }} />
+                <CheckCircle2 size={16} style={{ color: '#dc2626', marginLeft: 'auto', flexShrink: 0 }} />
               )}
             </div>
-            <h3 style={{
-              fontSize: '1.2rem',
-              fontWeight: 800,
-              color: 'var(--text-main)',
-              marginBottom: '0.25rem',
-              fontFamily: "'Outfit', sans-serif"
-            }}>
+            <h3 
+              className="book-card-title"
+              style={{
+                fontWeight: 800,
+                color: 'var(--text-main)',
+                fontFamily: "'Outfit', sans-serif"
+              }}
+            >
               समकालीन विश्व राजनीति
             </h3>
-            <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.4, marginBottom: '0.65rem' }}>
+            <p className="book-card-sub" style={{ color: 'var(--text-muted)' }}>
               कक्षा XII के लिए राजनीति विज्ञान की प्रथम पाठ्यपुस्तक (Contemporary World Politics)
             </p>
             <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
@@ -155,36 +135,20 @@ export const PolSciBooksSection = () => {
         <div
           onClick={() => setSelectedBook('india')}
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1.25rem',
-            padding: '1.25rem',
-            borderRadius: '16px',
             background: selectedBook === 'india' 
               ? 'linear-gradient(135deg, rgba(147, 51, 234, 0.15), rgba(168, 85, 247, 0.05))' 
               : 'var(--bg-card)',
             border: selectedBook === 'india' 
               ? '2px solid #9333ea' 
               : '1px solid var(--border-color)',
-            cursor: 'pointer',
-            transition: 'all 0.25s ease',
             boxShadow: selectedBook === 'india' 
               ? '0 8px 24px rgba(147, 51, 234, 0.2)' 
-              : '0 4px 12px rgba(0,0,0,0.04)',
-            position: 'relative'
+              : '0 4px 12px rgba(0,0,0,0.04)'
           }}
-          className="hover-lift"
+          className="book-card-item hover-lift"
         >
           {/* Cover Logo Image */}
-          <div style={{
-            width: '88px',
-            height: '124px',
-            borderRadius: '8px',
-            overflow: 'hidden',
-            flexShrink: 0,
-            boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-            border: '1px solid rgba(255,255,255,0.1)'
-          }}>
+          <div className="book-cover-wrapper">
             <img 
               src="/images/pol_india_cover.jpg" 
               alt="स्वतंत्र भारत में राजनीति पाठ्यपुस्तक कवर" 
@@ -192,25 +156,26 @@ export const PolSciBooksSection = () => {
             />
           </div>
 
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.35rem' }}>
               <span style={{ fontSize: '0.725rem', fontWeight: 700, color: '#9333ea', textTransform: 'uppercase' }}>
                 विकल्प 2 • भारतीय राजनीति
               </span>
               {selectedBook === 'india' && (
-                <CheckCircle2 size={16} style={{ color: '#9333ea', marginLeft: 'auto' }} />
+                <CheckCircle2 size={16} style={{ color: '#9333ea', marginLeft: 'auto', flexShrink: 0 }} />
               )}
             </div>
-            <h3 style={{
-              fontSize: '1.2rem',
-              fontWeight: 800,
-              color: 'var(--text-main)',
-              marginBottom: '0.25rem',
-              fontFamily: "'Outfit', sans-serif"
-            }}>
+            <h3 
+              className="book-card-title"
+              style={{
+                fontWeight: 800,
+                color: 'var(--text-main)',
+                fontFamily: "'Outfit', sans-serif"
+              }}
+            >
               स्वतंत्र भारत में राजनीति
             </h3>
-            <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.4, marginBottom: '0.65rem' }}>
+            <p className="book-card-sub" style={{ color: 'var(--text-muted)' }}>
               कक्षा XII के लिए राजनीति विज्ञान की द्वितीय पाठ्यपुस्तक (Politics in India Since Independence)
             </p>
             <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
@@ -223,27 +188,17 @@ export const PolSciBooksSection = () => {
       </div>
 
       {/* FILTER & SEARCH BAR CONTROL BAR */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap',
-        gap: '1rem',
-        marginBottom: '1.5rem',
-        padding: '0.75rem 1rem',
-        borderRadius: '12px',
-        background: 'var(--bg-card)',
-        border: '1px solid var(--border-color)'
-      }}>
+      <div className="book-filter-bar">
         {/* Left Status Bar */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <div className="sub-filter-group" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <span style={{
             fontSize: '0.85rem',
             fontWeight: 600,
             color: selectedBook === 'world' ? '#dc2626' : '#9333ea',
             display: 'flex',
             alignItems: 'center',
-            gap: '0.4rem'
+            gap: '0.4rem',
+            whiteSpace: 'nowrap'
           }}>
             <BookMarked size={16} /> 
             {selectedBook === 'world'
@@ -254,7 +209,7 @@ export const PolSciBooksSection = () => {
         </div>
 
         {/* Right Search Bar */}
-        <div style={{ position: 'relative', minWidth: '220px' }}>
+        <div className="search-wrapper" style={{ position: 'relative', minWidth: '220px' }}>
           <Search size={14} style={{ position: 'absolute', left: '0.75rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
           <input
             type="text"
@@ -276,11 +231,7 @@ export const PolSciBooksSection = () => {
       </div>
 
       {/* CHAPTERS GRID */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(290px, 1fr))',
-        gap: '1.25rem'
-      }}>
+      <div className="book-chapters-grid">
         {filteredChapters.length > 0 ? (
           filteredChapters.map((item) => (
             <div
