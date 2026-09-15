@@ -58,34 +58,51 @@ export const PDFViewerModal = () => {
 
   const isDriveUrl = viewingPdf.fileContentUrl && viewingPdf.fileContentUrl.includes('drive.google.com');
 
-  const handleDownload = () => {
-    try {
-      confetti({ particleCount: 75, spread: 85, origin: { y: 0.6 } });
-    } catch (e) {}
+  const [adUnlocked, setAdUnlocked] = useState(() => {
+    return viewingPdf ? Boolean(sessionStorage.getItem(`ad_unlocked_${viewingPdf.id}`)) : false;
+  });
 
-    // Open Monetag Direct Link Ad in a new tab for monetization
+  React.useEffect(() => {
+    if (viewingPdf) {
+      setAdUnlocked(Boolean(sessionStorage.getItem(`ad_unlocked_${viewingPdf.id}`)));
+    }
+  }, [viewingPdf]);
+
+  const handleDownload = () => {
+    if (!viewingPdf) return;
+    const pdfKey = `ad_unlocked_${viewingPdf.id}`;
+    const isUnlocked = adUnlocked || Boolean(sessionStorage.getItem(pdfKey));
     const directAdUrl = adsSettings?.directLink || 'https://omg10.com/4/11805675';
-    if (directAdUrl) {
+
+    if (!isUnlocked && directAdUrl) {
+      // Step 1: 1st Click opens Monetag Direct Link Ad
+      sessionStorage.setItem(pdfKey, 'true');
+      setAdUnlocked(true);
       try {
         window.open(directAdUrl, '_blank');
       } catch (e) {}
+    } else {
+      // Step 2: 2nd Click opens actual Google Drive file
+      try {
+        confetti({ particleCount: 75, spread: 85, origin: { y: 0.6 } });
+      } catch (e) {}
+
+      const dlUrl = getDownloadUrl(viewingPdf);
+
+      if (isDriveUrl || (dlUrl && dlUrl.startsWith('http'))) {
+        window.open(dlUrl || viewingPdf.fileContentUrl, '_blank');
+        return;
+      }
+
+      const isDataUri = viewingPdf.fileContentUrl && (viewingPdf.fileContentUrl.startsWith('data:') || viewingPdf.fileContentUrl.startsWith('http'));
+      const link = document.createElement('a');
+      link.href = isDataUri ? viewingPdf.fileContentUrl : createNoteDocumentBlob(viewingPdf);
+      link.target = '_blank';
+      link.download = isDataUri ? `${viewingPdf.title.replace(/[^a-zA-Z0-9\s]/g, '')}.pdf` : `${viewingPdf.title.replace(/[^a-zA-Z0-9\s]/g, '')}_Notes.html`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
-
-    const dlUrl = getDownloadUrl(viewingPdf);
-
-    if (isDriveUrl || (dlUrl && dlUrl.startsWith('http'))) {
-      window.open(dlUrl || viewingPdf.fileContentUrl, '_blank');
-      return;
-    }
-
-    const isDataUri = viewingPdf.fileContentUrl && (viewingPdf.fileContentUrl.startsWith('data:') || viewingPdf.fileContentUrl.startsWith('http'));
-    const link = document.createElement('a');
-    link.href = isDataUri ? viewingPdf.fileContentUrl : createNoteDocumentBlob(viewingPdf);
-    link.target = '_blank';
-    link.download = isDataUri ? `${viewingPdf.title.replace(/[^a-zA-Z0-9\s]/g, '')}.pdf` : `${viewingPdf.title.replace(/[^a-zA-Z0-9\s]/g, '')}_Notes.html`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   };
 
   const relatedPdfs = pdfs
@@ -336,10 +353,18 @@ export const PDFViewerModal = () => {
               <button
                 onClick={handleDownload}
                 className="btn btn-primary hover-lift"
-                style={{ padding: '0.7rem 1.6rem', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+                style={{ 
+                  padding: '0.7rem 1.6rem', 
+                  fontSize: '0.9rem', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '0.5rem',
+                  background: adUnlocked ? '#059669' : undefined,
+                  borderColor: adUnlocked ? '#059669' : undefined
+                }}
               >
                 <Download size={18} />
-                <span>Download PDF Notes</span>
+                <span>{adUnlocked ? 'Get Drive File 🔓' : 'Download PDF Notes'}</span>
               </button>
             </div>
           </div>

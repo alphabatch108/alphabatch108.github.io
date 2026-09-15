@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { Download, Eye, FileText } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -6,6 +6,10 @@ import { createNoteDocumentBlob } from '../utils/documentGenerator';
 
 export const PDFCard = ({ pdf }) => {
   const { setViewingPdf, incrementPdfView, adsSettings } = useApp();
+
+  const [adUnlocked, setAdUnlocked] = useState(() => {
+    return pdf ? Boolean(sessionStorage.getItem(`ad_unlocked_${pdf.id}`)) : false;
+  });
 
   const handlePreview = () => {
     incrementPdfView(pdf.id);
@@ -15,39 +19,41 @@ export const PDFCard = ({ pdf }) => {
   const handleDownload = (e) => {
     e.stopPropagation();
 
-    // Trigger festive celebration confetti effect
-    try {
-      confetti({
-        particleCount: 75,
-        spread: 80,
-        origin: { y: 0.7 }
-      });
-    } catch (err) {
-      // Fallback
-    }
-
-    // Open Monetag Direct Link Ad in new tab
+    const pdfKey = `ad_unlocked_${pdf.id}`;
+    const isUnlocked = adUnlocked || Boolean(sessionStorage.getItem(pdfKey));
     const directAdUrl = adsSettings?.directLink || 'https://omg10.com/4/11805675';
-    if (directAdUrl) {
+
+    if (!isUnlocked && directAdUrl) {
+      // Step 1: 1st Click opens Monetag Direct Link Ad
+      sessionStorage.setItem(pdfKey, 'true');
+      setAdUnlocked(true);
       try {
         window.open(directAdUrl, '_blank');
       } catch (err) {}
-    }
+    } else {
+      // Step 2: 2nd Click opens actual Google Drive file
+      try {
+        confetti({
+          particleCount: 75,
+          spread: 80,
+          origin: { y: 0.7 }
+        });
+      } catch (err) {}
 
-    if (pdf.fileContentUrl && pdf.fileContentUrl.includes('drive.google.com')) {
-      window.open(pdf.fileContentUrl, '_blank');
-      return;
-    }
+      if (pdf.fileContentUrl && pdf.fileContentUrl.includes('drive.google.com')) {
+        window.open(pdf.fileContentUrl, '_blank');
+        return;
+      }
 
-    // Download exact uploaded PDF file or formatted note document
-    const isDataUri = pdf.fileContentUrl && (pdf.fileContentUrl.startsWith('data:') || pdf.fileContentUrl.startsWith('http'));
-    const link = document.createElement('a');
-    link.href = isDataUri ? pdf.fileContentUrl : createNoteDocumentBlob(pdf);
-    link.target = '_blank';
-    link.download = isDataUri ? `${pdf.title.replace(/[^a-zA-Z0-9\s]/g, '')}.pdf` : `${pdf.title.replace(/[^a-zA-Z0-9\s]/g, '')}_Notes.html`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+      const isDataUri = pdf.fileContentUrl && (pdf.fileContentUrl.startsWith('data:') || pdf.fileContentUrl.startsWith('http'));
+      const link = document.createElement('a');
+      link.href = isDataUri ? pdf.fileContentUrl : createNoteDocumentBlob(pdf);
+      link.target = '_blank';
+      link.download = isDataUri ? `${pdf.title.replace(/[^a-zA-Z0-9\s]/g, '')}.pdf` : `${pdf.title.replace(/[^a-zA-Z0-9\s]/g, '')}_Notes.html`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   };
 
   return (
@@ -161,10 +167,18 @@ export const PDFCard = ({ pdf }) => {
             <button
               onClick={handleDownload}
               className="btn btn-primary btn-sm btn-glow hover-lift"
-              style={{ width: '100%', borderRadius: 'var(--radius-sm)', fontSize: '0.8rem', gap: '0.35rem', padding: '0.5rem 0.6rem' }}
+              style={{ 
+                width: '100%', 
+                borderRadius: 'var(--radius-sm)', 
+                fontSize: '0.8rem', 
+                gap: '0.35rem', 
+                padding: '0.5rem 0.6rem',
+                background: adUnlocked ? '#059669' : undefined,
+                borderColor: adUnlocked ? '#059669' : undefined
+              }}
             >
               <Download size={14} />
-              <span>Download</span>
+              <span>{adUnlocked ? 'Get File 🔓' : 'Download'}</span>
             </button>
           </div>
         </div>

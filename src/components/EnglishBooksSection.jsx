@@ -71,23 +71,32 @@ export const EnglishBooksSection = () => {
     });
   };
 
+  const [adClickedMap, setAdClickedMap] = useState({});
+
   const handleDownloadNotes = (item, e) => {
     if (e) e.stopPropagation();
-    try {
-      confetti({ particleCount: 75, spread: 80, origin: { y: 0.7 } });
-    } catch (err) {}
 
-    // Monetag Direct Link Ad Integration
+    const pdfKey = `ad_unlocked_${item.id}`;
+    const isUnlocked = adClickedMap[item.id] || Boolean(sessionStorage.getItem(pdfKey));
     const directAdUrl = adsSettings?.directLink || 'https://omg10.com/4/11805675';
-    if (directAdUrl) {
+
+    if (!isUnlocked && directAdUrl) {
+      // Step 1: 1st Click opens Monetag Direct Link Ad in a new tab
+      sessionStorage.setItem(pdfKey, 'true');
+      setAdClickedMap(prev => ({ ...prev, [item.id]: true }));
       try {
         window.open(directAdUrl, '_blank');
       } catch (err) {}
-    }
+    } else {
+      // Step 2: 2nd Click (after ad opened) opens the actual Google Drive / PDF file
+      try {
+        confetti({ particleCount: 75, spread: 80, origin: { y: 0.7 } });
+      } catch (err) {}
 
-    const dlUrl = item.downloadUrl || item.fileContentUrl;
-    if (dlUrl) {
-      window.open(dlUrl, '_blank');
+      const dlUrl = item.downloadUrl || item.fileContentUrl;
+      if (dlUrl) {
+        window.open(dlUrl, '_blank');
+      }
     }
   };
 
@@ -454,21 +463,26 @@ export const EnglishBooksSection = () => {
                   <span>Preview</span>
                 </button>
 
-                <button
-                  onClick={(e) => handleDownloadNotes(item, e)}
-                  className="btn btn-primary btn-sm hover-lift btn-glow"
-                  style={{
-                    fontSize: '0.785rem',
-                    padding: '0.5rem 0.5rem',
-                    borderRadius: '8px',
-                    gap: '0.35rem',
-                    background: item.book === 'flamingo' ? '#f43f5e' : '#0d9488',
-                    borderColor: item.book === 'flamingo' ? '#f43f5e' : '#0d9488'
-                  }}
-                >
-                  <Download size={14} />
-                  <span>Download PDF</span>
-                </button>
+                {(() => {
+                  const isUnlocked = adClickedMap[item.id] || Boolean(sessionStorage.getItem(`ad_unlocked_${item.id}`));
+                  return (
+                    <button
+                      onClick={(e) => handleDownloadNotes(item, e)}
+                      className="btn btn-primary btn-sm hover-lift btn-glow"
+                      style={{
+                        fontSize: '0.785rem',
+                        padding: '0.5rem 0.5rem',
+                        borderRadius: '8px',
+                        gap: '0.35rem',
+                        background: isUnlocked ? '#059669' : (item.book === 'flamingo' ? '#f43f5e' : '#0d9488'),
+                        borderColor: isUnlocked ? '#059669' : (item.book === 'flamingo' ? '#f43f5e' : '#0d9488')
+                      }}
+                    >
+                      <Download size={14} />
+                      <span>{isUnlocked ? 'Get Drive File 🔓' : 'Download PDF'}</span>
+                    </button>
+                  );
+                })()}
 
                 <a
                   href={item.fileContentUrl}
