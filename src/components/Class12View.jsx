@@ -197,14 +197,17 @@ export const Class12View = () => {
         {/* Main Content Column (Left) */}
         <div>
           {/* Subject Filter Pills Bar */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            overflowX: 'auto',
-            paddingBottom: '0.5rem',
-            marginBottom: '1.5rem'
-          }}>
+          <div 
+            className="subject-pills-bar touch-scroll"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              overflowX: 'auto',
+              paddingBottom: '0.5rem',
+              marginBottom: '1.5rem'
+            }}
+          >
             <button
               onClick={() => setActiveSubjectFilter('All')}
               className={`btn btn-sm ${activeSubjectFilter === 'All' ? 'btn-primary' : 'btn-secondary'}`}
@@ -226,12 +229,15 @@ export const Class12View = () => {
 
           {/* VIEW A: ALL SUBJECTS GRID (Shown when activeSubjectFilter === 'All') */}
           {activeSubjectFilter === 'All' && (
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))',
-              gap: '1.25rem',
-              marginBottom: '2rem'
-            }}>
+            <div 
+              className="c12-subject-grid"
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))',
+                gap: '1.25rem',
+                marginBottom: '2rem'
+              }}
+            >
               {c12Subjects.map((subj) => {
                 const IconComp = subj.icon;
                 return (

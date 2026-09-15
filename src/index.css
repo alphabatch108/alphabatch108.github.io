@@ -648,6 +648,15 @@ input:focus, select:focus, textarea:focus {
     gap: 1rem !important;
   }
 
+  .c12-subject-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+
+  .c12-subject-grid > div {
+    padding: 1rem 0.85rem !important;
+  }
+
   .admin-form-grid {
     grid-template-columns: 1fr !important;
   }
