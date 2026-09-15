@@ -586,29 +586,70 @@ input:focus, select:focus, textarea:focus {
   color: var(--accent-cyan);
 }
 
-/* Responsive Media Queries */
+/* Responsive Media Queries & Mobile Optimization System */
+@media (max-width: 1024px) {
+  .class12-layout-grid,
+  .class10-layout-grid,
+  .hero-split-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+}
+
 @media (max-width: 767px) {
+  body {
+    padding-bottom: 76px !important;
+  }
+
+  .navbar-container {
+    padding: 0.65rem 1rem !important;
+    gap: 0.75rem !important;
+  }
+
   .mobile-bottom-nav {
-    display: flex;
+    display: flex !important;
   }
 
   .modal-overlay {
-    padding: 0.5rem;
-    align-items: flex-end;
+    padding: 0.25rem !important;
+    align-items: flex-end !important;
   }
 
   .modal-content {
-    max-height: 92dvh;
-    max-height: 92vh;
-    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    max-height: 94dvh !important;
+    max-height: 94vh !important;
+    border-radius: 20px 20px 0 0 !important;
+    padding: 1.15rem !important;
+    width: 100% !important;
+  }
+
+  .pdf-iframe-viewer {
+    height: clamp(320px, 50vh, 500px) !important;
   }
 
   .btn {
-    padding: 0.6rem 1.1rem;
+    padding: 0.55rem 1rem !important;
+    font-size: 0.85rem !important;
   }
 
   .main-content {
-    padding: 1.25rem 0.85rem;
+    padding: 1rem 0.75rem 5.5rem 0.75rem !important;
+  }
+
+  .listing-toolbar-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  .class-cards-grid,
+  .subject-cards-grid,
+  .pdf-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .admin-form-grid {
+    grid-template-columns: 1fr !important;
   }
 
   .hide-on-mobile {
@@ -618,25 +659,44 @@ input:focus, select:focus, textarea:focus {
   .mobile-full-width {
     width: 100% !important;
   }
+
+  h1 {
+    font-size: clamp(1.6rem, 7vw, 2.2rem) !important;
+  }
+
+  h2 {
+    font-size: clamp(1.35rem, 5.5vw, 1.8rem) !important;
+  }
+
+  .ad-banner-wrapper {
+    margin: 1rem auto !important;
+    padding: 0.65rem 0.85rem !important;
+  }
 }
 
 @media (max-width: 480px) {
   html, body {
-    font-size: 14.5px;
+    font-size: 14px;
   }
 
   .modal-overlay {
-    padding: 0;
+    padding: 0 !important;
   }
 
   .modal-content {
-    max-height: 96dvh;
-    max-height: 96vh;
-    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    max-height: 97dvh !important;
+    max-height: 97vh !important;
+    border-radius: 16px 16px 0 0 !important;
+    padding: 0.85rem !important;
   }
 
   .mobile-hide-sub {
     display: none !important;
+  }
+
+  .btn-sm {
+    padding: 0.45rem 0.75rem !important;
+    font-size: 0.785rem !important;
   }
 }
 

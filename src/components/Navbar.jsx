@@ -53,15 +53,18 @@ export const Navbar = () => {
       borderBottom: '1px solid var(--border-color)',
       boxShadow: 'var(--shadow-sm)'
     }}>
-      <div style={{
-        maxWidth: '100%',
-        margin: '0 auto',
-        padding: '0.85rem 2.5rem',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: '1.5rem'
-      }}>
+      <div 
+        className="navbar-container"
+        style={{
+          maxWidth: '100%',
+          margin: '0 auto',
+          padding: '0.85rem 2.5rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '1.5rem'
+        }}
+      >
         
         {/* Brand Logo & Name */}
         <div 
