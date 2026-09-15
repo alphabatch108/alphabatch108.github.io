@@ -8,12 +8,12 @@ import { createNoteDocumentBlob, getNoteDocumentHTML } from '../utils/documentGe
 export const PDFViewerModal = () => {
   const { viewingPdf, setViewingPdf, pdfs = [], adsSettings } = useApp();
   const [currentPage, setCurrentPage] = useState(1);
-  const [viewMode, setViewMode] = useState('auto'); // 'auto' | 'drive' | 'html'
+  const [viewMode, setViewMode] = useState('notes'); // 'notes' | 'drive'
   const iframeRef = React.useRef(null);
 
   React.useEffect(() => {
     setCurrentPage(1);
-    setViewMode('auto');
+    setViewMode('notes');
   }, [viewingPdf]);
 
   React.useEffect(() => {
@@ -26,6 +26,24 @@ export const PDFViewerModal = () => {
       } catch (e) {}
     }
   }, [currentPage, viewingPdf]);
+
+  const blobUrl = React.useMemo(() => {
+    if (!viewingPdf) return '';
+    try {
+      return createNoteDocumentBlob(viewingPdf);
+    } catch (e) {
+      return '';
+    }
+  }, [viewingPdf]);
+
+  const htmlDoc = React.useMemo(() => {
+    if (!viewingPdf) return '';
+    try {
+      return getNoteDocumentHTML(viewingPdf);
+    } catch (e) {
+      return '';
+    }
+  }, [viewingPdf]);
 
   if (!viewingPdf) return null;
 
@@ -101,7 +119,7 @@ export const PDFViewerModal = () => {
 
       const isDataUri = rawFileUrl && (rawFileUrl.startsWith('data:') || rawFileUrl.startsWith('http'));
       const link = document.createElement('a');
-      link.href = isDataUri ? rawFileUrl : createNoteDocumentBlob(viewingPdf);
+      link.href = isDataUri ? rawFileUrl : (blobUrl || createNoteDocumentBlob(viewingPdf));
       link.target = '_blank';
       link.download = isDataUri ? `${(viewingPdf.title || 'Notes').replace(/[^a-zA-Z0-9\s]/g, '')}.pdf` : `${(viewingPdf.title || 'Notes').replace(/[^a-zA-Z0-9\s]/g, '')}_Notes.html`;
       document.body.appendChild(link);
@@ -115,7 +133,7 @@ export const PDFViewerModal = () => {
     .slice(0, 3);
 
   const embedSrc = getEmbedUrl(viewingPdf);
-  const showDriveEmbed = embedSrc && viewMode !== 'html';
+  const showDriveEmbed = Boolean(embedSrc && viewMode === 'drive');
 
   return (
     <div className="modal-overlay" onClick={() => setViewingPdf(null)}>
@@ -254,6 +272,21 @@ export const PDFViewerModal = () => {
                 {embedSrc && (
                   <div style={{ display: 'flex', gap: '0.35rem', background: 'rgba(255,255,255,0.06)', padding: '2px', borderRadius: '6px' }}>
                     <button
+                      onClick={() => setViewMode('notes')}
+                      style={{
+                        padding: '0.25rem 0.6rem',
+                        fontSize: '0.75rem',
+                        fontWeight: 600,
+                        borderRadius: '4px',
+                        border: 'none',
+                        cursor: 'pointer',
+                        background: !showDriveEmbed ? '#2563eb' : 'transparent',
+                        color: !showDriveEmbed ? '#ffffff' : '#94a3b8'
+                      }}
+                    >
+                      📖 Notes View
+                    </button>
+                    <button
                       onClick={() => setViewMode('drive')}
                       style={{
                         padding: '0.25rem 0.6rem',
@@ -266,22 +299,7 @@ export const PDFViewerModal = () => {
                         color: showDriveEmbed ? '#ffffff' : '#94a3b8'
                       }}
                     >
-                      Drive View
-                    </button>
-                    <button
-                      onClick={() => setViewMode('html')}
-                      style={{
-                        padding: '0.25rem 0.6rem',
-                        fontSize: '0.75rem',
-                        fontWeight: 600,
-                        borderRadius: '4px',
-                        border: 'none',
-                        cursor: 'pointer',
-                        background: !showDriveEmbed ? '#2563eb' : 'transparent',
-                        color: !showDriveEmbed ? '#ffffff' : '#94a3b8'
-                      }}
-                    >
-                      Notes View
+                      📄 Drive Embed
                     </button>
                   </div>
                 )}
@@ -340,6 +358,7 @@ export const PDFViewerModal = () => {
             {/* Document Rendered Preview: Real Document Iframe */}
             {showDriveEmbed ? (
               <iframe
+                key={`drive_${viewingPdf.id || 'pdf'}_${currentPage}`}
                 ref={iframeRef}
                 src={embedSrc}
                 title={viewingPdf.title || 'PDF Preview'}
@@ -356,8 +375,10 @@ export const PDFViewerModal = () => {
               />
             ) : (
               <iframe
+                key={`notes_${viewingPdf.id || 'pdf'}_${currentPage}`}
                 ref={iframeRef}
-                srcDoc={getNoteDocumentHTML(viewingPdf)}
+                src={blobUrl}
+                srcDoc={htmlDoc}
                 title={viewingPdf.title || 'Notes Preview'}
                 className="pdf-iframe-viewer"
                 style={{
